@@ -1,35 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Health_Damage;
 using UnityEngine;
 
-/// <summary>
-/// This class inherits from the Pickup class and will heal the player when picked up
-/// </summary>
-public class HealthPickup : Pickup
+namespace Pickups
 {
-    [Header("Healing Settings")]
-    [Tooltip("The healing to apply")]
-    public int healingAmount = 1;
-
-    /// <summary>
-    /// Description:
-    /// Function called when this pickup is picked up
-    /// Heals the health attatched to the collider that picks this up
-    /// Input: 
-    /// Collider2D collision
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    /// <param name="collision">The collider that is picking up this pickup</param>
-    public override void DoOnPickup(Collider2D collision)
+    public class HealthPickup : Pickup
     {
-        if (collision.tag == "Player" && collision.gameObject.GetComponent<Health>() != null)
+        [Header("Healing Settings")]
+        [Tooltip("The healing to apply")]
+        public int healingAmount = 1;
+
+
+        protected override void DoOnPickup(Collider2D collision)
         {
-            Health playerHealth = collision.gameObject.GetComponent<Health>();
-            if (playerHealth.currentHealth < playerHealth.maximumHealth)
+            if (collision.CompareTag("Player") && collision.gameObject.GetComponent<Health>() != null)
             {
-                playerHealth.ReceiveHealing(healingAmount);
-                base.DoOnPickup(collision);
+                Health playerHealth = collision.gameObject.GetComponent<Health>();
+                if (playerHealth.currentHealth < playerHealth.maximumHealth)
+                {
+                    playerHealth.ReceiveHealing(healingAmount);
+                    base.DoOnPickup(collision);
+                }
             }
         }
     }

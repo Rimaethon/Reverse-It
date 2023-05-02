@@ -1,197 +1,124 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-/// <summary>
-/// This class handles moving the attached game object between waypoints
-/// </summary>
-public class WaypointMover : MonoBehaviour
+namespace Environment
 {
-    [Header("Settings")]
-    [Tooltip("A list of transforms to move between")]
-    public List<Transform> waypoints;
-    [Tooltip("How fast to move the platform")]
-    public float moveSpeed = 1f;
-    [Tooltip("How long to wait when arriving at a waypoint")]
-    public float waitTime = 3f;
-
-    // The time at which movement is resumed
-    private float timeToStartMovingAgain = 0f;
-    // Whether or not the waypoint mover is stopped
-    [HideInInspector] 
-    public bool stopped = false;
-
-    // The previous waypoint or the starting position
-    private Vector3 previousTarget;
-    // The current waypoint being moved to
-    private Vector3 currentTarget;
-    // The index of the current Target ub tge waypoints list
-    private int currentTargetIndex;
-    // The current direction being travelled in
-    [HideInInspector] 
-    public Vector3 travelDirection;
-
-    /// <summary>
-    /// Description:
-    /// Standard Unity function called once before the first update
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
-    /// </summary>
-    void Start()
+    public class WaypointMover : MonoBehaviour
     {
-        InitializeInformation();
-    }
+        [Header("Settings")]
+        [Tooltip("A list of transforms to move between")]
+        public List<Transform> waypoints;
+        [Tooltip("How fast to move the platform")]
+        public float moveSpeed = 1f;
+        [Tooltip("How long to wait when arriving at a waypoint")]
+        public float waitTime = 3f;
 
-    /// <summary>
-    /// Description:
-    /// Standard Unity function called once every frame
-    /// Input:
-    /// none
-    /// Return:
-    /// void
-    /// </summary>
-    void Update()
-    {
-        ProcessMovementState();
-    }
+        private float _timeToStartMovingAgain;
+        [HideInInspector] 
+        public bool stopped ;
 
-    /// <summary>
-    /// Description:
-    /// Processes current state and does movement accordingly
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
-    /// </summary>
-    void ProcessMovementState()
-    {
-        if (stopped)
+        private Vector3 _previousTarget;
+        private Vector3 _currentTarget;
+        private int _currentTargetIndex;
+        [HideInInspector] 
+        public Vector3 travelDirection;
+
+
+        private void Start()
         {
-            StartCheck();
+            InitializeInformation();
         }
-        else
+
+
+        public void Update()
         {
-            Travel();
+            ProcessMovementState();
         }
-    }
 
 
-    /// <summary>
-    /// Description:
-    /// Checks to see if the waypoint mover can start movement again
-    /// Input:
-    /// none:
-    /// return:
-    /// void (no return)
-    /// </summary>
-    void StartCheck()
-    {
-        if (Time.time >= timeToStartMovingAgain)
+        private void ProcessMovementState()
         {
-            stopped = false;
-            previousTarget = currentTarget;
-            currentTargetIndex += 1;
-            if (currentTargetIndex >= waypoints.Count)
+            if (stopped)
             {
-                currentTargetIndex = 0;
+                StartCheck();
             }
-            currentTarget = waypoints[currentTargetIndex].position;
+            else
+            {
+                Travel();
+            }
+        }
+
+
+        private void StartCheck()
+        {
+            if (!(Time.time >= _timeToStartMovingAgain)) return;
+            stopped = false;
+            _previousTarget = _currentTarget;
+            _currentTargetIndex += 1;
+            if (_currentTargetIndex >= waypoints.Count)
+            {
+                _currentTargetIndex = 0;
+            }
+            _currentTarget = waypoints[_currentTargetIndex].position;
             CalculateTravelInformation();
         }
-    }
 
-    /// <summary>
-    /// Description:
-    /// Sets up the first previous target and current target
-    /// then calls CalculateTravelInformation to initilize travel direction 
-    /// Inuputs:
-    /// none
-    /// Returns:
-    /// void (no return)
-    /// </summary>
-    void InitializeInformation()
-    {
-        previousTarget = this.transform.position;
-        currentTargetIndex = 0;
-        if (waypoints.Count > 0)
+
+        private void InitializeInformation()
         {
-            currentTarget = waypoints[0].position;
-        }
-        else
-        {
-            waypoints.Add(this.transform);        
-            currentTarget = previousTarget;
-        }
+            _previousTarget = this.transform.position;
+            _currentTargetIndex = 0;
+            if (waypoints.Count > 0)
+            {
+                _currentTarget = waypoints[0].position;
+            }
+            else
+            {
+                waypoints.Add(this.transform);        
+                _currentTarget = _previousTarget;
+            }
         
-        CalculateTravelInformation();
-    }
-
-    /// <summary>
-    /// Description:
-    /// Calculates the current traveling direction using the previousTarget and the currentTarget
-    /// Inuputs:
-    /// none
-    /// Returns:
-    /// void (no return)
-    /// </summary>
-    void CalculateTravelInformation()
-    {
-        travelDirection = (currentTarget - previousTarget).normalized;
-    }
-
-    /// <summary>
-    /// Description:
-    /// Translates the transform in the direction towards the next waypoint
-    /// Input:
-    /// none
-    /// Returns:
-    /// void
-    /// </summary>
-    void Travel()
-    {
-        transform.Translate(travelDirection * moveSpeed * Time.deltaTime);
-        bool overX = false;
-        bool overY = false;
-        bool overZ = false;
-
-        Vector3 directionFromCurrentPositionToTarget = currentTarget - transform.position;
-
-        if (directionFromCurrentPositionToTarget.x == 0 || Mathf.Sign(directionFromCurrentPositionToTarget.x) != Mathf.Sign(travelDirection.x))
-        {
-            overX = true;
-            transform.position = new Vector3(currentTarget.x, transform.position.y, transform.position.z);
-        }
-        if (directionFromCurrentPositionToTarget.y == 0 || Mathf.Sign(directionFromCurrentPositionToTarget.y) != Mathf.Sign(travelDirection.y))
-        {
-            overY = true;
-            transform.position = new Vector3(transform.position.x, currentTarget.y, transform.position.z);
-        }
-        if (directionFromCurrentPositionToTarget.z == 0 || Mathf.Sign(directionFromCurrentPositionToTarget.z) != Mathf.Sign(travelDirection.z))
-        {
-            overZ = true;
-            transform.position = new Vector3(transform.position.x, transform.position.y, currentTarget.z);
+            CalculateTravelInformation();
         }
 
-        // If we are over the x, y, and z of our target we need to stop
-        if (overX && overY && overZ)
-        {
-            BeginWait();
-        }
-    }
 
-    /// <summary>
-    /// Description:
-    /// Starts the waiting, sets up the needed variables for waiting
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
-    /// </summary>
-    void BeginWait()
-    {
-        stopped = true;
-        timeToStartMovingAgain = Time.time + waitTime;
+        private void CalculateTravelInformation()
+        {
+            travelDirection = (_currentTarget - _previousTarget).normalized;
+        }
+
+
+        private void Travel()
+        {
+            Transform transform1;
+            (transform1 = transform).Translate(travelDirection * (moveSpeed * Time.deltaTime));
+
+            Vector3 directionFromCurrentPositionToTarget = _currentTarget - transform1.position;
+            bool[] overAxis = new bool[3];
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (directionFromCurrentPositionToTarget[i] != 0 &&
+                    Mathf.Sign(directionFromCurrentPositionToTarget[i]) == Mathf.Sign(travelDirection[i])) continue;
+                overAxis[i] = true;
+                directionFromCurrentPositionToTarget[i] = 0;
+            }
+
+            transform.position += directionFromCurrentPositionToTarget;
+
+            // If we are over the x, y, and z of our target we need to stop
+            if (overAxis.All(axis => axis))
+            {
+                BeginWait();
+            }
+        }
+
+
+        private void BeginWait()
+        {
+            stopped = true;
+            _timeToStartMovingAgain = Time.time + waitTime;
+        }
     }
 }

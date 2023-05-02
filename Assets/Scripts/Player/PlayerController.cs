@@ -1,516 +1,323 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Health_Damage;
 using UnityEngine;
 
-/// <summary>
-/// Class which handles player movement
-/// </summary>
-[RequireComponent(typeof(Rigidbody2D))]
-public class PlayerController : MonoBehaviour
+namespace Player
 {
-    #region Variables
-    #region GameObject references
-    [Header("Game Object and Component References")]
-    [Tooltip("The Input Manager component used to gather player input.")]
-    public InputManager inputManager = null;
-    [Tooltip("The Ground Check component used to check whether this player is grounded currently.")]
-    public GroundCheck groundCheck = null;
-    [Tooltip("The sprite renderer that represents the player.")]
-    public SpriteRenderer spriteRenderer = null;
-    [Tooltip("The health component attached to the player.")]
-    public Health playerHealth;
-    private bool gravityRunning;
-    private bool gravityJumping=true;
+  
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class PlayerController : MonoBehaviour
+    {
+        #region Variables
+        #region GameObject references
+        [Header("Game Object and Component References")]
+        [Tooltip("The Input Manager component used to gather player input.")]
+        public InputManager inputManager;
+        [Tooltip("The Ground Check component used to check whether this player is grounded currently.")]
+        public GroundCheck groundCheck;
+        [Tooltip("The sprite renderer that represents the player.")]
+        public SpriteRenderer spriteRenderer;
+        [Tooltip("The health component attached to the player.")]
+        public Health playerHealth;
+        private bool _gravityRunning;
+        private bool _gravityJumping=true;
     
 
-    // The rigidbody used to move the player (necessary for this component, so not made public)
-    private Rigidbody2D playerRigidbody = null;
-    #endregion
+        private Rigidbody2D _playerRigidbody;
+        #endregion
 
-    #region Getters (primarily from other components)
-    #region Directional facing
-    /// <summary>
-    /// Enum to help determine which direction the player is facing.
-    /// </summary>
-    public enum PlayerDirection
-    {
-        Right,
-        Left
-    }
+        #region Getters (primarily from other components)
+        #region Directional facing
 
-    // Which way the player is facing right now
-    public PlayerDirection facing
-    {
-        get
+        private enum PlayerDirection
         {
-            if (horizontalMovementInput > 0)
+            Right,
+            Left
+        }
+
+        private PlayerDirection Facing
+        {
+            get
             {
-                return PlayerDirection.Right;
-            }
-            else if (horizontalMovementInput < 0)
-            {
-                return PlayerDirection.Left;
-            }
-            else
-            {
-                if (spriteRenderer != null && spriteRenderer.flipX == true&& playerRigidbody.gravityScale>0)
+                switch (HorizontalMovementInput)
+                {
+                    case > 0:
+                        return PlayerDirection.Right;
+                    case < 0:
+                        return PlayerDirection.Left;
+                }
+
+                if (spriteRenderer != null && spriteRenderer.flipX&& _playerRigidbody.gravityScale>0)
                     return PlayerDirection.Left;
                 return PlayerDirection.Right;
             }
         }
-    }
-    #endregion
+        #endregion
 
-    // Whether this player is grounded false if no ground check component assigned
-    public bool grounded
-    {
-        get
-        {
-            if (groundCheck != null)
-            {
-                return groundCheck.CheckGrounded();
-            }
-            else
-            {
-                return false;
-            }
-        }
-    }
+        private bool Grounded => groundCheck != null && groundCheck.CheckGrounded();
 
-    #region Input from Input Manager
-    // The horizontal movement input collected from the input manager
-    public float horizontalMovementInput
-    {
-        get
+        #region Input from Input Manager
+        private float HorizontalMovementInput
         {
-            if (inputManager != null)
-                return inputManager.horizontalMovement;
-            else
+            get
+            {
+                if (inputManager != null)
+                    return inputManager.horizontalMovement;
                 return 0;
+            }
         }
-    }
-    // the jump input collected from the input manager
-    public bool jumpInput
-    {
-        get
+        private bool JumpInput => inputManager != null && inputManager.jumpStarted;
+
+        #endregion
+        #endregion
+
+        #region Movement Variables
+        [Header("Movement Settings")]
+        [Tooltip("The speed at which to move the player horizontally")]
+        public float movementSpeed = 4.0f;
+
+        [Header("Jump Settings")]
+        [Tooltip("The force with which the player jumps.")]
+        public float jumpPower = 10.0f;
+        [Tooltip("The number of jumps that the player is alowed to make.")]
+        public int allowedJumps = 1;
+        [Tooltip("The duration that the player spends in the \"jump\" state")]
+        public float jumpDuration = 0.1f;
+        [Tooltip("The effect to spawn when the player jumps")]
+        public GameObject jumpEffect;
+        [Tooltip("Layers to pass through when moving upwards")]
+        public List<string> passThroughLayers = new();
+
+        // The number of times this player has jumped since being grounded
+        private int _timesJumped;
+        // Whether the player is in the middle of a jump right now
+        private bool _jumping;
+        #endregion
+
+        #region Player State Variables
+    
+        public enum PlayerState
         {
-            if (inputManager != null)
-                return inputManager.jumpStarted;
-            else
-                return false;
+            Idle,
+            Walk,
+            Jump,
+            Fall,
+            Dead
         }
-    }
-    #endregion
-    #endregion
 
-    #region Movement Variables
-    [Header("Movement Settings")]
-    [Tooltip("The speed at which to move the player horizontally")]
-    public float movementSpeed = 4.0f;
+        public PlayerState state = PlayerState.Idle;
+        #endregion
+        #endregion
 
-    [Header("Jump Settings")]
-    [Tooltip("The force with which the player jumps.")]
-    public float jumpPower = 10.0f;
-    [Tooltip("The number of jumps that the player is alowed to make.")]
-    public int allowedJumps = 1;
-    [Tooltip("The duration that the player spends in the \"jump\" state")]
-    public float jumpDuration = 0.1f;
-    [Tooltip("The effect to spawn when the player jumps")]
-    public GameObject jumpEffect = null;
-    [Tooltip("Layers to pass through when moving upwards")]
-    public List<string> passThroughLayers = new List<string>();
-    Vector2 movementForce = Vector2.zero;
+        #region Functions
+        #region GameObject Functions
+      
+        private void Start()
+        {
+            SetupRigidbody();
+            SetUpInputManager();
+        }
 
-    // The number of times this player has jumped since being grounded
-    private int timesJumped = 0;
-    // Whether the player is in the middle of a jump right now
-    private bool jumping = false;
-    #endregion
-
-    #region Player State Variables
-    /// <summary>
-    /// Enum used for categorizing the player's state
-    /// </summary>
-    public enum PlayerState
-    {
-        Idle,
-        Walk,
-        Jump,
-        Fall,
-        Dead
-    }
-
-    // The player's current state (walking, idle, jumping, or falling)
-    public PlayerState state = PlayerState.Idle;
-    #endregion
-    #endregion
-
-    #region Functions
-    #region GameObject Functions
-    /// <summary>
-    /// Description:
-    /// Standard Unity function called once before the first update
-    /// Input: 
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    private void Start()
-    {
-        SetupRigidbody();
-        SetUpInputManager();
-    }
-
-    /// <summary>
-    /// Description:
-    /// Standard Unity function called once every frame after update
-    /// Every frame, process input, move the player, determine which way they should face, and choose which state they are in
-    /// Input: 
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    private void LateUpdate()
-    {
-        ProcessInput();
-        HandleSpriteDirection();
-        DetermineState();
+  
+        private void LateUpdate()
+        {
+            ProcessInput();
+            HandleSpriteDirection();
+            DetermineState();
         
             
         
-    }
-    #endregion
-
-    #region Input Handling and Movement Functions
-    /// <summary>
-    /// Description:
-    /// Collects input from the input manager, then calls functions to move the player accordingly
-    /// Input: none
-    /// Return: void (no return)
-    /// </summary>
-    private void ProcessInput()
-    {
-        HandleMovementInput();
-        HandleJumpInput();
-    }
-
-    /// <summary>
-    /// Description:
-    /// Handles movement input
-    /// Input: none
-    /// Return: void (no return)
-    /// </summary>
-    private void HandleMovementInput()
-    {
-        Vector2 movementForce = Vector2.zero;
-        if (Mathf.Abs(horizontalMovementInput) > 0 && state != PlayerState.Dead)
-        {
-            movementForce = Vector3.right * movementSpeed * horizontalMovementInput;
         }
-        MovePlayer(movementForce);
-    }
+        #endregion
 
-    /// <summary>
-    /// Description:
-    /// Moves the player with a specified force
-    /// Input: 
-    /// Vector2 movementForce
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    /// <param name="movementForce">The force with which to move the player</param>
-    private void MovePlayer(Vector2 movementForce)
-    {
-        if (grounded && !jumping)
+        #region Input Handling and Movement Functions
+       
+        private void ProcessInput()
         {
-            float horizontalVelocity = movementForce.x;
-            float verticalVelocity = 0;
-            playerRigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
+            HandleMovementInput();
+            HandleJumpInput();
         }
-        else
+
+  
+        private void HandleMovementInput()
         {
-            float horizontalVelocity = movementForce.x;
-            float verticalVelocity = playerRigidbody.velocity.y;
-            playerRigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
-        }
-        if (playerRigidbody.velocity.y > 0)
-        {
-            foreach (string layerName in passThroughLayers)
+            Vector2 movementForce = Vector2.zero;
+            if (Mathf.Abs(HorizontalMovementInput) > 0 && state != PlayerState.Dead)
             {
-                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer(layerName), true);
-            } 
+                movementForce = Vector3.right * (movementSpeed * HorizontalMovementInput);
+            }
+            MovePlayer(movementForce);
         }
-        else
+
+       
+        private void MovePlayer(Vector2 movementForce)
         {
-            foreach (string layerName in passThroughLayers)
+            if (Grounded && !_jumping)
             {
-                Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer(layerName), false);
+                float horizontalVelocity = movementForce.x;
+                float verticalVelocity = 0;
+                _playerRigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
+            }
+            else
+            {
+                float horizontalVelocity = movementForce.x;
+                float verticalVelocity = _playerRigidbody.velocity.y;
+                _playerRigidbody.velocity = new Vector2(horizontalVelocity, verticalVelocity);
+            }
+            if (_playerRigidbody.velocity.y > 0)
+            {
+                foreach (string layerName in passThroughLayers)
+                {
+                    Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer(layerName), true);
+                } 
+            }
+            else
+            {
+                foreach (string layerName in passThroughLayers)
+                {
+                    Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer(layerName), false);
+                }
             }
         }
-    }
-    public void GravitatePlayer()
-    {
-
-        if (!gravityRunning)
-
+        public void GravitatePlayer()
         {
-            StartCoroutine(GravitationOn());
+
+            if (!_gravityRunning)
+
+            {
+                StartCoroutine(GravitationOn());
+            }
         }
-    }
-     public IEnumerator GravitationOn()
-    {   
-        gravityRunning = true;
+        public IEnumerator GravitationOn()
+        {   
+            _gravityRunning = true;
         
 
-        playerRigidbody.gravityScale *= -1;
+            _playerRigidbody.gravityScale *= -1;
        
 
-        transform.Rotate(new Vector3(0, 0, 180));
-        if (playerRigidbody.gravityScale < 0)
-        {
-            gravityJumping = false;
+            transform.Rotate(new Vector3(0, 0, 180));
+            if (_playerRigidbody.gravityScale < 0)
+            {
+                _gravityJumping = false;
+            }
+            yield return new WaitForSeconds(1);
+            _gravityJumping=true;
+
+            yield return new WaitForSeconds(2);
+
+            _gravityRunning = false;
+
         }
-        yield return new WaitForSeconds(1);
-        gravityJumping=true;
 
-        yield return new WaitForSeconds(2);
-
-        gravityRunning = false;
-
-    }
-
-    /// <summary>
-    /// Description:
-    /// Handles jump input
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
-    /// </summary>
-    private void HandleJumpInput()
-    {
-        if (jumpInput&&gravityJumping)
+   
+        private void HandleJumpInput()
         {
-            StartCoroutine("Jump", 1.0f);
+            if (JumpInput&&_gravityJumping)
+            {
+                StartCoroutine(nameof(Jump), 1.0f);
+            }
         }
-    }
 
-    /// <summary>
-    /// Description:
-    /// Coroutine which causes the player to jump.
-    /// Input: 
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    /// <returns>IEnumerator: makes coroutine possible</returns>
-    private IEnumerator Jump(float powerMultiplier = 1.0f)
-    {
-        if (timesJumped < allowedJumps && state != PlayerState.Dead)
+       
+        private IEnumerator Jump(float powerMultiplier = 1.0f)
         {
-            jumping = true;
+            if (_timesJumped >= allowedJumps || state == PlayerState.Dead) yield break;
+            _jumping = true;
             float time = 0;
             SpawnJumpEffect();
-            playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, 0);
-            playerRigidbody.AddForce(transform.up * jumpPower * powerMultiplier, ForceMode2D.Impulse);
-            timesJumped++;
+            _playerRigidbody.velocity = new Vector2(_playerRigidbody.velocity.x, 0);
+            _playerRigidbody.AddForce(transform.up * (jumpPower * powerMultiplier), ForceMode2D.Impulse);
+            _timesJumped++;
             while (time < jumpDuration)
             {
                 yield return null;
                 time += Time.deltaTime;
             }
-            jumping = false;
+            _jumping = false;
         }
-    }
-
-    /// <summary>
-    /// Description:
-    /// Spawns the effect that occurs when the player jumps
-    /// Input: 
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    private void SpawnJumpEffect()
-    {
-        if (jumpEffect != null)
-        {
-            Instantiate(jumpEffect, transform.position, transform.rotation, null);
-        }
-        
-    }
-
-    /// <summary>
-    /// Description:
-    /// Bounces the player upwards, refunding jumps.
-    /// Input: 
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    public void Bounce()
-    {
-        timesJumped = 0;
-        if (inputManager.jumpHeld)
-        {
-            StartCoroutine("Jump", 1.5f);
-        }
-        else
-        {
-            StartCoroutine("Jump", 1.0f);
-        }
-    }
-
-    /// <summary>
-    /// Description:
-    /// Determines which way the player should be facing, then makes them face in that direction
-    /// Input: 
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    private void HandleSpriteDirection()
-    {
-        if (spriteRenderer != null && playerRigidbody.gravityScale < 0)
-        {
-
-
-
-            if (facing == PlayerDirection.Left)
-            {
-                spriteRenderer.flipX = false;
-            }
-            else
-            {
-                spriteRenderer.flipX = true;
-            }
-
-
-        }
-
-        if (spriteRenderer != null && playerRigidbody.gravityScale > 0)
-        {
-            if (facing == PlayerDirection.Right)
-            {
-                spriteRenderer.flipX = false;
-            }
-            else
-            {
-                spriteRenderer.flipX = true;
-            }
-
-           
-        }
-    }
 
    
-    #endregion
-
-    #region State Functions
-    /// <summary>
-    /// Description:
-    /// Gets and returns the player's current state
-    /// Input: 
-    /// none
-    /// Return: 
-    /// PlayerState
-    /// </summary>
-    /// <returns>PlayerState: The player's current state (idle, walking, jumping, falling</returns>
-    private PlayerState GetState()
-    {
-        return state;
-    }
-
-    /// <summary>
-    /// Description:
-    /// Sets the player's current state
-    /// Input: 
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    /// <param name="newState">The PlayerState to set the current state to</param>
-    private void SetState(PlayerState newState)
-    {
-        state = newState;
-    }
-
-    /// <summary>
-    /// Description:
-    /// Determines which state is appropriate for the player currently
-    /// Input: 
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    private void DetermineState()
-    {
-        if (playerHealth.currentHealth <= 0)
+        private void SpawnJumpEffect()
         {
-            SetState(PlayerState.Dead);
+            if (jumpEffect == null) return;
+            var transform1 = transform;
+            Instantiate(jumpEffect, transform1.position, transform1.rotation, null);
+
         }
-        else if (grounded)
+
+
+        public void Bounce()
         {
-            if (playerRigidbody.velocity.magnitude > 0)
+            _timesJumped = 0;
+            StartCoroutine(nameof(Jump), inputManager.jumpHeld ? 1.5f : 1.0f);
+        }
+
+      
+        private void HandleSpriteDirection()
+        {
+            if (spriteRenderer != null && _playerRigidbody.gravityScale < 0)
             {
-                SetState(PlayerState.Walk);
+                spriteRenderer.flipX = Facing != PlayerDirection.Left;
+            }
+
+            if (spriteRenderer == null || !(_playerRigidbody.gravityScale > 0)) return;
+            spriteRenderer.flipX = Facing != PlayerDirection.Right;
+        }
+
+   
+        #endregion
+
+        #region State Functions
+
+      
+        private void SetState(PlayerState newState)
+        {
+            state = newState;
+        }
+
+   
+        private void DetermineState()
+        {
+            if (playerHealth.currentHealth <= 0)
+            {
+                SetState(PlayerState.Dead);
+            }
+            else if (Grounded)
+            {
+                SetState(_playerRigidbody.velocity.magnitude > 0 ? PlayerState.Walk : PlayerState.Idle);
+                if (!_jumping)
+                {
+                    _timesJumped = 0;
+                }
             }
             else
             {
-                SetState(PlayerState.Idle);
-            }
-            if (!jumping)
-            {
-                timesJumped = 0;
+                SetState(_jumping ? PlayerState.Jump : PlayerState.Fall);
             }
         }
-        else
-        {
-            if (jumping)
-            {
-                SetState(PlayerState.Jump);
-            }
-            else
-            {
-                SetState(PlayerState.Fall);
-            }
-        }
-    }
-    #endregion
+        #endregion
 
-    /// <summary>
-    /// Description:
-    /// Sets up the player's rigidbody
-    /// Input: 
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    private void SetupRigidbody()
-    {
-        if (playerRigidbody == null)
+     
+        private void SetupRigidbody()
         {
-            playerRigidbody = GetComponent<Rigidbody2D>();
+            if (_playerRigidbody == null)
+            {
+                _playerRigidbody = GetComponent<Rigidbody2D>();
+            }
         }
-    }
 
-    /// <summary>
-    /// Description:
-    /// Gets the reference to the input manager
-    /// Throws an error if none exists
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
-    /// </summary>
-    private void SetUpInputManager()
-    {
-        inputManager = InputManager.instance;
-        if (inputManager == null)
+       
+        private void SetUpInputManager()
         {
-            Debug.LogError("There is no InputManager set up in the scene for the PlayerController to read from");
+            inputManager = InputManager.Instance;
+            if (inputManager == null)
+            {
+                Debug.LogError("There is no InputManager set up in the scene for the PlayerController to read from");
+            }
         }
-    }
 
-    #endregion
+        #endregion
+    }
 }

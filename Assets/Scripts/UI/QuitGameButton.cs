@@ -1,26 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-/// <summary>
-/// This class handles quitting out of the game
-/// </summary>
-public class QuitGameButton : MonoBehaviour
+namespace UI
 {
-    /// <summary>
-    /// Description:
-    /// Closes the game or exits play mode depending on the case
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
-    /// </summary>
-    public void QuitGame()
+    
+    public class QuitGameButton : MonoBehaviour
     {
+   
+        public void QuitGame()
+        {
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
 #endif
+        }
     }
 }

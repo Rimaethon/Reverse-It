@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿
 
-/// <summary>
-/// Class which keeps track of the current checkpoint
-/// </summary>
-public static class CheckpointTracker
+
+namespace Checkpoint
 {
-    // The most recently activated checkpoint
-    public static Checkpoint currentCheckpoint = null;
+    public static class CheckpointTracker
+    {
+        public static Checkpoint CurrentCheckpoint = null;
+    }
 }

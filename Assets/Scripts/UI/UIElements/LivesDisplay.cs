@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Health_Damage;
+using UI.UIElements;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 /// <summary>
-/// Class intended to work with grid layout groups to create an image based health bar
+/// Class which causes the text component on this gameobject to display the number of lives the player has left
 /// </summary>
-public class HealthDisplay : UIelement
+public class LivesDisplay : UIElement
 {
     [Header("Settings")]
-    [Tooltip("The image which represents one unit of health")]
-    public GameObject healthDisplayImage = null;
+    [Tooltip("The prefab image to use when displaying lives remaining")]
+    public GameObject livesDisplayImage = null;
     [Tooltip("The prefab to use to display the number")]
     public GameObject numberDisplay = null;
     [Tooltip("The maximum number of images to display before switching to just a number")]
@@ -18,7 +21,8 @@ public class HealthDisplay : UIelement
 
     /// <summary>
     /// Description:
-    /// Upadates this UI element
+    /// Updates the display according to this class
+    /// When UI elements update, update the display of the number of player lives remaining
     /// Input: 
     /// none
     /// Return: 
@@ -26,19 +30,20 @@ public class HealthDisplay : UIelement
     /// </summary>
     public override void UpdateUI()
     {
-        if (GameManager.instance != null && GameManager.instance.player != null)
+        if (GameManager.Instance != null && GameManager.Instance.player != null)
         {
-            Health playerHealth = GameManager.instance.player.GetComponent<Health>();
+            Health playerHealth = GameManager.Instance.player.GetComponent<Health>();
             if (playerHealth != null)
             {
-                SetChildImageNumber(playerHealth.currentHealth);
+                SetChildImageNumber(playerHealth.currentLives - 1);
             }
         }
     }
 
     /// <summary>
     /// Description:
-    /// Deletes and spawns images until this gameobject has as many children as the player has health
+    /// Deletes and spawns images until this gameobject has as many children as the player has lives
+    /// If the number of lives is over the threshold, displays a number instead
     /// Input: 
     /// int
     /// Return: 
@@ -52,18 +57,18 @@ public class HealthDisplay : UIelement
             Destroy(transform.GetChild(i).gameObject);
         }
 
-        if (healthDisplayImage != null)
+        if (livesDisplayImage != null)
         {
             if (maximumNumberToDisplay >= number)
             {
                 for (int i = 0; i < number; i++)
                 {
-                    Instantiate(healthDisplayImage, transform);
+                    Instantiate(livesDisplayImage, transform);
                 }
             }
             else
             {
-                Instantiate(healthDisplayImage, transform);
+                Instantiate(livesDisplayImage, transform);
                 GameObject createdNumberDisp = Instantiate(numberDisplay, transform);
                 createdNumberDisp.GetComponent<Text>().text = number.ToString();
             }

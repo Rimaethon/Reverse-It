@@ -1,31 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Health_Damage;
 using UnityEngine;
+using Utility;
 
-/// <summary>
-/// Class for pickups which end the level
-/// </summary>
-public class GoalPickup : Pickup
+namespace Pickups
 {
-    /// <summary>
-    /// Description:
-    /// Function called when this pickup is picked up
-    /// Tells the game manager that the level was cleared
-    /// Input: 
-    /// Collider2D collision
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    /// <param name="collision">The collider that is picking up this pickup</param>
-    public override void DoOnPickup(Collider2D collision)
+    public class GoalPickup : Pickup
     {
-        if (collision.tag == "Player" && collision.gameObject.GetComponent<Health>() != null)
+        protected override void DoOnPickup(Collider2D collision)
         {
-            if (GameManager.instance != null)
+            if (collision.CompareTag("Player") && collision.gameObject.GetComponent<Health>() != null)
             {
-                GameManager.instance.LevelCleared();
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.LevelCleared();
+                }
             }
+            base.DoOnPickup(collision);
         }
-        base.DoOnPickup(collision);
     }
 }

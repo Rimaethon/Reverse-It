@@ -1,36 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UI.UIElements;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 /// <summary>
-/// This class handles displayig the score
+/// Handles updating the high score display
 /// </summary>
-public class ScoreDisplay : UIelement
+public class HighScoreDisplay : UIElement
 {
     [Header("References")]
-    [Tooltip("The text to use when displaying the score")]
+    [Tooltip("The text that displays the high score")]
     public Text displayText = null;
 
     /// <summary>
     /// Description:
-    /// Displays the score onto the display text
+    /// Updates the display text with the higch score value
     /// Input:
     /// none
     /// Return:
     /// void (no return)
     /// </summary>
-    public void DisplayScore()
+    public void DisplayHighScore()
     {
         if (displayText != null)
         {
-            displayText.text = "Score: " + GameManager.score.ToString();
+            displayText.text = "High: " + GameManager.Instance.highScore.ToString();
         }
     }
 
     /// <summary>
     /// Description:
-    /// Updates this UI based on this class
+    /// Updates the UI element according to this class
     /// Input:
     /// none
     /// Return:
@@ -42,6 +44,6 @@ public class ScoreDisplay : UIelement
         base.UpdateUI();
 
         // The remaining code is only called for this sub-class of UIelement and not others
-        DisplayScore();
+        DisplayHighScore();
     }
 }

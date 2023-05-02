@@ -1,315 +1,210 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using Unity.Collections;
+﻿using Health_Damage;
+using Keys_Doors;
+using UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-/// <summary>
-/// Class which manages the game
-/// </summary>
-public class GameManager : MonoBehaviour
+namespace Utility
 {
-    // The global instance for other scripts to reference
-    public static GameManager instance = null;
-
-    [Header("References:")]
-    [Tooltip("The UIManager component which manages the current scene's UI")]
-    public UIManager uiManager = null;
-    [Tooltip("The player gameobject")]
-    public GameObject player = null;
-
-    [Header("Scores")]
-    [Tooltip("The player's score")]
-    [SerializeField] private int gameManagerScore = 0;
-
-    // Static getter/setter for player score (for convenience)
-    public static int score
+   
+    public class GameManager : MonoBehaviour
     {
-        get
-        {
-            return instance.gameManagerScore;
-        }
-        set
-        {
-            instance.gameManagerScore = value;
-        }
-    }
+        public static GameManager Instance;
 
-    [Tooltip("The highest score acheived on this device")]
-    public int highScore = 0;
+        [Header("References:")]
+        [Tooltip("The UIManager component which manages the current scene's UI")]
+        public UIManager uiManager;
+        [Tooltip("The player GameObject")]
+        public GameObject player;
 
-    [Header("Game Progress / Victory Settings")]
-    [Tooltip("Whether the game is winnable or not \nDefault: true")]
-    public bool gameIsWinnable = true;
-    [Tooltip("Page index in the UIManager to go to on winning the game")]
-    public int gameVictoryPageIndex = 0;
-    [Tooltip("The effect to create upon winning the game")]
-    public GameObject victoryEffect;
+        [Header("Scores")]
+        [Tooltip("The player's score")]
+        [SerializeField] private int gameManagerScore ;
 
-    /// <summary>
-    /// Description:
-    /// Standard Unity function called when this instance is first loaded (before start)
-    /// Input: 
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    private void Awake()
-    {
-        // When this component is first added or activated, setup the global reference
-        if (instance == null)
+        // Static getter/setter for player score (for convenience)
+        public static int Score
         {
-            instance = this;
+            get => Instance.gameManagerScore;
+            private set => Instance.gameManagerScore = value;
         }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
 
-    /// <summary>
-    /// Description:
-    /// Standard Unity function called once before the first update
-    /// Input: 
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    private void Start()
-    {
-        // Less urgent startup behaviors, like loading highscores
-        if (PlayerPrefs.HasKey("highscore"))
-        {
-            highScore = PlayerPrefs.GetInt("highscore");
-        }
-        if (PlayerPrefs.HasKey("score"))
-        {
-            score = PlayerPrefs.GetInt("score");
-        }
-        InitilizeGamePlayerPrefs();
-    }
+        [Tooltip("The highest score acheived on this device")]
+        public int highScore ;
 
-    /// <summary>
-    /// Description:
-    /// Sets up the game player prefs of the player's health and lives
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
-    /// </summary>
-    private void InitilizeGamePlayerPrefs()
-    {
-        if (player != null)
-        {
-            Health playerHealth = player.GetComponent<Health>();
+        [Header("Game Progress / Victory Settings")]
+        [Tooltip("Whether the game is winnable or not \nDefault: true")]
+        public bool gameIsWinnable = true;
+        [Tooltip("Page index in the UIManager to go to on winning the game")]
+        public int gameVictoryPageIndex ;
+        [Tooltip("The effect to create upon winning the game")]
+        public GameObject victoryEffect;
 
-            // Set lives accordingly
-            if (PlayerPrefs.GetInt("lives") == 0)
+        private void Awake()
+        {
+            if (Instance == null)
             {
-                PlayerPrefs.SetInt("lives", playerHealth.currentLives);
+                Instance = this;
             }
-            
-            playerHealth.currentLives = PlayerPrefs.GetInt("lives");
-
-            // Set health accordingly
-            if (PlayerPrefs.GetInt("health") == 0)
+            else
             {
+                Destroy(this.gameObject);
+            }
+        }
+
+   
+        private void Start()
+        {
+            if (PlayerPrefs.HasKey("highscore"))
+            {
+                highScore = PlayerPrefs.GetInt("highscore");
+            }
+            if (PlayerPrefs.HasKey("score"))
+            {
+                Score = PlayerPrefs.GetInt("score");
+            }
+            InitializeGamePlayerPrefs();
+        }
+
+   
+        private void InitializeGamePlayerPrefs()
+        {
+            if (player != null)
+            {
+                Health playerHealth = player.GetComponent<Health>();
+
+                // Set lives accordingly
+                if (PlayerPrefs.GetInt("lives") == 0)
+                {
+                    PlayerPrefs.SetInt("lives", playerHealth.currentLives);
+                }
+            
+                playerHealth.currentLives = PlayerPrefs.GetInt("lives");
+
+                // Set health accordingly
+                if (PlayerPrefs.GetInt("health") == 0)
+                {
+                    PlayerPrefs.SetInt("health", playerHealth.currentHealth);
+                }
+            
+                playerHealth.currentHealth = PlayerPrefs.GetInt("health");
+            }
+            KeyRing.ClearKeyRing();
+        }
+
+    
+        private void SetGamePlayerPrefs()
+        {
+            if (player != null)
+            {
+                Health playerHealth = player.GetComponent<Health>();
+                PlayerPrefs.SetInt("lives", playerHealth.currentLives);
                 PlayerPrefs.SetInt("health", playerHealth.currentHealth);
             }
-            
-            playerHealth.currentHealth = PlayerPrefs.GetInt("health");
         }
-        KeyRing.ClearKeyRing();
-    }
 
-    /// <summary>
-    /// Description:
-    /// Sets the lives and health of the player prefs to the player's lives and health
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
-    /// </summary>
-    private void SetGamePlayerPrefs()
-    {
-        if (player != null)
+ 
+        private void OnApplicationQuit()
         {
-            Health playerHealth = player.GetComponent<Health>();
-            PlayerPrefs.SetInt("lives", playerHealth.currentLives);
-            PlayerPrefs.SetInt("health", playerHealth.currentHealth);
+            SaveHighScore();
+            ResetScore();
         }
-    }
 
-    /// <summary>
-    /// Description:
-    /// Standard Unity function that gets called when the application (or playmode) ends
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
-    /// </summary>
-    private void OnApplicationQuit()
-    {
-        SaveHighScore();
-        ResetScore();
-    }
-
-    /// <summary>
-    /// Description:
-    /// Sends out a message to UI elements to update
-    /// Input:
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    public static void UpdateUIElements()
-    {
-        if (instance != null && instance.uiManager != null)
+        public static void UpdateUIElements()
         {
-            instance.uiManager.UpdateUI();
-        }
-    }
-
-    /// <summary>
-    /// Description:
-    /// Ends the level, meant to be called when the level is complete (End of level reached)
-    /// Input: 
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    public void LevelCleared()
-    {
-        PlayerPrefs.SetInt("score", score);
-        SetGamePlayerPrefs();
-        if (uiManager != null)
-        {
-            player.SetActive(false);
-            uiManager.allowPause = false;
-            uiManager.GoToPage(gameVictoryPageIndex);
-            if (victoryEffect != null)
+            if (Instance != null && Instance.uiManager != null)
             {
-                Instantiate(victoryEffect, transform.position, transform.rotation, null);
+                Instance.uiManager.UpdateUI();
             }
-        }     
-    }
-
-    [Header("Game Over Settings:")]
-    [Tooltip("The index in the UI manager of the game over page")]
-    public int gameOverPageIndex = 0;
-    [Tooltip("The game over effect to create when the game is lost")]
-    public GameObject gameOverEffect;
-
-    // Whether or not the game is over
-    [HideInInspector]
-    public bool gameIsOver = false;
-
-    /// <summary>
-    /// Description:
-    /// Displays game over screen
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
-    /// </summary>
-    public void GameOver()
-    {
-        gameIsOver = true;
-        if (gameOverEffect != null)
-        {
-            Instantiate(gameOverEffect, transform.position, transform.rotation, null);
         }
-        if (uiManager != null)
+
+   
+        public void LevelCleared()
         {
+            PlayerPrefs.SetInt("score", Score);
+            SetGamePlayerPrefs();
+            if (uiManager != null)
+            {
+                player.SetActive(false);
+                uiManager.allowPause = false;
+                uiManager.GoToPage(gameVictoryPageIndex);
+                if (victoryEffect != null)
+                {
+                    var transform1 = transform;
+                    Instantiate(victoryEffect, transform1.position, transform1.rotation, null);
+                }
+            }     
+        }
+
+        [Header("Game Over Settings:")]
+        [Tooltip("The index in the UI manager of the game over page")]
+        public int gameOverPageIndex ;
+        [Tooltip("The game over effect to create when the game is lost")]
+        public GameObject gameOverEffect;
+
+        // Whether or not the game is over
+        [HideInInspector]
+        public bool gameIsOver ;
+
+   
+        public void GameOver()
+        {
+            gameIsOver = true;
+            if (gameOverEffect != null)
+            {
+                var transform1 = transform;
+                Instantiate(gameOverEffect, transform1.position, transform1.rotation, null);
+            }
+
+            if (uiManager == null) return;
             uiManager.allowPause = false;
             uiManager.GoToPage(gameOverPageIndex);
         }
-    }
 
-    /// <summary>
-    /// Description:
-    /// Adds a number to the player's score stored in the gameManager
-    /// Input: 
-    /// int scoreAmount
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    /// <param name="scoreAmount">The amount to add to the score</param>
-    public static void AddScore(int scoreAmount)
-    {
-        score += scoreAmount;
-        if (score > instance.highScore)
+   
+        public static void AddScore(int scoreAmount)
         {
-            SaveHighScore();
+            Score += scoreAmount;
+            if (Score > Instance.highScore)
+            {
+                SaveHighScore();
+            }
+            UpdateUIElements();
         }
-        UpdateUIElements();
-    }
 
-    /// <summary>
-    /// Description:
-    /// Resets the current player score
-    /// Input: 
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    public static void ResetScore()
-    {
-        PlayerPrefs.SetInt("score", 0);
-        score = 0;
-    }
-
-    /// <summary>
-    /// Description:
-    /// Resets the game player prefs of the lives, health, and score
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
-    /// </summary>
-    public static void ResetGamePlayerPrefs()
-    {
-        PlayerPrefs.SetInt("score", 0);
-        score = 0;
-        PlayerPrefs.SetInt("lives", 0);
-        PlayerPrefs.SetInt("health", 0);
-    }
-
-    /// <summary>
-    /// Description:
-    /// Saves the player's highscore
-    /// Input:
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    public static void SaveHighScore()
-    {
-        if (score > instance.highScore)
+  
+        public static void ResetScore()
         {
-            PlayerPrefs.SetInt("highscore", score);
-            instance.highScore = score;
+            PlayerPrefs.SetInt("score", 0);
+            Score = 0;
         }
-        UpdateUIElements();
-    }
 
-    /// <summary>
-    /// Description:
-    /// Resets the high score in player preferences
-    /// Input:
-    /// none
-    /// Returns: 
-    /// void (no return)
-    /// </summary>
-    public static void ResetHighScore()
-    {
-        PlayerPrefs.SetInt("highscore", 0);
-        if (instance != null)
+        public static void ResetGamePlayerPrefs()
         {
-            instance.highScore = 0;
+            PlayerPrefs.SetInt("score", 0);
+            Score = 0;
+            PlayerPrefs.SetInt("lives", 0);
+            PlayerPrefs.SetInt("health", 0);
         }
-        UpdateUIElements();
+
+
+        private static void SaveHighScore()
+        {
+            if (Score > Instance.highScore)
+            {
+                PlayerPrefs.SetInt("highscore", Score);
+                Instance.highScore = Score;
+            }
+            UpdateUIElements();
+        }
+
+   
+        public static void ResetHighScore()
+        {
+            PlayerPrefs.SetInt("highscore", 0);
+            if (Instance != null)
+            {
+                Instance.highScore = 0;
+            }
+            UpdateUIElements();
+        }
     }
 }

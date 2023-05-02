@@ -1,83 +1,56 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-/// <summary>
-/// A class which destroys it's gameobject after a certain amount of time
-/// </summary>
-public class TimedObjectDestroyer : MonoBehaviour
+namespace Utility
 {
-    [Header("Settings:")]
-    [Tooltip("The lifetime of this gameobject")]
-    public float lifetime = 5.0f;
-
-    // The amount of time this gameobject has already existed in play mode
-    private float timeAlive = 0.0f;
-
-    [Tooltip("Whether or not to destroy child gameobjects when this gameobject is destroyed")]
-    public bool destroyChildrenOnDeath = true;
-
-    /// <summary>
-    /// Description:
-    /// Standard Unity function called once every frame
-    /// Input: 
-    /// none
-    /// Returns: 
-    /// void (no return)
-    /// </summary>
-    void Update()
+    public class TimedObjectDestroyer : MonoBehaviour
     {
-        // Every frame, increment the amount of time that this gameobject has been alive,
-        // or if it has exceeded it's maximum lifetime, destroy it
-        if (timeAlive > lifetime)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            timeAlive += Time.deltaTime;
-        }
-    }
+        [Header("Settings:")]
+        [Tooltip("The lifetime of this gameobject")]
+        public float lifetime = 5.0f;
 
-    // Flag which tells whether the application is shutting down (helps avoid errors)
-    public static bool quitting = false;
+        private float _timeAlive;
 
-    /// <summary>
-    /// Description:
-    /// Ensures that the quitting flag gets set correctly to avoid work as the application quits
-    /// Input: 
-    /// none
-    /// Return: 
-    /// void (no return)
-    /// </summary>
-    private void OnApplicationQuit()
-    {
-        quitting = true;
-        DestroyImmediate(this.gameObject);
-    }
+        [Tooltip("Whether or not to destroy child gameobjects when this gameobject is destroyed")]
+        public bool destroyChildrenOnDeath = true;
 
-    /// <summary>
-    /// Description:
-    /// Behavior which triggers when this component is destroyed
-    /// Input: 
-    /// none
-    /// Returns:
-    /// void (no return)
-    /// </summary>
-    private void OnDestroy()
-    {
-        if (destroyChildrenOnDeath && !quitting && Application.isPlaying)
+
+        private void Update()
         {
-            int childCount = transform.childCount;
-            for (int i = childCount - 1; i >= 0; i--)
+            if (_timeAlive > lifetime)
             {
-                GameObject childObject = transform.GetChild(i).gameObject;
-                if (childObject != null)
-                {
-                    Destroy(childObject);
-                }
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                _timeAlive += Time.deltaTime;
             }
         }
-        transform.DetachChildren();
+
+        private static bool _quitting;
+
+       
+        private void OnApplicationQuit()
+        {
+            _quitting = true;
+            DestroyImmediate(this.gameObject);
+        }
+
+      
+        private void OnDestroy()
+        {
+            if (destroyChildrenOnDeath && !_quitting && Application.isPlaying)
+            {
+                int childCount = transform.childCount;
+                for (int i = childCount - 1; i >= 0; i--)
+                {
+                    GameObject childObject = transform.GetChild(i).gameObject;
+                    if (childObject != null)
+                    {
+                        Destroy(childObject);
+                    }
+                }
+            }
+            transform.DetachChildren();
+        }
     }
 }
