@@ -6,15 +6,10 @@ namespace Player
     [RequireComponent(typeof(Collider2D))]
     public class GroundCheck : MonoBehaviour
     {
-        [Header("Settings")]
-        [Tooltip("The layers which are considered \"Ground\".")]
-        public LayerMask groundLayers;
-        [Tooltip("The collider to check with. (Defaults to the collider on this game object.)")]
-        public Collider2D groundCheckCollider;
+        [SerializeField] private LayerMask groundLayers;
+        [SerializeField] private Collider2D groundCheckCollider;
 
-        [Header("Effect Settings")]
-        [Tooltip("The effect to create when landing")]
-        public GameObject landingEffect;
+        [SerializeField] private GameObject landingEffect;
 
         private bool _groundedLastCheck;
 
