@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -6,23 +7,22 @@ namespace Environment
 {
     public class WaypointMover : MonoBehaviour
     {
-        [Header("Settings")]
-        [Tooltip("A list of transforms to move between")]
-        public List<Transform> waypoints;
-        [Tooltip("How fast to move the platform")]
-        public float moveSpeed = 1f;
-        [Tooltip("How long to wait when arriving at a waypoint")]
-        public float waitTime = 3f;
+        [SerializeField] private List<Transform> waypoints;
 
-        private float _timeToStartMovingAgain;
-        [HideInInspector] 
-        public bool stopped ;
+        [SerializeField] private float moveSpeed = 1f;
 
-        private Vector3 _previousTarget;
+        [SerializeField] private float waitTime = 3f;
+
+        [HideInInspector] public bool stopped;
+
+        [HideInInspector] public Vector3 travelDirection;
+
         private Vector3 _currentTarget;
         private int _currentTargetIndex;
-        [HideInInspector] 
-        public Vector3 travelDirection;
+
+        private Vector3 _previousTarget;
+
+        private float _timeToStartMovingAgain;
 
 
         private void Start()
@@ -40,13 +40,9 @@ namespace Environment
         private void ProcessMovementState()
         {
             if (stopped)
-            {
                 StartCheck();
-            }
             else
-            {
                 Travel();
-            }
         }
 
 
@@ -56,10 +52,7 @@ namespace Environment
             stopped = false;
             _previousTarget = _currentTarget;
             _currentTargetIndex += 1;
-            if (_currentTargetIndex >= waypoints.Count)
-            {
-                _currentTargetIndex = 0;
-            }
+            if (_currentTargetIndex >= waypoints.Count) _currentTargetIndex = 0;
             _currentTarget = waypoints[_currentTargetIndex].position;
             CalculateTravelInformation();
         }
@@ -67,7 +60,7 @@ namespace Environment
 
         private void InitializeInformation()
         {
-            _previousTarget = this.transform.position;
+            _previousTarget = transform.position;
             _currentTargetIndex = 0;
             if (waypoints.Count > 0)
             {
@@ -75,10 +68,10 @@ namespace Environment
             }
             else
             {
-                waypoints.Add(this.transform);        
+                waypoints.Add(transform);
                 _currentTarget = _previousTarget;
             }
-        
+
             CalculateTravelInformation();
         }
 
@@ -94,13 +87,13 @@ namespace Environment
             Transform transform1;
             (transform1 = transform).Translate(travelDirection * (moveSpeed * Time.deltaTime));
 
-            Vector3 directionFromCurrentPositionToTarget = _currentTarget - transform1.position;
-            bool[] overAxis = new bool[3];
+            var directionFromCurrentPositionToTarget = _currentTarget - transform1.position;
+            var overAxis = new bool[3];
 
-            for (int i = 0; i < 3; i++)
+            for (var i = 0; i < 3; i++)
             {
                 if (directionFromCurrentPositionToTarget[i] != 0 &&
-                    Mathf.Sign(directionFromCurrentPositionToTarget[i]) == Mathf.Sign(travelDirection[i])) continue;
+                    Math.Abs(Mathf.Sign(directionFromCurrentPositionToTarget[i]) - Mathf.Sign(travelDirection[i])) < Mathf.Epsilon) continue;
                 overAxis[i] = true;
                 directionFromCurrentPositionToTarget[i] = 0;
             }
@@ -108,10 +101,7 @@ namespace Environment
             transform.position += directionFromCurrentPositionToTarget;
 
             // If we are over the x, y, and z of our target we need to stop
-            if (overAxis.All(axis => axis))
-            {
-                BeginWait();
-            }
+            if (overAxis.All(axis => axis)) BeginWait();
         }
 
 
