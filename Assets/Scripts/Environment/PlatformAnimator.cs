@@ -6,9 +6,9 @@ namespace Environment
     [RequireComponent(typeof(Animator))]
     public class PlatformAnimator : MonoBehaviour
     {
-        [SerializeField] private WaypointMover mover;
-        private Animator _animator;
         private static readonly int IsMoving = Animator.StringToHash("isMoving");
+        [SerializeField] private WaypointMover mover;
+        private Animator _animator; 
 
 
         private void Awake()
@@ -20,10 +20,7 @@ namespace Environment
 
         private void Update()
         {
-            if (mover != null && _animator != null)
-            {
-                _animator.SetBool(IsMoving, !mover.stopped);
-            }
+            if (mover != null && _animator != null) _animator.SetBool(IsMoving, !mover.stopped);
         }
     }
 }
