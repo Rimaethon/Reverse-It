@@ -11,15 +11,10 @@ namespace Player
     {
         #region Variables
         #region GameObject references
-        [Header("Game Object and Component References")]
-        [Tooltip("The Input Manager component used to gather player input.")]
-        public InputManager inputManager;
-        [Tooltip("The Ground Check component used to check whether this player is grounded currently.")]
-        public GroundCheck groundCheck;
-        [Tooltip("The sprite renderer that represents the player.")]
-        public SpriteRenderer spriteRenderer;
-        [Tooltip("The health component attached to the player.")]
-        public Health playerHealth;
+        [SerializeField] private InputManager inputManager;
+        [SerializeField] private GroundCheck groundCheck;
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private Health playerHealth;
         private bool _gravityRunning;
         private bool _gravityJumping=true;
     
@@ -73,21 +68,15 @@ namespace Player
         #endregion
 
         #region Movement Variables
-        [Header("Movement Settings")]
-        [Tooltip("The speed at which to move the player horizontally")]
-        public float movementSpeed = 4.0f;
-
-        [Header("Jump Settings")]
-        [Tooltip("The force with which the player jumps.")]
-        public float jumpPower = 10.0f;
-        [Tooltip("The number of jumps that the player is alowed to make.")]
-        public int allowedJumps = 1;
-        [Tooltip("The duration that the player spends in the \"jump\" state")]
-        public float jumpDuration = 0.1f;
-        [Tooltip("The effect to spawn when the player jumps")]
-        public GameObject jumpEffect;
-        [Tooltip("Layers to pass through when moving upwards")]
-        public List<string> passThroughLayers = new();
+        
+        [SerializeField] private float movementSpeed = 4.0f;
+        
+        [SerializeField] private float jumpPower = 10.0f;
+        [SerializeField] private int allowedJumps = 1;
+        [SerializeField] private float jumpDuration = 0.1f;
+        
+        [SerializeField] private GameObject jumpEffect;
+        [SerializeField] private List<string> passThroughLayers = new();
 
         // The number of times this player has jumped since being grounded
         private int _timesJumped;
