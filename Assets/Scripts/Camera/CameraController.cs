@@ -7,13 +7,6 @@ namespace Camera
     [RequireComponent(typeof(UnityEngine.Camera))]
     public class CameraController : MonoBehaviour
     {
-        private UnityEngine.Camera _playerCamera;
-
-        [Header("GameObject References")]
-        [Tooltip("The target to follow with this camera")]
-        public Transform target ;
-
-   
         public enum CameraStyles
         {
             Locked,
@@ -23,31 +16,33 @@ namespace Camera
             BetweenTargetAndMouse
         }
 
-        [Header("CameraMovement")]
-        [Tooltip("The way this camera moves:\n" +
-                 "\tLocked: Camera does not move\n" +
-                 "\tOverhead: Camera stays over that target\n" +
-                 "\tDistanceFollow: Camera stays within [Max distance From Target] away from the target.\n" +
-                 "\tOffsetFollow: Camera follows the target at an offset" +
-                 "\tBetweenTargetAndMouse: Camera stays directly between the mouse position and the target position")]
-        public CameraStyles cameraMovementStyle = CameraStyles.Locked;
+        public Transform target;
 
-        [Tooltip("The maximum distance away from the target that the camera can move")]
-        public float maxDistanceFromTarget = 5.0f;
-        [Tooltip("The offset from the computed camera position to move the camera to in Offset Follow mode.")]
-        public Vector2 cameraOffset = Vector2.zero;
-        [Tooltip("The z coordinate to use for the camera position")]
-        public float cameraZCoordinate = -10.0f;
-        [Tooltip("The percentage distance between the target position and the\n" +
-                 "mouse position to move the camera to in BetweenTargetAndMouse camera mode.")]
-        public float mouseTracking = 0.5f;
-        [Tooltip("The input manager used to collect input information")]
-        public InputManager inputManager;
+      
+        [SerializeField] private CameraStyles cameraMovementStyle = CameraStyles.Locked;
+
+        [SerializeField] private float maxDistanceFromTarget = 5.0f;
+
+        [SerializeField] private Vector2 cameraOffset = Vector2.zero;
+
+        [SerializeField] private float cameraZCoordinate = -10.0f;
+
+        [SerializeField] private float mouseTracking = 0.5f;
+
+        [SerializeField] private InputManager inputManager;
+
+        private UnityEngine.Camera _playerCamera;
 
 
         private void Start()
         {
             InitialSetup();
+        }
+
+
+        public void Update()
+        {
+            SetCameraPosition();
         }
 
         private void InitialSetup()
@@ -57,54 +52,44 @@ namespace Camera
         }
 
 
-        public void Update()
-        {
-            SetCameraPosition();
-        }
-
-  
         private void SetUpInputManager()
         {
             inputManager = InputManager.Instance;
             if (inputManager == null)
-            {
                 Debug.LogError("There is no InputManager set up in the scene for the CamaeraController to read from");
-            }
         }
 
- 
+
         private void SetCameraPosition()
         {
             if (target != null)
             {
-                Vector3 targetPosition = GetTargetPosition();
-                Vector3 mousePosition = GetPlayerMousePosition();
-                Vector3 desiredCameraPosition = ComputeCameraPosition(targetPosition, mousePosition);
+                var targetPosition = GetTargetPosition();
+                var mousePosition = GetPlayerMousePosition();
+                var desiredCameraPosition = ComputeCameraPosition(targetPosition, mousePosition);
 
                 transform.position = desiredCameraPosition;
-            }      
+            }
         }
 
 
         private Vector3 GetTargetPosition()
         {
-            if (target != null)
-            {
-                return target.position;
-            }
+            if (target != null) return target.position;
             return transform.position;
         }
 
 
         private Vector3 GetPlayerMousePosition()
         {
-            return _playerCamera.ScreenToWorldPoint(new Vector2(inputManager.horizontalLookAxis, inputManager.verticalLookAxis));
+            return _playerCamera.ScreenToWorldPoint(new Vector2(inputManager.horizontalLookAxis,
+                inputManager.verticalLookAxis));
         }
 
 
         private Vector3 ComputeCameraPosition(Vector3 targetPosition, Vector3 mousePosition)
         {
-            Vector3 result = Vector3.zero;
+            var result = Vector3.zero;
             switch (cameraMovementStyle)
             {
                 case CameraStyles.Locked:
@@ -116,22 +101,21 @@ namespace Camera
                 case CameraStyles.DistanceFollow:
                     result = transform.position;
                     if ((targetPosition - result).magnitude > maxDistanceFromTarget)
-                    {
                         result = targetPosition + (result - targetPosition).normalized * maxDistanceFromTarget;
-                    }
                     break;
                 case CameraStyles.OffsetFollow:
                     result = targetPosition + (Vector3)cameraOffset;
                     break;
                 case CameraStyles.BetweenTargetAndMouse:
-                    Vector3 desiredPosition = Vector3.Lerp(targetPosition, mousePosition, mouseTracking);
-                    Vector3 difference = desiredPosition - targetPosition;
+                    var desiredPosition = Vector3.Lerp(targetPosition, mousePosition, mouseTracking);
+                    var difference = desiredPosition - targetPosition;
                     difference = Vector3.ClampMagnitude(difference, maxDistanceFromTarget);
                     result = targetPosition + difference;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             result.z = cameraZCoordinate;
             return result;
         }
