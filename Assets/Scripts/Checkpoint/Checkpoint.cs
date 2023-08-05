@@ -5,15 +5,10 @@ namespace Checkpoint
 {
     public class Checkpoint : MonoBehaviour
     {
-        [Header("Settings")]
-        [Tooltip("The location this checkpoint will respawn the player at")]
-        public Transform respawnLocation;
-        [Tooltip("The animator for this checkpoint")]
-        public Animator checkpointAnimator;
-        [Tooltip("The name of the parameter in the animator which determines if this checkpoint displays as active")]
-        public string animatorActiveParameter = "isActive";
-        [Tooltip("The effect to create when activating the checkpoint")]
-        public GameObject checkpointActivationEffect;
+        [SerializeField] private Transform respawnLocation;
+        [SerializeField] private Animator checkpointAnimator;
+        [SerializeField] private string animatorActiveParameter = "isActive";
+        [SerializeField] private GameObject checkpointActivationEffect;
 
    
         private void OnTriggerEnter2D(Collider2D collision)
