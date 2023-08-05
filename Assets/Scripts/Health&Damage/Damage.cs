@@ -4,60 +4,42 @@ namespace Health_Damage
 {
     public class Damage : MonoBehaviour
     {
-        [Header("Team Settings")]
-        [Tooltip("The team associated with this damage")]
-        public int teamId;
+        [SerializeField] private int teamId;
 
-        [Header("Damage Settings")]
-        [Tooltip("How much damage to deal")]
-        public int damageAmount = 1;
-        [Tooltip("Whether or not to destroy the attached game object after dealing damage")]
-        public bool destroyAfterDamage = true;
-        [Tooltip("Whether or not to apply damage when triggers collide")]
-        public bool dealDamageOnTriggerEnter;
-        [Tooltip("Whether or not to apply damage when triggers stay, for damage over time")]
-        public bool dealDamageOnTriggerStay;
-        [Tooltip("Whether or not to apply damage on non-trigger collider collisions")]
-        public bool dealDamageOnCollision;
+        [SerializeField] private int damageAmount = 1;
+
+        [SerializeField] private bool destroyAfterDamage = true;
+
+        [SerializeField] private bool dealDamageOnTriggerEnter;
+
+        [SerializeField] private bool dealDamageOnTriggerStay;
+
+        [SerializeField] private bool dealDamageOnCollision;
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (dealDamageOnCollision) DealDamage(collision.gameObject);
+        }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (dealDamageOnTriggerEnter)
-            {
-                DealDamage(collision.gameObject);
-            }
+            if (dealDamageOnTriggerEnter) DealDamage(collision.gameObject);
         }
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            if (dealDamageOnTriggerStay)
-            {
-                DealDamage(collision.gameObject);
-            }
-        }
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (dealDamageOnCollision)
-            {
-                DealDamage(collision.gameObject);
-            }
+            if (dealDamageOnTriggerStay) DealDamage(collision.gameObject);
         }
 
         private void DealDamage(GameObject collisionGameObject)
         {
-            Health collidedHealth = collisionGameObject.GetComponent<Health>();
+            var collidedHealth = collisionGameObject.GetComponent<Health>();
             if (collidedHealth != null)
-            {
-                if (collidedHealth.teamId != this.teamId)
+                if (collidedHealth.teamId != teamId)
                 {
                     collidedHealth.TakeDamage(damageAmount);
-                    if (destroyAfterDamage)
-                    {
-                        Destroy(this.gameObject);
-                    }
+                    if (destroyAfterDamage) Destroy(gameObject);
                 }
-            }
         }
     }
 }
