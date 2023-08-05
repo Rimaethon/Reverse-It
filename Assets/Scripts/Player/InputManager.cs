@@ -43,10 +43,8 @@ namespace Player
             pauseButton = default;
         }
 
-        [Header("Movement Input")]
-        [Tooltip("The horizontal movement input of the player.")]
+       
         public float horizontalMovement;
-        [Tooltip("The vertical movement input of the player.")]
         public float verticalMovement;
 
  
@@ -82,8 +80,7 @@ namespace Player
             jumpStarted = false;
         }
     
-        [Header("Pause Input")]
-        [Tooltip("The state of the pause button")]
+   
         public float pauseButton;
 
     
@@ -92,10 +89,8 @@ namespace Player
             pauseButton = callbackContext.ReadValue<float>();
         }
     
-        [Header("Mouse Input")]
-        [Tooltip("The horizontal mouse input of the player.")]
+    
         public float horizontalLookAxis;
-        [Tooltip("The vertical mouse input of the player.")]
         public float verticalLookAxis;
 
         public InputManager()
