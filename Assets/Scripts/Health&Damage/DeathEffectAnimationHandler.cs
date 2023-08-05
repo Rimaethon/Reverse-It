@@ -7,12 +7,12 @@ namespace Health_Damage
     {
         private static readonly int IsDead = Animator.StringToHash("isDead");
 
-        void Start()
+        private void Start()
         {
             SetIsDead();
         }
 
-   
+
         private void SetIsDead()
         {
             GetComponent<Animator>().SetTrigger(IsDead);
