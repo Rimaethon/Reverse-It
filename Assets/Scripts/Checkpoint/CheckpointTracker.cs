@@ -1,7 +1,4 @@
-﻿
-
-
-namespace Checkpoint
+﻿namespace Checkpoint
 {
     public static class CheckpointTracker
     {
