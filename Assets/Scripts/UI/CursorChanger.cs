@@ -4,9 +4,7 @@ namespace UI
 {
     public class CursorChanger : MonoBehaviour
     {
-        [Header("Settings:")]
-        [Tooltip("The cursor to change to")]
-        public Texture2D newCursorSprite;
+        [SerializeField] private Texture2D newCursorSprite;
 
 
         public void Start()
@@ -19,12 +17,13 @@ namespace UI
         {
             Cursor.lockState = CursorLockMode.Confined;
 
-            Vector2 hotSpot = new Vector2();
+            var hotSpot = new Vector2();
             if (newCursorSprite == null) return;
-            hotSpot.x = newCursorSprite.width / 2;
-            hotSpot.y = newCursorSprite.height / 2;
+           
+                hotSpot.x = newCursorSprite.width / 2;
+                hotSpot.y = newCursorSprite.height / 2;
 
-            Cursor.SetCursor(newCursorSprite, hotSpot, CursorMode.Auto);
+                Cursor.SetCursor(newCursorSprite, hotSpot, CursorMode.Auto);
         }
     }
 }
