@@ -7,13 +7,13 @@ namespace Health_Damage
     [RequireComponent(typeof(Rigidbody2D))]
     public class Health : MonoBehaviour
     {
-        [SerializeField] private int teamId;
+        [SerializeField] public int teamId;
         [SerializeField] private int defaultHealth = 2;
-        [SerializeField] private int maximumHealth = 3;
-        [SerializeField] private int currentHealth = 2;
+        [SerializeField] public int maximumHealth = 3;
+        [SerializeField] public int currentHealth = 2;
         [SerializeField] private float invincibilityTime = 3f;
         [SerializeField] private bool useLives;
-        [SerializeField] private int currentLives = 3;
+        [SerializeField] public int currentLives = 3;
         [SerializeField] private int maximumLives = 5;
         [SerializeField] private float respawnWaitTime = 3f;
         [SerializeField] private Rigidbody2D playerRigidbody;
