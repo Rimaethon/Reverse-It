@@ -5,8 +5,7 @@ namespace Pickups
 {
     public class HealthPickup : Pickup
     {
-        [Header("Healing Settings")]
-        [Tooltip("The healing to apply")]
+        [Header("Healing Settings")] [Tooltip("The healing to apply")]
         public int healingAmount = 1;
 
 
@@ -14,7 +13,7 @@ namespace Pickups
         {
             if (collision.CompareTag("Player") && collision.gameObject.GetComponent<Health>() != null)
             {
-                Health playerHealth = collision.gameObject.GetComponent<Health>();
+                var playerHealth = collision.gameObject.GetComponent<Health>();
                 if (playerHealth.currentHealth < playerHealth.maximumHealth)
                 {
                     playerHealth.ReceiveHealing(healingAmount);
