@@ -17,10 +17,16 @@ namespace Player
         [Tooltip("The animator component that controls the player's animations")]
         public Animator animator;
 
+        private int[] intarray;
+        private int intarray1;
+        
+
 
         private void Start()
         {
             ReadPlayerStateAndAnimate();
+            intarray = new int[5];
+            intarray[^2] = intarray1;
         }
 
 
