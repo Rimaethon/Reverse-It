@@ -13,7 +13,7 @@ namespace Player
 
         private bool _groundedLastCheck;
 
-        
+
         private void Start()
         {
             groundCheckCollider = GetComponent<Collider2D>();
@@ -22,31 +22,26 @@ namespace Player
 
         private void GetCollider()
         {
-            if (groundCheckCollider == null)
-            {
-                groundCheckCollider = gameObject.GetComponent<Collider2D>();
-            }
+            if (groundCheckCollider == null) groundCheckCollider = gameObject.GetComponent<Collider2D>();
         }
 
-     
+
         public bool CheckGrounded()
         {
-            if (groundCheckCollider == null)
-            {
-                GetCollider();
-            }
+            if (groundCheckCollider == null) GetCollider();
 
-            Collider2D[] overlaps = new Collider2D[5];
-            ContactFilter2D contactFilter = new ContactFilter2D();
+            var overlaps = new Collider2D[5];
+            var contactFilter = new ContactFilter2D();
             contactFilter.layerMask = groundLayers;
             groundCheckCollider.OverlapCollider(contactFilter, overlaps);
 
-            if ((from overlapCollider in overlaps where overlapCollider != null select contactFilter.layerMask.value & (int)Mathf.Pow(2, overlapCollider.gameObject.layer)).Any(match => match > 0))
+            if ((from overlapCollider in overlaps
+                    where overlapCollider != null
+                    select contactFilter.layerMask.value & (int)Mathf.Pow(2, overlapCollider.gameObject.layer))
+                .Any(match => match > 0))
             {
                 if (landingEffect && !_groundedLastCheck)
-                {
                     Instantiate(landingEffect, transform.position, Quaternion.identity, null);
-                }
 
                 _groundedLastCheck = true;
                 return true;
