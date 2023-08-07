@@ -4,7 +4,7 @@ namespace Keys_Doors
 {
     public static class KeyRing
     {
-        private static readonly HashSet<int> KeyIDs = new HashSet<int>() { 0 };
+        private static readonly HashSet<int> KeyIDs = new() { 0 };
         // The IDs of the keys held by the player
 
         public static void AddKey(int keyID)
@@ -12,13 +12,13 @@ namespace Keys_Doors
             KeyIDs.Add(keyID);
         }
 
-        
+
         public static bool HasKey(Door door)
         {
             return KeyIDs.Contains(door.doorID);
         }
 
-   
+
         public static void ClearKeyRing()
         {
             KeyIDs.Clear();
