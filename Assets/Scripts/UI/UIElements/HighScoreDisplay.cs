@@ -1,42 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UI.UIElements;
+﻿using UI.UIElements;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility;
 
 /// <summary>
-/// Handles updating the high score display
+///     Handles updating the high score display
 /// </summary>
 public class HighScoreDisplay : UIElement
 {
-    [Header("References")]
-    [Tooltip("The text that displays the high score")]
-    public Text displayText = null;
+    [Header("References")] [Tooltip("The text that displays the high score")]
+    public Text displayText;
 
     /// <summary>
-    /// Description:
-    /// Updates the display text with the higch score value
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
+    ///     Description:
+    ///     Updates the display text with the higch score value
+    ///     Input:
+    ///     none
+    ///     Return:
+    ///     void (no return)
     /// </summary>
     public void DisplayHighScore()
     {
-        if (displayText != null)
-        {
-            displayText.text = "High: " + GameManager.Instance.highScore.ToString();
-        }
+        if (displayText != null) displayText.text = "High: " + GameManager.Instance.highScore;
     }
 
     /// <summary>
-    /// Description:
-    /// Updates the UI element according to this class
-    /// Input:
-    /// none
-    /// Return:
-    /// void (no return)
+    ///     Description:
+    ///     Updates the UI element according to this class
+    ///     Input:
+    ///     none
+    ///     Return:
+    ///     void (no return)
     /// </summary>
     public override void UpdateUI()
     {
