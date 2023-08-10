@@ -9,7 +9,8 @@ namespace Checkpoint
     {
         private Vector3 m_RespawnLocation;
         private Animator m_CheckpointAnimator;
-        [SerializeField] private string animatorActiveParameter = "isActive";
+        private readonly int m_AnimatorActiveHash=Animator.StringToHash("isActive");
+
         [SerializeField] private GameObject checkpointActivationEffect;
 
         private void Awake()
@@ -26,13 +27,13 @@ namespace Checkpoint
             playerHealth.SetRespawnPoint(m_RespawnLocation);
 
             if (CheckpointTracker.CurrentCheckpoint != null)
-                CheckpointTracker.CurrentCheckpoint.m_CheckpointAnimator.SetBool(animatorActiveParameter, false);
+                CheckpointTracker.CurrentCheckpoint.m_CheckpointAnimator.SetBool(m_AnimatorActiveHash, false);
 
             if (CheckpointTracker.CurrentCheckpoint != this && checkpointActivationEffect != null)
                 Instantiate(checkpointActivationEffect, transform.position, Quaternion.identity, null);
 
             CheckpointTracker.CurrentCheckpoint = this;
-            m_CheckpointAnimator.SetBool(animatorActiveParameter, true);
+            m_CheckpointAnimator.SetBool(m_AnimatorActiveHash, true);
         }
     }
 }
