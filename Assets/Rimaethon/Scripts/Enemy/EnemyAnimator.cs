@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Rimaethon.Scripts.Core.Enums;
+using UnityEngine;
 
-namespace Enemy
+namespace Rimaethon.Scripts.Enemy
 {
     public class EnemyAnimator : MonoBehaviour
     {
-        [SerializeField] private EnemyBase enemyComponent;
+        private EnemyBase m_EnemyComponent;
 
         [SerializeField] private Animator enemyAnimator;
 
@@ -20,10 +21,15 @@ namespace Enemy
         private bool _isEnemyComponentNull;
 
 
+        private void Awake()
+        {
+            m_EnemyComponent = GetComponent<EnemyBase>();
+        }
+
         private void Start()
         {
             _isEnemyAnimatorNull = enemyAnimator == null;
-            _isEnemyComponentNull = enemyComponent == null;
+            _isEnemyComponentNull = m_EnemyComponent == null;
             SetAnimatorState();
         }
 
@@ -38,11 +44,11 @@ namespace Enemy
         {
             if (_isEnemyComponentNull || _isEnemyAnimatorNull) return;
 
-            enemyAnimator.SetBool(idleAnimatorParameter, enemyComponent.enemyState == EnemyBase.EnemyState.Idle);
+            enemyAnimator.SetBool(idleAnimatorParameter, m_EnemyComponent.EnemyStates == EnemyStates.Idle);
 
-            enemyAnimator.SetBool(movingAnimatorParameter, enemyComponent.enemyState == EnemyBase.EnemyState.Walking);
+            enemyAnimator.SetBool(movingAnimatorParameter, m_EnemyComponent.EnemyStates == EnemyStates.Walking);
 
-            enemyAnimator.SetBool(deadAnimatorParameter, enemyComponent.enemyState == EnemyBase.EnemyState.Dead);
+            enemyAnimator.SetBool(deadAnimatorParameter, m_EnemyComponent.EnemyStates == EnemyStates.Dead);
         }
     }
 }
