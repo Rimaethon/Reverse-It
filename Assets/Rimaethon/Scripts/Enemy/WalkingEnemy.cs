@@ -1,17 +1,14 @@
 ﻿using System;
 using Player;
+using Rimaethon.Scripts.Core.Enums;
+using Rimaethon.Scripts.Enemy;
 using UnityEngine;
 
 namespace Enemy
 {
     public sealed class WalkingEnemy : EnemyBase
     {
-        public enum WalkDirections
-        {
-            Right,
-            Left,
-            None
-        }
+       
 
       
         [SerializeField] private GroundCheck wallTestLeft;
@@ -50,13 +47,13 @@ namespace Enemy
             switch (walkDirection)
             {
                 case WalkDirections.None:
-                    enemyState = EnemyState.Idle;
+                    enemyStates = EnemyStates.Idle;
                     return Vector3.zero;
                 case WalkDirections.Left:
-                    enemyState = EnemyState.Walking;
+                    enemyStates = EnemyStates.Walking;
                     return Vector3.left * (moveSpeed * Time.deltaTime);
                 case WalkDirections.Right:
-                    enemyState = EnemyState.Walking;
+                    enemyStates = EnemyStates.Walking;
                     return Vector3.right * (moveSpeed * Time.deltaTime);
                 default:
                     return base.GetMovement();
