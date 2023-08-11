@@ -1,4 +1,6 @@
 ﻿using Environment;
+using Rimaethon.Scripts.Core.Enums;
+using Rimaethon.Scripts.Enemy;
 using UnityEngine;
 
 namespace Enemy
@@ -36,9 +38,9 @@ namespace Enemy
         private void SetStateInformation()
         {
             if (waypointMover != null)
-                enemyState = waypointMover.stopped ? EnemyState.Idle : EnemyState.Walking;
+                enemyStates = waypointMover.stopped ? EnemyStates.Idle : EnemyStates.Walking;
             else
-                enemyState = EnemyState.Idle;
+                enemyStates = EnemyStates.Idle;
         }
     }
 }
