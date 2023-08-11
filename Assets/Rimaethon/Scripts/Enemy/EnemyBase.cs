@@ -1,20 +1,17 @@
-﻿using UnityEngine;
+﻿using Rimaethon.Scripts.Core.Enums;
+using UnityEngine;
 
-namespace Enemy
+namespace Rimaethon.Scripts.Enemy
 {
     public abstract class EnemyBase : MonoBehaviour
     {
-        public enum EnemyState
-        {
-            Walking,
-            Dead,
-            Idle
-        }
+       
 
-        public float moveSpeed = 2f;
+        [SerializeField] protected float moveSpeed = 2f;
 
-        public EnemyState enemyState;
-
+        protected EnemyStates enemyStates;
+        
+        public EnemyStates EnemyStates => enemyStates;
 
         protected virtual void Start()
         {
