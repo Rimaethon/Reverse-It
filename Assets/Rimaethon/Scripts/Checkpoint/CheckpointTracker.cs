@@ -1,4 +1,4 @@
-﻿namespace Checkpoint
+﻿namespace Rimaethon.Scripts.Checkpoint
 {
     public static class CheckpointTracker
     {
