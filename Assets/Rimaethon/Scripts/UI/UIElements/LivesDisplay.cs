@@ -1,9 +1,9 @@
-﻿using Health_Damage;
+﻿using Rimaethon.Scripts.Health_Damage;
+using Rimaethon.Scripts.Utility;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility;
 
-namespace UI.UIElements
+namespace Rimaethon.Scripts.UI.UIElements
 {
     public class LivesDisplay : UIElement
     {
@@ -18,7 +18,7 @@ namespace UI.UIElements
         {
             if (GameManager.Instance != null && GameManager.Instance.player != null)
             {
-                var playerHealth = GameManager.Instance.player.GetComponent<Health>();
+                var playerHealth = GameManager.Instance.player.GetComponent<BaseHealth>();
                 if (playerHealth != null) SetChildImageNumber(playerHealth.currentLives - 1);
             }
         }

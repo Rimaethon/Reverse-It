@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UI.UIElements
+namespace Rimaethon.Scripts.UI.UIElements
 {
     public class UIElement : MonoBehaviour
     {

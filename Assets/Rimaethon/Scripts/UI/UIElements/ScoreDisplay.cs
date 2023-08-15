@@ -1,7 +1,7 @@
-﻿using UnityEngine.UI;
-using Utility;
+﻿using Rimaethon.Scripts.Utility;
+using UnityEngine.UI;
 
-namespace UI.UIElements
+namespace Rimaethon.Scripts.UI.UIElements
 {
     public class ScoreDisplay : UIElement
     {

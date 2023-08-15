@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Player;
-using UI.UIElements;
+using Rimaethon.Scripts.UI.UIElements;
+using Rimaethon.Scripts.Utility;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Utility;
 
-namespace UI
+namespace Rimaethon.Scripts.UI
 {
     public class UIManager : MonoBehaviour
     {

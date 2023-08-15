@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-using Utility;
+﻿using Rimaethon.Scripts.Utility;
+using UnityEngine;
 
-namespace UI
+namespace Rimaethon.Scripts.UI
 {
     public class UIPage : MonoBehaviour
     {

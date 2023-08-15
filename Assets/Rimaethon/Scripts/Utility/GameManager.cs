@@ -1,9 +1,9 @@
-﻿using Health_Damage;
-using Keys_Doors;
-using UI;
+﻿using Rimaethon.Scripts.Health_Damage;
+using Rimaethon.Scripts.Keys_Doors;
+using Rimaethon.Scripts.UI;
 using UnityEngine;
 
-namespace Utility
+namespace Rimaethon.Scripts.Utility
 {
     public class GameManager : MonoBehaviour
     {
@@ -73,7 +73,7 @@ namespace Utility
         {
             if (player != null)
             {
-                var playerHealth = player.GetComponent<Health>();
+                var playerHealth = player.GetComponent<BaseHealth>();
 
                 // Set lives accordingly
                 if (PlayerPrefs.GetInt("lives") == 0) PlayerPrefs.SetInt("lives", playerHealth.currentLives);
@@ -94,7 +94,7 @@ namespace Utility
         {
             if (player != null)
             {
-                var playerHealth = player.GetComponent<Health>();
+                var playerHealth = player.GetComponent<BaseHealth>();
                 PlayerPrefs.SetInt("lives", playerHealth.currentLives);
                 PlayerPrefs.SetInt("health", playerHealth.currentHealth);
             }
