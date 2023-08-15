@@ -1,6 +1,7 @@
 ﻿using System;
+using UnityEngine;
 
-namespace UnityEngine
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Runtime.Tiles.IsometricRuleTile
 {
     /// <summary>
     /// Generic visual tile for creating different tilesets like terrain, pipeline, random or animated tiles.
@@ -22,7 +23,7 @@ namespace UnityEngine
     /// </summary>
     [Serializable]
     [CreateAssetMenu(fileName = "New Isometric Rule Tile", menuName = "2D Extras/Tiles/Isometric Rule Tile", order = 359)]
-    public class IsometricRuleTile : RuleTile
+    public class IsometricRuleTile : RuleTile.RuleTile
     {
         // This has no differences with the RuleTile
     }

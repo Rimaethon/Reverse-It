@@ -1,10 +1,12 @@
 ﻿using System;
-
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace UnityEngine.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Runtime.Tiles.AnimatedTile
 {
     /// <summary>
     /// Animated Tiles are tiles which run through and display a list of sprites in sequence.

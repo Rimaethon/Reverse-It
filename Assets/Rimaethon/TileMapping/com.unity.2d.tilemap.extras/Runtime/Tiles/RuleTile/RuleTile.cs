@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace UnityEngine
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Runtime.Tiles.RuleTile
 {
     /// <summary>
     /// Generic visual tile for creating different tilesets like terrain, pipeline, random or animated tiles.
@@ -420,8 +421,8 @@ namespace UnityEngine
 
                 if (tile is RuleTile)
                     ruleTile = tile as RuleTile;
-                else if (tile is RuleOverrideTile)
-                    ruleTile = (tile as RuleOverrideTile).m_Tile;
+                else if (tile is RuleOverrideTile.RuleOverrideTile)
+                    ruleTile = (tile as RuleOverrideTile.RuleOverrideTile).m_Tile;
 
                 if (ruleTile)
                     foreach (Vector3Int neighborPosition in ruleTile.neighborPositions)
@@ -488,8 +489,8 @@ namespace UnityEngine
 
                 if (tile is RuleTile)
                     ruleTile = tile as RuleTile;
-                else if (tile is RuleOverrideTile)
-                    ruleTile = (tile as RuleOverrideTile).m_Tile;
+                else if (tile is RuleOverrideTile.RuleOverrideTile)
+                    ruleTile = (tile as RuleOverrideTile.RuleOverrideTile).m_Tile;
 
                 if (ruleTile)
                     if (ruleTile.neighborPositions.Contains(offset))
@@ -608,8 +609,8 @@ namespace UnityEngine
         /// <returns>True if there is a match, False if not.</returns>
         public virtual bool RuleMatch(int neighbor, TileBase other)
         {
-            if (other is RuleOverrideTile)
-                other = (other as RuleOverrideTile).m_InstanceTile;
+            if (other is RuleOverrideTile.RuleOverrideTile)
+                other = (other as RuleOverrideTile.RuleOverrideTile).m_InstanceTile;
 
             switch (neighbor)
             {

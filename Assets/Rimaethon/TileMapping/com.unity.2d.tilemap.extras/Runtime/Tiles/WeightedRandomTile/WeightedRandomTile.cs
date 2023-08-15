@@ -1,10 +1,12 @@
 using System;
-
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace UnityEngine.Tilemaps 
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Runtime.Tiles.WeightedRandomTile 
 {
     /// <summary>
     /// A Sprite with a Weight value for randomization.

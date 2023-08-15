@@ -1,6 +1,7 @@
 using System;
+using UnityEngine;
 
-namespace UnityEngine
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Runtime.Tiles.HexagonalRuleTile
 {
     /// <summary>
     /// Generic visual tile for creating different tilesets like terrain, pipeline, random or animated tiles.
@@ -22,7 +23,7 @@ namespace UnityEngine
     /// </summary>
     [Serializable]
     [CreateAssetMenu(fileName = "New Hexagonal Rule Tile", menuName = "2D Extras/Tiles/Hexagonal Rule Tile", order = 359)]
-    public class HexagonalRuleTile : RuleTile
+    public class HexagonalRuleTile : RuleTile.RuleTile
     {
 
         public override int m_RotationAngle => 60;

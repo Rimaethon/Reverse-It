@@ -1,10 +1,12 @@
 ﻿using System;
-
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace UnityEngine.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Runtime.Tiles.RandomTile
 {
     /// <summary>
     /// Random Tiles are tiles which pseudo-randomly pick a sprite from a given list of sprites and a target location, and displays that sprite.

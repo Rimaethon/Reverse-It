@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Tiles.RuleTile;
+using UnityEditor;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace UnityEditor
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Tiles.IsometricRuleTile
 {
-    [CustomEditor(typeof(IsometricRuleTile), true)]
+    [CustomEditor(typeof(Runtime.Tiles.IsometricRuleTile.IsometricRuleTile), true)]
     [CanEditMultipleObjects]
     public class IsometricRuleTileEditor : RuleTileEditor
     {
@@ -22,7 +24,7 @@ namespace UnityEditor
             return new Vector2(w, w);
         }
 
-        public override void RuleMatrixOnGUI(RuleTile ruleTile, Rect rect, BoundsInt bounds, RuleTile.TilingRule tilingRule)
+        public override void RuleMatrixOnGUI(Runtime.Tiles.RuleTile.RuleTile ruleTile, Rect rect, BoundsInt bounds, Runtime.Tiles.RuleTile.RuleTile.TilingRule tilingRule)
         {
             Handles.color = EditorGUIUtility.isProSkin ? new Color(1f, 1f, 1f, 0.2f) : new Color(0f, 0f, 0f, 0.2f);
             float w = rect.width / bounds.size.x;

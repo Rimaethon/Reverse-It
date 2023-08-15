@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-
-#if UNITY_EDITOR
 using UnityEditor;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+#if UNITY_EDITOR
 #endif
 
-using UnityEngine;
-
-namespace UnityEngine.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Runtime.Tiles.PipelineTile
 {
     /// <summary>
     /// Pipeline Tiles are tiles which take into consideration its orthogonal neighboring tiles and displays a sprite depending on whether the neighboring tile is the same tile.

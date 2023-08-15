@@ -1,10 +1,13 @@
 using NUnit.Framework;
 
-public class U2DExtrasPlaceholder 
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Tests.Editor
 {
-    [Test]
-    public void PlaceHolderTest()
+    public class U2DExtrasPlaceholder 
     {
-        Assert.Pass("2D Extras tests are in a separate package.");
+        [Test]
+        public void PlaceHolderTest()
+        {
+            Assert.Pass("2D Extras tests are in a separate package.");
+        }
     }
 }

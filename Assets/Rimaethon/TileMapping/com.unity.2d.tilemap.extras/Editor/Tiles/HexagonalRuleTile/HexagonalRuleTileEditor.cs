@@ -1,14 +1,16 @@
+using Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Tiles.RuleTile;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace UnityEditor
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Tiles.HexagonalRuleTile
 {
-    [CustomEditor(typeof(HexagonalRuleTile), true)]
+    [CustomEditor(typeof(Runtime.Tiles.HexagonalRuleTile.HexagonalRuleTile), true)]
     [CanEditMultipleObjects]
     public class HexagonalRuleTileEditor : RuleTileEditor
     {
 
-        public HexagonalRuleTile hexTile => target as HexagonalRuleTile;
+        public Runtime.Tiles.HexagonalRuleTile.HexagonalRuleTile hexTile => target as Runtime.Tiles.HexagonalRuleTile.HexagonalRuleTile;
 
         public override int GetArrowIndex(Vector3Int position)
         {
@@ -47,7 +49,7 @@ namespace UnityEditor
             return -1;
         }
 
-        public override BoundsInt GetRuleGUIBounds(BoundsInt bounds, RuleTile.TilingRule rule)
+        public override BoundsInt GetRuleGUIBounds(BoundsInt bounds, Runtime.Tiles.RuleTile.RuleTile.TilingRule rule)
         {
             foreach (var n in rule.GetNeighbors())
             {
@@ -66,7 +68,7 @@ namespace UnityEditor
             return hexTile.m_FlatTop ? new Vector2(size.y, size.x) : size;
         }
 
-        public override void RuleMatrixOnGUI(RuleTile tile, Rect rect, BoundsInt bounds, RuleTile.TilingRule tilingRule)
+        public override void RuleMatrixOnGUI(Runtime.Tiles.RuleTile.RuleTile tile, Rect rect, BoundsInt bounds, Runtime.Tiles.RuleTile.RuleTile.TilingRule tilingRule)
         {
             bool flatTop = hexTile.m_FlatTop;
 

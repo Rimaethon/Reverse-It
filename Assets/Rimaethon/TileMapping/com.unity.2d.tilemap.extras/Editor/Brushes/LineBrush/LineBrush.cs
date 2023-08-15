@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using System.Linq;
 
-namespace UnityEditor.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Brushes.LineBrush
 {
     /// <summary>
     /// This Brush helps draw lines of Tiles onto a Tilemap.

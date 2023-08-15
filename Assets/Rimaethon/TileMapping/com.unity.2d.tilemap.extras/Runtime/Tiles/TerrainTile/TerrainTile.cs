@@ -1,10 +1,11 @@
 ﻿using System;
-
+using UnityEngine;
+using UnityEngine.Tilemaps;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-namespace UnityEngine.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Runtime.Tiles.TerrainTile
 {
     /// <summary>
     /// Terrain Tiles, similar to Pipeline Tiles, are tiles which take into consideration its orthogonal and diagonal neighboring tiles and displays a sprite depending on whether the neighboring tile is the same tile.

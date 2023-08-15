@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
-namespace UnityEngine.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Runtime.GridInformation
 {
     [Serializable]
     internal enum GridInformationType

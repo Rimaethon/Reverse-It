@@ -1,10 +1,10 @@
-using UnityEngine;
-using UnityEngine.Tilemaps;
 using System.Linq;
 using System.Text.RegularExpressions;
+using UnityEditor;
+using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
-namespace UnityEditor.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Tiles.RuleOverrideTile
 {
     [MovedFrom(true, "UnityEditor")]
     public class PopulateRuleOverideTileWizard : ScriptableWizard 
@@ -12,12 +12,12 @@ namespace UnityEditor.Tilemaps
         [MenuItem("CONTEXT/RuleOverrideTile/Populate From Sprite Sheet")]
         static void MenuOption(MenuCommand menuCommand)
         {
-            PopulateRuleOverideTileWizard.CreateWizard(menuCommand.context as RuleOverrideTile);
+            PopulateRuleOverideTileWizard.CreateWizard(menuCommand.context as Runtime.Tiles.RuleOverrideTile.RuleOverrideTile);
         }
         [MenuItem("CONTEXT/RuleOverrideTile/Populate From Sprite Sheet", true)]
         static bool MenuOptionValidation(MenuCommand menuCommand)
         {
-            RuleOverrideTile tile = menuCommand.context as RuleOverrideTile;
+            Runtime.Tiles.RuleOverrideTile.RuleOverrideTile tile = menuCommand.context as Runtime.Tiles.RuleOverrideTile.RuleOverrideTile;
             return tile.m_Tile;
         }
 
@@ -26,13 +26,13 @@ namespace UnityEditor.Tilemaps
         /// </summary>
         public Texture2D m_spriteSet;
 
-        private RuleOverrideTile m_tileset;
+        private Runtime.Tiles.RuleOverrideTile.RuleOverrideTile m_tileset;
 
         /// <summary>
         /// Creates a wizard for the target RuleOverrideTIle
         /// </summary>
         /// <param name="target">The RuleOverrideTile to be edited by the wizard</param>
-        public static void CreateWizard(RuleOverrideTile target) {
+        public static void CreateWizard(Runtime.Tiles.RuleOverrideTile.RuleOverrideTile target) {
             PopulateRuleOverideTileWizard wizard = DisplayWizard<PopulateRuleOverideTileWizard>("Populate Override", "Populate");
             wizard.m_tileset = target;
         }
@@ -77,7 +77,7 @@ namespace UnityEditor.Tilemaps
             try {
                 Undo.RecordObject(m_tileset, "Auto-populate " + m_tileset.name);
 
-                foreach(RuleTile.TilingRule rule in m_tileset.m_Tile.m_TilingRules) {
+                foreach(Runtime.Tiles.RuleTile.RuleTile.TilingRule rule in m_tileset.m_Tile.m_TilingRules) {
                     foreach(Sprite originalSprite in rule.m_Sprites) {
                         string spriteName = originalSprite.name;
                         string spriteNumber = Regex.Match(spriteName, @"_\d+$").Value;

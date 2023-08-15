@@ -1,4 +1,6 @@
-﻿namespace UnityEditor
+﻿using UnityEditor;
+
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Tiles.RuleTile
 {
     static class CustomRuleTileMenu
     {

@@ -1,7 +1,8 @@
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
-namespace UnityEditor.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Brushes.PrefabBrushes.PrefabRandomBrush
 {
     /// <summary>
     /// This Brush instances and places a randomly selected Prefabs onto the targeted location and parents the instanced object to the paint target. Use this as an example to quickly place an assorted type of GameObjects onto structured locations.

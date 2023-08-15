@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEditor.Tilemaps;
+using UnityEngine;
 
-namespace UnityEditor.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Brushes.CoordinateBrush
 {
     /// <summary>
     /// This Brush displays the cell coordinates it is targeting in the SceneView.

@@ -1,8 +1,10 @@
 using System.Linq;
+using UnityEditor;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace UnityEditor.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Brushes.TintBrush
 {
     /// <summary>
     /// This Brush changes the color of Tiles placed on a Tilemap.

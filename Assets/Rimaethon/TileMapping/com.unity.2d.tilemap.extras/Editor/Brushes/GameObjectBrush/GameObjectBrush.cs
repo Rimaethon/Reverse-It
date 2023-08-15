@@ -1,8 +1,10 @@
 using System;
+using UnityEditor;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace UnityEditor.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Brushes.GameObjectBrush
 {
     /// <summary>
     /// This Brush instances, places and manipulates GameObjects onto the scene.

@@ -1,8 +1,11 @@
 using System.Linq;
+using Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Runtime.Brushes;
+using UnityEditor;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace UnityEditor.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Brushes.TintBrushSmooth
 {
     /// <summary>
     /// Advanced tint brush for interpolated tint color per-cell. Requires the use of custom shader (see TintedTilemap.shader) and helper component TileTextureGenerator.

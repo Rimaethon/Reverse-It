@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
+using UnityEngine.Tilemaps;
 
-namespace UnityEngine.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Runtime.Tiles.RuleOverrideTile
 {
     /// <summary>
     /// Rule Override Tiles are Tiles which can override a subset of Rules for a given Rule Tile to provide specialised behaviour while keeping most of the Rules originally set in the Rule Tile.
@@ -121,7 +123,7 @@ namespace UnityEngine.Tilemaps
         /// <summary>
         /// The RuleTile to override
         /// </summary>
-        public RuleTile m_Tile;
+        public RuleTile.RuleTile m_Tile;
         /// <summary>
         /// A list of Sprite Overrides
         /// </summary>
@@ -134,7 +136,7 @@ namespace UnityEngine.Tilemaps
         /// <summary>
         /// Returns the Rule Tile for retrieving TileData
         /// </summary>
-        [HideInInspector] public RuleTile m_InstanceTile;
+        [HideInInspector] public RuleTile.RuleTile m_InstanceTile;
 
         /// <summary>
         /// Applies overrides to this
@@ -183,7 +185,7 @@ namespace UnityEngine.Tilemaps
                 if (m_Tile.m_DefaultSprite)
                     originalSprites.Add(m_Tile.m_DefaultSprite);
 
-                foreach (RuleTile.TilingRule rule in m_Tile.m_TilingRules)
+                foreach (RuleTile.RuleTile.TilingRule rule in m_Tile.m_TilingRules)
                     foreach (Sprite sprite in rule.m_Sprites)
                         if (sprite && !originalSprites.Contains(sprite))
                             originalSprites.Add(sprite);
@@ -218,7 +220,7 @@ namespace UnityEngine.Tilemaps
                 if (m_Tile.m_DefaultGameObject)
                     originalGameObjects.Add(m_Tile.m_DefaultGameObject);
 
-                foreach (RuleTile.TilingRule rule in m_Tile.m_TilingRules)
+                foreach (RuleTile.RuleTile.TilingRule rule in m_Tile.m_TilingRules)
                     if (rule.m_GameObject && !originalGameObjects.Contains(rule.m_GameObject))
                         originalGameObjects.Add(rule.m_GameObject);
             }

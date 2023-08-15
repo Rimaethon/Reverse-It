@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
-namespace UnityEditor.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Brushes.PrefabBrushes
 { 
     /// <summary>
     /// This base class for PrefabBrushes that contains common functionality

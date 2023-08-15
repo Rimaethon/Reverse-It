@@ -1,7 +1,8 @@
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
-namespace UnityEditor.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Brushes.PrefabBrushes.PrefabBrush
 {
     /// <summary>
     /// This Brush instances and places a containing prefab onto the targeted location and parents the instanced object to the paint target.

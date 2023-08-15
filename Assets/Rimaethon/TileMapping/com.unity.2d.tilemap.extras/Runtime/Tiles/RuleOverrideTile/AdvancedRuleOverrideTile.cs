@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
+using UnityEngine.Tilemaps;
 
-namespace UnityEngine.Tilemaps
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Runtime.Tiles.RuleOverrideTile
 {
     /// <summary>
     /// Rule Override Tiles are Tiles which can override a subset of Rules for a given Rule Tile to provide specialised behaviour while keeping most of the Rules originally set in the Rule Tile.
@@ -17,7 +19,7 @@ namespace UnityEngine.Tilemaps
         /// Gets the overriding TilingRuleOutput of a given TilingRule. 
         /// </summary>
         /// <param name="original">The original TilingRule that is overridden</param>
-        public RuleTile.TilingRuleOutput this[RuleTile.TilingRule originalRule]
+        public RuleTile.RuleTile.TilingRuleOutput this[RuleTile.RuleTile.TilingRule originalRule]
         {
             get
             {
@@ -40,7 +42,7 @@ namespace UnityEngine.Tilemaps
                 if (value != null)
                 {
                     var json = JsonUtility.ToJson(value);
-                    var overrideRule = JsonUtility.FromJson<RuleTile.TilingRuleOutput>(json);
+                    var overrideRule = JsonUtility.FromJson<RuleTile.RuleTile.TilingRuleOutput>(json);
                     m_OverrideTilingRules.Add(overrideRule);
                 }
             }
@@ -53,14 +55,14 @@ namespace UnityEngine.Tilemaps
         /// <summary>
         /// A list of TilingRule Overrides
         /// </summary>
-        public List<RuleTile.TilingRuleOutput> m_OverrideTilingRules = new List<RuleTile.TilingRuleOutput>();
+        public List<RuleTile.RuleTile.TilingRuleOutput> m_OverrideTilingRules = new List<RuleTile.RuleTile.TilingRuleOutput>();
 
         /// <summary>
         /// Applies overrides to this
         /// </summary>
         /// <param name="overrides">A list of overrides to apply</param>
         /// <exception cref="ArgumentNullException">The input overrides list is not valid</exception>
-        public void ApplyOverrides(IList<KeyValuePair<RuleTile.TilingRule, RuleTile.TilingRuleOutput>> overrides)
+        public void ApplyOverrides(IList<KeyValuePair<RuleTile.RuleTile.TilingRule, RuleTile.RuleTile.TilingRuleOutput>> overrides)
         {
             if (overrides == null)
                 throw new System.ArgumentNullException("overrides");
@@ -74,7 +76,7 @@ namespace UnityEngine.Tilemaps
         /// </summary>
         /// <param name="overrides">A list of overrides to fill</param>
         /// <exception cref="ArgumentNullException">The input overrides list is not valid</exception>
-        public void GetOverrides(List<KeyValuePair<RuleTile.TilingRule, RuleTile.TilingRuleOutput>> overrides, ref int validCount)
+        public void GetOverrides(List<KeyValuePair<RuleTile.RuleTile.TilingRule, RuleTile.RuleTile.TilingRuleOutput>> overrides, ref int validCount)
         {
             if (overrides == null)
                 throw new System.ArgumentNullException("overrides");
@@ -85,8 +87,8 @@ namespace UnityEngine.Tilemaps
             {
                 foreach (var originalRule in m_Tile.m_TilingRules)
                 {
-                    RuleTile.TilingRuleOutput overrideRule = this[originalRule];
-                    overrides.Add(new KeyValuePair<RuleTile.TilingRule, RuleTile.TilingRuleOutput>(originalRule, overrideRule));
+                    RuleTile.RuleTile.TilingRuleOutput overrideRule = this[originalRule];
+                    overrides.Add(new KeyValuePair<RuleTile.RuleTile.TilingRule, RuleTile.RuleTile.TilingRuleOutput>(originalRule, overrideRule));
                 }
             }
 
@@ -96,8 +98,8 @@ namespace UnityEngine.Tilemaps
             {
                 if (!overrides.Exists(o => o.Key.m_Id == overrideRule.m_Id))
                 {
-                    var originalRule = new RuleTile.TilingRule() { m_Id = overrideRule.m_Id };
-                    overrides.Add(new KeyValuePair<RuleTile.TilingRule, RuleTile.TilingRuleOutput>(originalRule, overrideRule));
+                    var originalRule = new RuleTile.RuleTile.TilingRule() { m_Id = overrideRule.m_Id };
+                    overrides.Add(new KeyValuePair<RuleTile.RuleTile.TilingRule, RuleTile.RuleTile.TilingRuleOutput>(originalRule, overrideRule));
                 }
             }
         }

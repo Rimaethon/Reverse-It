@@ -1,15 +1,16 @@
-﻿using UnityEngine;
-using UnityEngine.Tilemaps;
+﻿using System.Collections.Generic;
+using Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Tiles.RuleTile;
+using UnityEditor;
 using UnityEditorInternal;
-using System.Collections.Generic;
+using UnityEngine;
 
-namespace UnityEditor
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Tiles.RuleOverrideTile
 {
-    [CustomEditor(typeof(RuleOverrideTile))]
-    public class RuleOverrideTileEditor : Editor
+    [CustomEditor(typeof(Runtime.Tiles.RuleOverrideTile.RuleOverrideTile))]
+    public class RuleOverrideTileEditor : UnityEditor.Editor
     {
 
-        public RuleOverrideTile overrideTile => target as RuleOverrideTile;
+        public Runtime.Tiles.RuleOverrideTile.RuleOverrideTile overrideTile => target as Runtime.Tiles.RuleOverrideTile.RuleOverrideTile;
         public RuleTileEditor ruleTileEditor
         {
             get
@@ -17,7 +18,7 @@ namespace UnityEditor
                 if (m_RuleTileEditorTarget != overrideTile.m_Tile)
                 {
                     DestroyImmediate(m_RuleTileEditor);
-                    m_RuleTileEditor = Editor.CreateEditor(overrideTile.m_InstanceTile) as RuleTileEditor;
+                    m_RuleTileEditor = UnityEditor.Editor.CreateEditor(overrideTile.m_InstanceTile) as RuleTileEditor;
                     m_RuleTileEditorTarget = overrideTile.m_Tile;
                 }
                 return m_RuleTileEditor;
@@ -25,7 +26,7 @@ namespace UnityEditor
         }
 
         RuleTileEditor m_RuleTileEditor;
-        RuleTile m_RuleTileEditorTarget;
+        Runtime.Tiles.RuleTile.RuleTile m_RuleTileEditorTarget;
 
         public List<KeyValuePair<Sprite, Sprite>> m_Sprites = new List<KeyValuePair<Sprite, Sprite>>();
         public List<KeyValuePair<GameObject, GameObject>> m_GameObjects = new List<KeyValuePair<GameObject, GameObject>>();
@@ -190,7 +191,7 @@ namespace UnityEditor
         public void DrawTileField()
         {
             EditorGUI.BeginChangeCheck();
-            RuleTile tile = EditorGUILayout.ObjectField("Tile", overrideTile.m_Tile, typeof(RuleTile), false) as RuleTile;
+            Runtime.Tiles.RuleTile.RuleTile tile = EditorGUILayout.ObjectField("Tile", overrideTile.m_Tile, typeof(Runtime.Tiles.RuleTile.RuleTile), false) as Runtime.Tiles.RuleTile.RuleTile;
             if (EditorGUI.EndChangeCheck())
             {
                 if (!LoopCheck(tile))
@@ -204,17 +205,17 @@ namespace UnityEditor
                 }
             }
 
-            bool LoopCheck(RuleTile checkTile)
+            bool LoopCheck(Runtime.Tiles.RuleTile.RuleTile checkTile)
             {
                 if (!overrideTile.m_InstanceTile)
                     return false;
 
-                HashSet<RuleTile> renferenceTils = new HashSet<RuleTile>();
+                HashSet<Runtime.Tiles.RuleTile.RuleTile> renferenceTils = new HashSet<Runtime.Tiles.RuleTile.RuleTile>();
                 Add(overrideTile.m_InstanceTile);
 
                 return renferenceTils.Contains(checkTile);
 
-                void Add(RuleTile ruleTile)
+                void Add(Runtime.Tiles.RuleTile.RuleTile ruleTile)
                 {
                     if (renferenceTils.Contains(ruleTile))
                         return;
@@ -257,7 +258,7 @@ namespace UnityEditor
                 if (overrideTile.m_Tile)
                 {
                     var t = overrideTile.m_Tile.GetType();
-                    RuleTile instanceTile = ScriptableObject.CreateInstance(t) as RuleTile;
+                    Runtime.Tiles.RuleTile.RuleTile instanceTile = ScriptableObject.CreateInstance(t) as Runtime.Tiles.RuleTile.RuleTile;
                     instanceTile.hideFlags = HideFlags.NotEditable;
                     AssetDatabase.AddObjectToAsset(instanceTile, overrideTile);
                     overrideTile.m_InstanceTile = instanceTile;

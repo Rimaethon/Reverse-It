@@ -1,9 +1,12 @@
-﻿using UnityEngine;
-using UnityEngine.Tilemaps;
+﻿using System.Collections.Generic;
+using Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Tiles.RuleTile;
+using Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Runtime.Tiles.RuleOverrideTile;
+using UnityEditor;
 using UnityEditorInternal;
-using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Tilemaps;
 
-namespace UnityEditor
+namespace Rimaethon.TileMapping.com.unity._2d.tilemap.extras.Editor.Tiles.RuleOverrideTile
 {
     [CustomEditor(typeof(AdvancedRuleOverrideTile))]
     public class AdvancedRuleOverrideTileEditor : RuleOverrideTileEditor
@@ -11,7 +14,7 @@ namespace UnityEditor
 
         public new AdvancedRuleOverrideTile overrideTile => target as AdvancedRuleOverrideTile;
 
-        List<KeyValuePair<RuleTile.TilingRule, RuleTile.TilingRuleOutput>> m_Rules = new List<KeyValuePair<RuleTile.TilingRule, RuleTile.TilingRuleOutput>>();
+        List<KeyValuePair<Runtime.Tiles.RuleTile.RuleTile.TilingRule, Runtime.Tiles.RuleTile.RuleTile.TilingRuleOutput>> m_Rules = new List<KeyValuePair<Runtime.Tiles.RuleTile.RuleTile.TilingRule, Runtime.Tiles.RuleTile.RuleTile.TilingRuleOutput>>();
         ReorderableList m_RuleList;
         int m_MissingOriginalRuleIndex;
 
@@ -23,7 +26,7 @@ namespace UnityEditor
         {
             if (m_RuleList == null)
             {
-                m_RuleList = new ReorderableList(m_Rules, typeof(KeyValuePair<RuleTile.TilingRule, RuleTile.TilingRule>), false, true, false, false);
+                m_RuleList = new ReorderableList(m_Rules, typeof(KeyValuePair<Runtime.Tiles.RuleTile.RuleTile.TilingRule, Runtime.Tiles.RuleTile.RuleTile.TilingRule>), false, true, false, false);
                 m_RuleList.drawHeaderCallback = DrawRulesHeader;
                 m_RuleList.drawElementCallback = DrawRuleElement;
                 m_RuleList.elementHeightCallback = GetRuleElementHeight;
@@ -58,8 +61,8 @@ namespace UnityEditor
 
         public void DrawRuleElement(Rect rect, int index, bool selected, bool focused)
         {
-            RuleTile.TilingRule originalRule = m_Rules[index].Key;
-            RuleTile.TilingRuleOutput overrideRule = m_Rules[index].Value;
+            Runtime.Tiles.RuleTile.RuleTile.TilingRule originalRule = m_Rules[index].Key;
+            Runtime.Tiles.RuleTile.RuleTile.TilingRuleOutput overrideRule = m_Rules[index].Value;
             bool isMissing = index >= m_MissingOriginalRuleIndex;
 
             DrawToggleInternal(new Rect(rect.xMin, rect.yMin, 16, rect.height));
@@ -92,7 +95,7 @@ namespace UnityEditor
             }
         }
 
-        public void DrawRule(Rect rect, RuleTile.TilingRuleOutput rule, bool isOverride, RuleTile.TilingRule originalRule, bool isMissing)
+        public void DrawRule(Rect rect, Runtime.Tiles.RuleTile.RuleTile.TilingRuleOutput rule, bool isOverride, Runtime.Tiles.RuleTile.RuleTile.TilingRule originalRule, bool isMissing)
         {
             if (isMissing)
             {
