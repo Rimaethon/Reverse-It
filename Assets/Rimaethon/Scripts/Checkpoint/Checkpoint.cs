@@ -1,9 +1,7 @@
-﻿using System;
-using Health_Damage;
-using UnityEditor.Experimental.GraphView;
+﻿using Rimaethon.Scripts.Health_Damage;
 using UnityEngine;
 
-namespace Checkpoint
+namespace Rimaethon.Scripts.Checkpoint
 {
     public class Checkpoint : MonoBehaviour
     {
@@ -21,9 +19,9 @@ namespace Checkpoint
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!collision.CompareTag("Player") || collision.gameObject.GetComponent<Health>() == null) return;
+            if (!collision.CompareTag("Player") || collision.gameObject.GetComponent<BaseHealth>() == null) return;
 
-            var playerHealth = collision.gameObject.GetComponent<Health>();
+            var playerHealth = collision.gameObject.GetComponent<BaseHealth>();
             playerHealth.SetRespawnPoint(m_RespawnLocation);
 
             if (CheckpointTracker.CurrentCheckpoint != null)
