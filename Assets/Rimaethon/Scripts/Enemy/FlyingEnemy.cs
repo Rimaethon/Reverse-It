@@ -1,17 +1,26 @@
-﻿using Environment;
-using Rimaethon.Scripts.Core.Enums;
-using Rimaethon.Scripts.Enemy;
+﻿using Rimaethon.Scripts.Core.Enums;
+using Rimaethon.Scripts.Environment;
 using UnityEngine;
 
-namespace Enemy
+namespace Rimaethon.Scripts.Enemy
 {
     [RequireComponent(typeof(WaypointMover))]
     public sealed class FlyingEnemy : EnemyBase
     {
-        [SerializeField] private WaypointMover waypointMover;
+        private WaypointMover m_WaypointMover;
 
         private SpriteRenderer _spriteRenderer;
+        private bool m_IsSpriteRendererNotNull;
+        private bool m_IsmWaypointMoverNotNull;
+        private bool m_WaypointMoverNotNull;
 
+
+        private void Start()
+        {
+            m_WaypointMoverNotNull = m_WaypointMover != null;
+            m_IsmWaypointMoverNotNull = m_WaypointMover != null;
+            m_IsSpriteRendererNotNull = _spriteRenderer != null;
+        }
 
         protected override void Update()
         {
@@ -23,22 +32,22 @@ namespace Enemy
         protected override void Setup()
         {
             base.Setup();
-            waypointMover = GetComponent<WaypointMover>();
+            m_WaypointMover = GetComponent<WaypointMover>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
 
         private void CheckFlipSprite()
         {
-            if (waypointMover != null && _spriteRenderer != null)
-                _spriteRenderer.flipX = Vector3.Dot(waypointMover.travelDirection, Vector3.right) < 0;
+            if (m_IsmWaypointMoverNotNull && m_IsSpriteRendererNotNull)
+                _spriteRenderer.flipX = Vector3.Dot(m_WaypointMover.travelDirection, Vector3.right) < 0;
         }
 
 
         private void SetStateInformation()
         {
-            if (waypointMover != null)
-                enemyStates = waypointMover.stopped ? EnemyStates.Idle : EnemyStates.Walking;
+            if (m_WaypointMoverNotNull)
+                enemyStates = m_WaypointMover.stopped ? EnemyStates.Idle : EnemyStates.Walking;
             else
                 enemyStates = EnemyStates.Idle;
         }
