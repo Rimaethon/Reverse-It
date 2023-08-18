@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Health_Damage
+namespace Rimaethon.Scripts.Health_Damage
 {
     [RequireComponent(typeof(Animator))]
     public class DeathEffectAnimationHandler : MonoBehaviour

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace Keys_Doors
+namespace Rimaethon.Scripts.Keys_Doors
 {
     [RequireComponent(typeof(Collider2D))]
     public class Door : MonoBehaviour
