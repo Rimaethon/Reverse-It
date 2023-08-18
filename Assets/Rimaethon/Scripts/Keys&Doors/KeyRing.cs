@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Keys_Doors
+namespace Rimaethon.Scripts.Keys_Doors
 {
     public static class KeyRing
     {
