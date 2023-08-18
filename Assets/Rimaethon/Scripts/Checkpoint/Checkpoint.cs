@@ -22,7 +22,6 @@ namespace Rimaethon.Scripts.Checkpoint
             if (!collision.CompareTag("Player") || collision.gameObject.GetComponent<BaseHealth>() == null) return;
 
             var playerHealth = collision.gameObject.GetComponent<BaseHealth>();
-            playerHealth.SetRespawnPoint(m_RespawnLocation);
 
             if (CheckpointTracker.CurrentCheckpoint != null)
                 CheckpointTracker.CurrentCheckpoint.m_CheckpointAnimator.SetBool(m_AnimatorActiveHash, false);
