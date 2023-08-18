@@ -1,43 +1,25 @@
-﻿using UI.UIElements;
-using UnityEngine;
+﻿using Rimaethon.Scripts.Utility;
 using UnityEngine.UI;
-using Utility;
 
-/// <summary>
-///     Handles updating the high score display
-/// </summary>
-public class HighScoreDisplay : UIElement
+namespace Rimaethon.Scripts.UI.UIElements
 {
-    [Header("References")] [Tooltip("The text that displays the high score")]
-    public Text displayText;
 
-    /// <summary>
-    ///     Description:
-    ///     Updates the display text with the higch score value
-    ///     Input:
-    ///     none
-    ///     Return:
-    ///     void (no return)
-    /// </summary>
-    public void DisplayHighScore()
+    public class HighScoreDisplay : UIElement
     {
-        if (displayText != null) displayText.text = "High: " + GameManager.Instance.highScore;
-    }
+        public Text displayText;
 
-    /// <summary>
-    ///     Description:
-    ///     Updates the UI element according to this class
-    ///     Input:
-    ///     none
-    ///     Return:
-    ///     void (no return)
-    /// </summary>
-    public override void UpdateUI()
-    {
-        // This calls the base update UI function from the UIelement class
-        base.UpdateUI();
+ 
+        public void DisplayHighScore()
+        {
+            if (displayText != null) displayText.text = "High: " + GameManager.Instance.highScore;
+        }
 
-        // The remaining code is only called for this sub-class of UIelement and not others
-        DisplayHighScore();
+     
+        public override void UpdateUI()
+        {
+            base.UpdateUI();
+
+            DisplayHighScore();
+        }
     }
 }

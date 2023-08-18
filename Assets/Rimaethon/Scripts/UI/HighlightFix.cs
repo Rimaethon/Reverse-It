@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace UI
+namespace Rimaethon.Scripts.UI
 {
     [RequireComponent(typeof(Selectable))]
     public class HighlightFix : MonoBehaviour, IPointerEnterHandler, IDeselectHandler
