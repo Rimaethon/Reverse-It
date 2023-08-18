@@ -1,4 +1,4 @@
-﻿namespace Core
+﻿namespace Rimaethon.Scripts.Core.Enums
 {
     public enum PlayerStates
     {

@@ -1,8 +1,8 @@
-﻿using Health_Damage;
+﻿using Rimaethon.Scripts.Health_Damage;
+using Rimaethon.Scripts.Utility;
 using UnityEngine;
-using Utility;
 
-namespace Pickups
+namespace Rimaethon.Scripts.Pickups
 {
     public class ScorePickup : Pickup
     {
@@ -11,7 +11,7 @@ namespace Pickups
 
         protected override void DoOnPickup(Collider2D collision)
         {
-            if (collision.CompareTag("Player") && collision.gameObject.GetComponent<Health>() != null)
+            if (collision.CompareTag("Player") && collision.gameObject.GetComponent<BaseHealth>() != null)
                 GameManager.AddScore(scoreAmount);
             base.DoOnPickup(collision);
         }

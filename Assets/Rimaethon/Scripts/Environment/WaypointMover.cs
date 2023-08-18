@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Environment
+namespace Rimaethon.Scripts.Environment
 {
     public class WaypointMover : MonoBehaviour
     {

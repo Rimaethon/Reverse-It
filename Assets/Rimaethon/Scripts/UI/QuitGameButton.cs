@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace UI
+namespace Rimaethon.Scripts.UI
 {
     public class QuitGameButton : MonoBehaviour
     {

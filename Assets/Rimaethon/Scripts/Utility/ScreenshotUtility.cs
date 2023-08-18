@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 
-namespace Utility
+namespace Rimaethon.Scripts.Utility
 {
     public class ScreenshotUtility : MonoBehaviour
     {

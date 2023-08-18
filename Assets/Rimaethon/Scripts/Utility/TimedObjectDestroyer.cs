@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Utility
+namespace Rimaethon.Scripts.Utility
 {
     public class TimedObjectDestroyer : MonoBehaviour
     {
