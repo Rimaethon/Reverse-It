@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Rimaethon.Scripts.Player;
 using Rimaethon.Scripts.UI.UIElements;
 using Rimaethon.Scripts.Utility;
 using UnityEngine;
@@ -9,33 +10,24 @@ namespace Rimaethon.Scripts.UI
 {
     public class UIManager : MonoBehaviour
     {
-        [Header("Page Management")] [Tooltip("The pages (Panels) managed by the UI Manager")]
         public List<UIPage> pages;
 
-        [Tooltip("The index of the active page in the UI")]
         public int currentPage;
-
-        [Tooltip("The page (by index) switched to when the UI Manager starts up")]
         public int defaultPage;
 
-        [Header("Pause Settings")] [Tooltip("The index of the pause page in the pages list")]
         public int pausePageIndex = 1;
 
-        [Tooltip("Whether or not to allow pausing")]
         public bool allowPause = true;
-
-        [Header("Polish Effects")] [Tooltip("The effect to create when navigating between UI")]
         public GameObject navigationEffect;
 
-        [Tooltip("The effect to create when clicking on or pressing a UI element")]
         public GameObject clickEffect;
 
-        [Tooltip("The effect to create when the player is backing out of a Menu page")]
         public GameObject backEffect;
 
         [HideInInspector] public EventSystem eventSystem;
 
-        [SerializeField] private InputManager inputManager;
+        private InputManager InputManager => InputManager.Instance;
+
 
         private bool _isPaused;
 
@@ -44,18 +36,13 @@ namespace Rimaethon.Scripts.UI
 
         private void Start()
         {
-            SetUpInputManager();
             SetUpEventSystem();
             SetUpUIElements();
             InitializeFirstPage();
             UpdateUI();
         }
 
-        private void Update()
-        {
-            CheckPauseInput();
-        }
-
+       
 
         private void OnEnable()
         {
@@ -104,13 +91,7 @@ namespace Rimaethon.Scripts.UI
         }
 
 
-        private void SetUpInputManager()
-        {
-            if (inputManager == null) inputManager = InputManager.Instance;
-            if (inputManager == null)
-                Debug.LogWarning(
-                    "The UIManager is missing a reference to an Input Manager, without a Input Manager the UI can not pause");
-        }
+ 
 
 
         public void TogglePause()
@@ -143,14 +124,12 @@ namespace Rimaethon.Scripts.UI
         }
 
 
-        private void CheckPauseInput()
-        {
-            if (inputManager == null) return;
-            if (inputManager.pauseButton != 1) return;
-            TogglePause();
-            inputManager.pauseButton = 0;
-        }
+       
 
+        public void OnPause()
+        {
+            TogglePause();
+        }
         public void GoToPage(int pageIndex)
         {
             if (pageIndex < pages.Count && pages[pageIndex] != null)

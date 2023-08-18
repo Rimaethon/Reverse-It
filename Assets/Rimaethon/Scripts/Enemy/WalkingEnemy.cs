@@ -1,10 +1,9 @@
 ﻿using System;
-using Player;
 using Rimaethon.Scripts.Core.Enums;
-using Rimaethon.Scripts.Enemy;
+using Rimaethon.Scripts.Player;
 using UnityEngine;
 
-namespace Enemy
+namespace Rimaethon.Scripts.Enemy
 {
     public sealed class WalkingEnemy : EnemyBase
     {
