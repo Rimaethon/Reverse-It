@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player
+namespace Rimaethon.Scripts.Player
 {
     public class GravityChanger : MonoBehaviour
     {
