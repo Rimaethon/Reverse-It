@@ -1,20 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Core;
-using Health_Damage;
+using Rimaethon.Scripts.Core.Enums;
+using Rimaethon.Scripts.Health_Damage;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Player
+namespace Rimaethon.Scripts.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController : MonoBehaviour
     {
         #region Fields
 
-        [SerializeField] private InputManager inputManager;
+        private InputManager InputManager => InputManager.Instance;
         [SerializeField] private GroundCheck groundCheck;
         [SerializeField] private SpriteRenderer spriteRenderer;
-        [SerializeField] private Health playerHealth;
+         [SerializeField] private BaseHealth playerBaseHealth;
         private bool _gravityRunning;
         private bool _gravityJumping = true;
         private Rigidbody2D _playerRigidbody;
@@ -41,7 +42,7 @@ namespace Player
         {
             get
             {
-                switch (HorizontalMovementInput)
+                switch (MovementVector.x)
                 {
                     case > 0:
                         return PlayerDirection.Right;
@@ -56,15 +57,8 @@ namespace Player
         }
 
         
-        private float HorizontalMovementInput
-        {
-            get
-            {
-                if (inputManager != null)
-                    return inputManager.horizontalMovement;
-                return 0;
-            }
-        }
+        private Vector2 MovementVector => InputManager != null ? InputManager.MovementVector : Vector2.zero;
+           
 
         private enum PlayerDirection
         {
@@ -73,7 +67,7 @@ namespace Player
         }
 
         
-        private bool JumpInput => inputManager != null && inputManager.jumpStarted;
+        private bool JumpInput => InputManager != null && InputManager.jumpStarted;
 
 
         private bool Grounded => groundCheck != null && groundCheck.CheckGrounded();
@@ -93,7 +87,6 @@ namespace Player
         private void Start()
         {
             SetupRigidbody();
-            SetUpInputManager();
         }
 
 
@@ -101,7 +94,6 @@ namespace Player
         {
             ProcessInput();
             HandleSpriteDirection();
-            DetermineState();
         }
 
         #endregion
@@ -118,8 +110,8 @@ namespace Player
         private void HandleMovementInput()
         {
             var movementForce = Vector2.zero;
-            if (Mathf.Abs(HorizontalMovementInput) > 0 && state != PlayerStates.Dead)
-                movementForce = Vector3.right * (movementSpeed * HorizontalMovementInput);
+            if (Mathf.Abs(MovementVector.x) > 0 )
+                movementForce = Vector3.right * (movementSpeed * MovementVector.x);
             MovePlayer(movementForce);
         }
 
@@ -209,7 +201,7 @@ namespace Player
         public void Bounce()
         {
             _timesJumped = 0;
-            StartCoroutine(nameof(Jump), inputManager.jumpHeld ? 1.5f : 1.0f);
+            //StartCoroutine(nameof(Jump), inputManager.jumpHeld ? 1.5f : 1.0f);
         }
 
 
@@ -232,9 +224,9 @@ namespace Player
         }
 
 
-        private void DetermineState()
+        /*private void DetermineState()
         {
-            if (playerHealth.currentHealth <= 0)
+            if (playerBaseHealth.currentHealth <= 0)
             {
                 SetState(PlayerStates.Dead);
             }
@@ -247,7 +239,7 @@ namespace Player
             {
                 SetState(_jumping ? PlayerStates.Jump : PlayerStates.Fall);
             }
-        }
+        }*/
 
         #endregion
 
@@ -258,12 +250,7 @@ namespace Player
         }
 
 
-        private void SetUpInputManager()
-        {
-            inputManager = InputManager.Instance;
-            if (inputManager == null)
-                Debug.LogError("There is no InputManager set up in the scene for the PlayerController to read from");
-        }
+
 
         #endregion
 

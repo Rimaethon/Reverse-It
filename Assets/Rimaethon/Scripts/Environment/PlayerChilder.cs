@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Environment
+namespace Rimaethon.Scripts.Environment
 {
     public class PlayerChilder : MonoBehaviour
     {

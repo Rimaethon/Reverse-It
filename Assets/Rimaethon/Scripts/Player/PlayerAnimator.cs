@@ -1,7 +1,7 @@
-﻿using Core;
+﻿using Rimaethon.Scripts.Core.Enums;
 using UnityEngine;
 
-namespace Player
+namespace Rimaethon.Scripts.Player
 {
     public class PlayerAnimator : MonoBehaviour
     {
