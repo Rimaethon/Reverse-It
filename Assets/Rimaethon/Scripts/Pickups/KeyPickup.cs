@@ -1,8 +1,8 @@
-﻿using Health_Damage;
-using Keys_Doors;
+﻿using Rimaethon.Scripts.Health_Damage;
+using Rimaethon.Scripts.Keys_Doors;
 using UnityEngine;
 
-namespace Pickups
+namespace Rimaethon.Scripts.Pickups
 {
     public class KeyPickup : Pickup
     {
@@ -14,7 +14,7 @@ namespace Pickups
 
         protected override void DoOnPickup(Collider2D collision)
         {
-            if (collision.CompareTag("Player") && collision.gameObject.GetComponent<Health>() != null)
+            if (collision.CompareTag("Player") && collision.gameObject.GetComponent<BaseHealth>() != null)
                 KeyRing.AddKey(keyID);
             base.DoOnPickup(collision);
         }
