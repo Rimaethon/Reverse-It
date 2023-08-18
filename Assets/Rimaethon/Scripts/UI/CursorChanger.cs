@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UI
+namespace Rimaethon.Scripts.UI
 {
     public class CursorChanger : MonoBehaviour
     {
