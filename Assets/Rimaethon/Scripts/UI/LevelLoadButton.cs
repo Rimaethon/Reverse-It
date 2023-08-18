@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace UI
+namespace Rimaethon.Scripts.UI
 {
     public class LevelLoadButton : MonoBehaviour
     {

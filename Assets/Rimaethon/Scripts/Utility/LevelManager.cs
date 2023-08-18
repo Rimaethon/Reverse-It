@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Utility
+namespace Rimaethon.Scripts.Utility
 {
     public static class LevelManager
     {
