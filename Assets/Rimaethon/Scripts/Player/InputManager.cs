@@ -1,107 +1,73 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using Rimaethon.Scripts.Utility;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player
+namespace Rimaethon.Scripts.Player
 {
-    public class InputManager : MonoBehaviour
+    public class InputManager : Singleton<InputManager>,DefaultInputActions.IPlayerActions
     {
-        public static InputManager Instance;
+        private PlayerInputs _playerInputs;
         [SerializeField] private GameObject player;
 
 
-        public float horizontalMovement;
-        public float verticalMovement;
+      
+        public Vector2 MovementVector => m_MovementVector;
+        private Vector2 m_MovementVector;
 
-        [Header("Jump Input")] [Tooltip("Whether a jump was started this frame.")]
         public bool jumpStarted;
 
-        [Tooltip("Whether the jump button is being held.")]
         public bool jumpHeld;
-
 
         public float pauseButton;
 
-
-        public float horizontalLookAxis;
-        public float verticalLookAxis;
         private PlayerController _playerscript;
-
-        public InputManager()
-        {
-            jumpStarted = false;
-        }
-
+        
+    
 
         private void Awake()
         {
-            ResetValuesToDefault();
-            if (Instance == null)
-                Instance = this;
-            else
-                Destroy(gameObject);
+            _playerInputs = new PlayerInputs();
+           
         }
 
+
+        private void OnEnable()
+        {
+            _playerInputs.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _playerInputs.Disable();
+            
+        }
+
+        public void OnMovement(InputAction.CallbackContext callbackContext)
+        {
+            m_MovementVector = callbackContext.ReadValue<Vector2>();
+
+        }
         private void Start()
         {
             _playerscript = player.GetComponent<PlayerController>();
         }
 
-        private void ResetValuesToDefault()
+
+        public void OnMove(InputAction.CallbackContext context)
         {
-            horizontalMovement = default;
-            verticalMovement = default;
-
-            horizontalLookAxis = default;
-            verticalLookAxis = default;
-
-            jumpStarted = default;
-            jumpHeld = default;
-
-            pauseButton = default;
+            throw new NotImplementedException();
         }
 
-
-        public void GetMovementInput(InputAction.CallbackContext callbackContext)
+        public void OnLook(InputAction.CallbackContext context)
         {
-            var movementVector = callbackContext.ReadValue<Vector2>();
-
-            horizontalMovement = movementVector.x;
-            verticalMovement = movementVector.y;
+            throw new NotImplementedException();
         }
 
-
-        public void GetJumpInput(InputAction.CallbackContext callbackContext)
+        public void OnFire(InputAction.CallbackContext context)
         {
-            jumpStarted = !callbackContext.canceled;
-            jumpHeld = !callbackContext.canceled;
-            if (Instance.isActiveAndEnabled) StartCoroutine(nameof(ResetJumpStart));
-        }
-
-
-        private IEnumerator ResetJumpStart()
-        {
-            yield return new WaitForEndOfFrame();
-            jumpStarted = false;
-        }
-
-
-        public void GetPauseInput(InputAction.CallbackContext callbackContext)
-        {
-            pauseButton = callbackContext.ReadValue<float>();
-        }
-
-
-        public void GetMouseLookInput(InputAction.CallbackContext callbackContext)
-        {
-            var mouseLookVector = callbackContext.ReadValue<Vector2>();
-            horizontalLookAxis = mouseLookVector.x;
-            verticalLookAxis = mouseLookVector.y;
-        }
-
-        public void GetGravityInput(InputAction.CallbackContext callbackContext)
-        {
-            _playerscript.GravitatePlayer();
+            throw new NotImplementedException();
         }
     }
 }
