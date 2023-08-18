@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-namespace Player
+namespace Rimaethon.Scripts.Player
 {
     [RequireComponent(typeof(Collider2D))]
     public class GroundCheck : MonoBehaviour
