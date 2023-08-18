@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Pickups
+namespace Rimaethon.Scripts.Pickups
 {
     public class Pickup : MonoBehaviour
     {

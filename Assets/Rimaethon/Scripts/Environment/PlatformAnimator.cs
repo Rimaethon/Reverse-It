@@ -1,26 +1,34 @@
 ﻿using UnityEngine;
 
-namespace Environment
+namespace Rimaethon.Scripts.Environment
 {
     [RequireComponent(typeof(WaypointMover))]
     [RequireComponent(typeof(Animator))]
     public class PlatformAnimator : MonoBehaviour
     {
         private static readonly int IsMoving = Animator.StringToHash("isMoving");
-        [SerializeField] private WaypointMover mover;
-        private Animator _animator; 
+        private WaypointMover m_Mover;
+        private Animator _animator;
+        private bool m_IsmMoverNotNull;
+        private bool m_IsAnimatorNotNull;
 
+
+        private void Start()
+        {
+            m_IsAnimatorNotNull = _animator != null;
+            m_IsmMoverNotNull = m_Mover != null;
+        }
 
         private void Awake()
         {
-            mover = GetComponent<WaypointMover>();
+            m_Mover = GetComponent<WaypointMover>();
             _animator = GetComponent<Animator>();
         }
 
 
         private void Update()
         {
-            if (mover != null && _animator != null) _animator.SetBool(IsMoving, !mover.stopped);
+            if (m_IsmMoverNotNull && m_IsAnimatorNotNull) _animator.SetBool(IsMoving, !m_Mover.stopped);
         }
     }
 }
