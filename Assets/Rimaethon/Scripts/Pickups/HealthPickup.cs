@@ -1,25 +1,28 @@
-﻿using Health_Damage;
+﻿using Rimaethon.Scripts.Core.Interfaces;
+using Rimaethon.Scripts.Health_Damage;
 using UnityEngine;
 
-namespace Pickups
+namespace Rimaethon.Scripts.Pickups
 {
-    public class HealthPickup : Pickup
+    public class HealthPickup : Pickup,IGiveHeal
     {
-        [Header("Healing Settings")] [Tooltip("The healing to apply")]
-        public int healingAmount = 1;
+        private int m_HealingAmount = 1;
+        public int HealAmount => m_HealingAmount;
 
 
         protected override void DoOnPickup(Collider2D collision)
         {
-            if (collision.CompareTag("Player") && collision.gameObject.GetComponent<Health>() != null)
-            {
-                var playerHealth = collision.gameObject.GetComponent<Health>();
-                if (playerHealth.currentHealth < playerHealth.maximumHealth)
-                {
-                    playerHealth.ReceiveHealing(healingAmount);
-                    base.DoOnPickup(collision);
-                }
-            }
+            collision.gameObject.TryGetComponent(out IHealAble health);
+            if(health == null) return;
+            
+            GiveHeal(health);
+            
+        }
+
+
+        public void GiveHeal(IHealAble target)
+        {
+            target.ReceiveHealing(this);
         }
     }
 }
