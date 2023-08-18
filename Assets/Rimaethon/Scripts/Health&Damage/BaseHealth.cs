@@ -17,7 +17,7 @@ namespace Rimaethon.Scripts.Health_Damage
             get => m_Health;
             protected set => m_Health = Mathf.Clamp(value, 0, 100);
         }
-        private int m_Health;
+        private int m_Health=100;
 
         public void TakeDamage(IDamageSource source)
         {
