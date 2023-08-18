@@ -9,36 +9,34 @@ namespace Rimaethon.Scripts.Utility
     {
         public static GameManager Instance;
 
-        [Header("References:")] [Tooltip("The UIManager component which manages the current scene's UI")]
         public UIManager uiManager;
 
-        [Tooltip("The player GameObject")] public GameObject player;
+         public GameObject player;
 
-        [Header("Scores")] [Tooltip("The player's score")] [SerializeField]
+        [SerializeField]
         private int gameManagerScore;
 
-        [Tooltip("The highest score acheived on this device")]
         public int highScore;
 
-        [Header("Game Progress / Victory Settings")] [Tooltip("Whether the game is winnable or not \nDefault: true")]
+        
         public bool gameIsWinnable = true;
 
-        [Tooltip("Page index in the UIManager to go to on winning the game")]
+        
         public int gameVictoryPageIndex;
 
-        [Tooltip("The effect to create upon winning the game")]
+        
         public GameObject victoryEffect;
 
-        [Header("Game Over Settings:")] [Tooltip("The index in the UI manager of the game over page")]
+        
         public int gameOverPageIndex;
 
-        [Tooltip("The game over effect to create when the game is lost")]
+        
         public GameObject gameOverEffect;
 
         // Whether or not the game is over
         [HideInInspector] public bool gameIsOver;
 
-        // Static getter/setter for player score (for convenience)
+       
         public static int Score
         {
             get => Instance.gameManagerScore;
@@ -76,14 +74,10 @@ namespace Rimaethon.Scripts.Utility
                 var playerHealth = player.GetComponent<BaseHealth>();
 
                 // Set lives accordingly
-                if (PlayerPrefs.GetInt("lives") == 0) PlayerPrefs.SetInt("lives", playerHealth.currentLives);
 
-                playerHealth.currentLives = PlayerPrefs.GetInt("lives");
 
                 // Set health accordingly
-                if (PlayerPrefs.GetInt("health") == 0) PlayerPrefs.SetInt("health", playerHealth.currentHealth);
 
-                playerHealth.currentHealth = PlayerPrefs.GetInt("health");
             }
 
             KeyRing.ClearKeyRing();
@@ -95,8 +89,6 @@ namespace Rimaethon.Scripts.Utility
             if (player != null)
             {
                 var playerHealth = player.GetComponent<BaseHealth>();
-                PlayerPrefs.SetInt("lives", playerHealth.currentLives);
-                PlayerPrefs.SetInt("health", playerHealth.currentHealth);
             }
         }
 
