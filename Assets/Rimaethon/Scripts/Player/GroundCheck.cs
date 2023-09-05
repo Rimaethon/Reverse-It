@@ -7,48 +7,43 @@ namespace Rimaethon.Scripts.Player
     public class GroundCheck : MonoBehaviour
     {
         [SerializeField] private LayerMask groundLayers;
-        [SerializeField] private Collider2D groundCheckCollider;
 
         [SerializeField] private GameObject landingEffect;
 
         private bool _groundedLastCheck;
 
 
-        private void Start()
-        {
-            groundCheckCollider = GetComponent<Collider2D>();
-            GetCollider();
-        }
 
-        private void GetCollider()
-        {
-            if (groundCheckCollider == null) groundCheckCollider = gameObject.GetComponent<Collider2D>();
-        }
+        [SerializeField] private float groundRayLength = 0.7f;
 
-
+        
         public bool CheckGrounded()
         {
-            if (groundCheckCollider == null) GetCollider();
+            Vector2 rayOrigin = new Vector2(transform.position.x, transform.position.y + 0.1f);
 
-            var overlaps = new Collider2D[5];
-            var contactFilter = new ContactFilter2D();
-            contactFilter.layerMask = groundLayers;
-            groundCheckCollider.OverlapCollider(contactFilter, overlaps);
+            // Cast the ray downwards
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, groundRayLength, groundLayers);
 
-            if ((from overlapCollider in overlaps
-                    where overlapCollider != null
-                    select contactFilter.layerMask.value & (int)Mathf.Pow(2, overlapCollider.gameObject.layer))
-                .Any(match => match > 0))
+            // Check if the ray hit any ground layer
+            if (hit.collider != null)
             {
                 if (landingEffect && !_groundedLastCheck)
                     Instantiate(landingEffect, transform.position, Quaternion.identity, null);
 
                 _groundedLastCheck = true;
+                Debug.Log("I hit the ground!");
                 return true;
             }
 
             _groundedLastCheck = false;
             return false;
+        }
+
+        // Visualization of ray in the editor
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(new Vector2(transform.position.x, transform.position.y + 0.1f), Vector2.down * groundRayLength);
         }
     }
 }
