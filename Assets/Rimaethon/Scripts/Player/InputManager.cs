@@ -1,35 +1,37 @@
-﻿using System;
-using System.Collections;
+using System;
 using Rimaethon.Scripts.Utility;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Rimaethon.Scripts.Player
 {
-    public class InputManager : Singleton<InputManager>,DefaultInputActions.IPlayerActions
+    public class InputManager : StaticInstance<InputManager>,PlayerInputs.IPlayerActions
     {
         private PlayerInputs _playerInputs;
-        [SerializeField] private GameObject player;
-
-
-      
         public Vector2 MovementVector => m_MovementVector;
         private Vector2 m_MovementVector;
-
         public bool jumpStarted;
-
         public bool jumpHeld;
-
         public float pauseButton;
-
         private PlayerController _playerscript;
         
     
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _playerInputs = new PlayerInputs();
+            _playerInputs.Player.Movement.performed += OnMovement;
+            _playerInputs.Player.Movement.canceled += OnMovement;
+            _playerInputs.Player.Jump.performed += OnJump;
+            _playerInputs.Player.Jump.canceled += OnJump;
+            
            
+        }
+
+        private void Start()
+        {
+            _playerscript = gameObject.GetComponent<PlayerController>();
         }
 
 
@@ -41,33 +43,44 @@ namespace Rimaethon.Scripts.Player
         private void OnDisable()
         {
             _playerInputs.Disable();
-            
+
+            _playerInputs.Player.Movement.performed -= OnMovement;
+            _playerInputs.Player.Movement.canceled -= OnMovement;
+            _playerInputs.Player.Jump.performed -= OnJump;
+            _playerInputs.Player.Jump.canceled -= OnJump;
+
         }
+
+   
 
         public void OnMovement(InputAction.CallbackContext callbackContext)
         {
             m_MovementVector = callbackContext.ReadValue<Vector2>();
 
         }
-        private void Start()
+
+        public void OnJump(InputAction.CallbackContext context)
         {
-            _playerscript = player.GetComponent<PlayerController>();
+            jumpStarted = context.performed;
         }
 
-
-        public void OnMove(InputAction.CallbackContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnLook(InputAction.CallbackContext context)
+        public void OnMousePosition(InputAction.CallbackContext context)
         {
             throw new NotImplementedException();
         }
 
-        public void OnFire(InputAction.CallbackContext context)
+        public void OnPause(InputAction.CallbackContext context)
         {
             throw new NotImplementedException();
         }
+
+        public void OnGravity(InputAction.CallbackContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+     
     }
 }
