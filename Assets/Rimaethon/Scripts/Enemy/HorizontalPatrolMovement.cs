@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Rimaethon.Scripts.Enemy
 {
-    public class HorizontalPatrolMovement : IMovementStrategy
+    public class HorizontalPatrolMovement : MonoBehaviour
     {
         public WalkDirections WalkDirection { get; set; }
 
