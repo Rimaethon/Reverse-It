@@ -1,4 +1,4 @@
-﻿using Rimaethon.Scripts.Core.Enums;
+using Rimaethon.Scripts.Core.Enums;
 using UnityEngine;
 
 namespace Rimaethon.Scripts.Player

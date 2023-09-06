@@ -11,7 +11,8 @@
                     "id": "ca1e52c6-7e42-415f-a9c9-0e23fe6e81b0",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Jump",
@@ -19,7 +20,8 @@
                     "id": "add686e0-fb66-4c07-89f6-8246b0b77508",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "MousePosition",
@@ -27,7 +29,8 @@
                     "id": "880fda34-c1f0-4182-9208-7d4aa11b12bb",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Pause",
@@ -35,7 +38,8 @@
                     "id": "a619ef57-9707-4c7d-9baa-3305d3e5a21a",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Gravity",
@@ -43,7 +47,8 @@
                     "id": "a6032692-d1d0-42f0-8587-f8b1268cb5c9",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [

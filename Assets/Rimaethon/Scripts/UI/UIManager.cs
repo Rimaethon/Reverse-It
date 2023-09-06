@@ -26,7 +26,6 @@ namespace Rimaethon.Scripts.UI
 
         [HideInInspector] public EventSystem eventSystem;
 
-        private InputManager InputManager => InputManager.Instance;
 
 
         private bool _isPaused;

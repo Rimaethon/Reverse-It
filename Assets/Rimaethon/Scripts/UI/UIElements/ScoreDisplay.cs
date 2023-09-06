@@ -10,7 +10,7 @@ namespace Rimaethon.Scripts.UI.UIElements
 
         private void DisplayScore()
         {
-            if (displayText != null) displayText.text = "Score: " + GameManager.Score;
+            //if (displayText != null) displayText.text = "Score: " + GameManager.Score;
         }
 
 

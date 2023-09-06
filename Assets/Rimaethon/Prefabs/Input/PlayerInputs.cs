@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class  @PlayerInputs: IInputActionCollection2, IDisposable
+public partial class @PlayerInputs: IInputActionCollection2, IDisposable
 {
     public InputActionAsset asset { get; }
     public @PlayerInputs()
@@ -43,7 +43,7 @@ public partial class  @PlayerInputs: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""MousePosition"",

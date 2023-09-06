@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using Rimaethon.Scripts.Core.Enums;
 using Rimaethon.Scripts.Health_Damage;
@@ -21,7 +21,9 @@ namespace Rimaethon.Scripts.Player
         private Rigidbody2D _playerRigidbody;
         private int _timesJumped;
         private bool _jumping;
-
+        [SerializeField] private float groundCheckInterval = 0.1f;
+        private bool _isGroundedCache;
+        private Coroutine _groundCheckCoroutine;
         
         [SerializeField] private float movementSpeed = 4.0f;
 
@@ -56,7 +58,16 @@ namespace Rimaethon.Scripts.Player
             }
         }
 
-        
+
+        private IEnumerator GroundCheckLoop()
+        {
+            while (true)
+            {
+                _isGroundedCache = groundCheck != null && groundCheck.CheckGrounded();
+                yield return new WaitForSeconds(groundCheckInterval);
+            }
+        }
+
         private Vector2 MovementVector => InputManager != null ? InputManager.MovementVector : Vector2.zero;
            
 
@@ -86,7 +97,12 @@ namespace Rimaethon.Scripts.Player
 
         private void Start()
         {
+            if (InputManager==null)
+            {
+                Debug.Log("InputManager is null");
+            }
             SetupRigidbody();
+            _groundCheckCoroutine = StartCoroutine(GroundCheckLoop());
         }
 
 
@@ -94,6 +110,11 @@ namespace Rimaethon.Scripts.Player
         {
             ProcessInput();
             HandleSpriteDirection();
+            DetermineState();
+            Debug.Log(MovementVector);
+            Debug.Log(JumpInput);
+
+
         }
 
         #endregion
@@ -167,6 +188,7 @@ namespace Rimaethon.Scripts.Player
 
         private void HandleJumpInput()
         {
+            Debug.Log("JumpInput: " + JumpInput + " _gravityJumping: " + _gravityJumping + " _jumping: " + _jumping + " Grounded: " + Grounded + " _timesJumped: " + _timesJumped + " state: " + state + " Dead: " + PlayerStates.Dead);
             if (JumpInput && _gravityJumping) StartCoroutine(nameof(Jump), 1.0f);
         }
 
@@ -224,13 +246,9 @@ namespace Rimaethon.Scripts.Player
         }
 
 
-        /*private void DetermineState()
+        private void DetermineState()
         {
-            if (playerBaseHealth.currentHealth <= 0)
-            {
-                SetState(PlayerStates.Dead);
-            }
-            else if (Grounded)
+            if (Grounded)
             {
                 SetState(_playerRigidbody.velocity.magnitude > 0 ? PlayerStates.Walk : PlayerStates.Idle);
                 if (!_jumping) _timesJumped = 0;
@@ -239,7 +257,7 @@ namespace Rimaethon.Scripts.Player
             {
                 SetState(_jumping ? PlayerStates.Jump : PlayerStates.Fall);
             }
-        }*/
+        }
 
         #endregion
 
