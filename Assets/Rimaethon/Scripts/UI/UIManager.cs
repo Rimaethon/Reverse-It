@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Rimaethon.Scripts.Player;
+using Rimaethon.Scripts.Core.Enums;
+using Rimaethon.Scripts.Managers;
 using Rimaethon.Scripts.UI.UIElements;
 using Rimaethon.Scripts.Utility;
 using UnityEngine;
@@ -14,25 +16,19 @@ namespace Rimaethon.Scripts.UI
 
         public int currentPage;
         public int defaultPage;
-
         public int pausePageIndex = 1;
-
         public bool allowPause = true;
-        public GameObject navigationEffect;
 
-        public GameObject clickEffect;
-
-        public GameObject backEffect;
 
         [HideInInspector] public EventSystem eventSystem;
-
-
-
         private bool _isPaused;
-
         private List<UIElement> _uIelements;
-
-
+        
+        private void Awake()
+        {
+    //EventManager.Instance.AddHandler(GameEvents.OnTogglePause, TogglePause);
+        }
+        
         private void Start()
         {
             SetUpEventSystem();
@@ -40,32 +36,28 @@ namespace Rimaethon.Scripts.UI
             InitializeFirstPage();
             UpdateUI();
         }
-
-       
-
         private void OnEnable()
         {
             SetupGameManagerUIManager();
         }
 
-
         public void CreateBackEffect()
         {
-            if (backEffect) Instantiate(backEffect, transform.position, Quaternion.identity, null);
+            
+            AudioManager.Instance.PlaySFX(0);
         }
-
 
         public void CreateClickEffect()
         {
-            if (clickEffect) Instantiate(clickEffect, transform.position, Quaternion.identity, null);
-        }
+            AudioManager.Instance.PlaySFX(1);
 
+        }
 
         public void CreateNavigationEffect()
         {
-            if (navigationEffect) Instantiate(navigationEffect, transform.position, Quaternion.identity, null);
-        }
+            AudioManager.Instance.PlaySFX(2);
 
+        }
 
         private void SetupGameManagerUIManager()
         {
@@ -89,10 +81,6 @@ namespace Rimaethon.Scripts.UI
                                  "You can add one by right clicking in hierarchy then selecting UI->EventSystem.");
         }
 
-
- 
-
-
         public void TogglePause()
         {
             if (!allowPause) return;
@@ -101,12 +89,14 @@ namespace Rimaethon.Scripts.UI
                 GoToPage(defaultPage);
                 Time.timeScale = 1;
                 _isPaused = false;
+                Debug.Log("Unpaused");
             }
             else
             {
                 GoToPage(pausePageIndex);
                 Time.timeScale = 0;
                 _isPaused = true;
+                Debug.Log("Paused");
             }
         }
 
@@ -125,10 +115,7 @@ namespace Rimaethon.Scripts.UI
 
        
 
-        public void OnPause()
-        {
-            TogglePause();
-        }
+
         public void GoToPage(int pageIndex)
         {
             if (pageIndex < pages.Count && pages[pageIndex] != null)
@@ -152,6 +139,10 @@ namespace Rimaethon.Scripts.UI
         {
             if (pages == null) return;
             foreach (var page in pages.Where(page => page != null)) page.gameObject.SetActive(activated);
+        }
+        public void GıveTestDebug()
+        {
+            Debug.Log("Test");
         }
     }
 }
