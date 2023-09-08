@@ -1,4 +1,7 @@
-﻿using Rimaethon.Scripts.Health_Damage;
+﻿using System;
+using Rimaethon.Scripts.Core.Enums;
+using Rimaethon.Scripts.Health_Damage;
+using Rimaethon.Scripts.Managers;
 using Rimaethon.Scripts.Utility;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,39 +10,17 @@ namespace Rimaethon.Scripts.UI.UIElements
 {
     public class HealthDisplay : UIElement
     {
-        public GameObject healthDisplayImage;
+        private Text _healthDisplayText;
 
-        public GameObject numberDisplay;
-
-        public int maximumNumberToDisplay = 3;
-
-
-        public override void UpdateUI()
+        private void OnEnable()
         {
-            if (GameManager.Instance != null && GameManager.Instance.player != null)
-            {
-                var playerHealth = GameManager.Instance.player.GetComponent<BaseHealth>();
-            }
+            EventManager.Instance.AddHandlerö(GameEvents.OnPlayingAudio, UpdateHealthDisplay);
         }
 
- 
-        private void SetChildImageNumber(int number)
+        private void UpdateHealthDisplay(int healthValue)
         {
-            for (var i = transform.childCount - 1; i >= 0; i--) Destroy(transform.GetChild(i).gameObject);
-
-            if (healthDisplayImage != null)
-            {
-                if (maximumNumberToDisplay >= number)
-                {
-                    for (var i = 0; i < number; i++) Instantiate(healthDisplayImage, transform);
-                }
-                else
-                {
-                    Instantiate(healthDisplayImage, transform);
-                    var createdNumberDisp = Instantiate(numberDisplay, transform);
-                    createdNumberDisp.GetComponent<Text>().text = number.ToString();
-                }
-            }
+            _healthDisplayText.text = $"Health: {HealthManager.Instance.health}";
         }
+    
     }
 }
