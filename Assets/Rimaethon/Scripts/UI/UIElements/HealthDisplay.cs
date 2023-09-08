@@ -14,12 +14,17 @@ namespace Rimaethon.Scripts.UI.UIElements
 
         private void OnEnable()
         {
-            EventManager.Instance.AddHandlerö(GameEvents.OnPlayingAudio, UpdateHealthDisplay);
+            EventManager.Instance.AddHandler<int>(GameEvents.OnHealthChange, UpdateHealthDisplay);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.Instance.RemoveHandler<int>(GameEvents.OnHealthChange, UpdateHealthDisplay);
         }
 
         private void UpdateHealthDisplay(int healthValue)
         {
-            _healthDisplayText.text = $"Health: {HealthManager.Instance.health}";
+            _healthDisplayText.text = $"Health: {healthValue}";
         }
     
     }

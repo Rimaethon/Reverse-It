@@ -78,7 +78,7 @@ namespace Rimaethon.Scripts.Player
         }
 
         
-        private bool JumpInput => InputManager != null && InputManager.jumpStarted;
+        private bool JumpInput => InputManager != null && InputManager.JumpStarted;
 
 
         private bool Grounded => groundCheck != null && groundCheck.CheckGrounded();

@@ -8,11 +8,12 @@ namespace Rimaethon.Scripts.Utility
     {
         public static T Instance { get; protected set; }
 
-        protected virtual void Awake()
+        protected virtual void OnEnable()
         {
             if (this is T instance)
             {
                 Instance = instance;
+                Debug.Log($"Instance of type {typeof(T)} created.");
             }
             else
             {
@@ -30,9 +31,9 @@ namespace Rimaethon.Scripts.Utility
 
   public abstract class Singleton<T> : StaticInstance<T> where T : MonoBehaviour
   {
-      protected override void Awake()
+      protected override void OnEnable()
       {
-          base.Awake();
+          base.OnEnable();
           if (this is T instance)
           {
               if (Instance != null && Instance != this)
@@ -55,9 +56,9 @@ namespace Rimaethon.Scripts.Utility
 
     public abstract class PersistentSingleton<T> : Singleton<T> where T : MonoBehaviour
     {
-        protected override void Awake()
+        protected override void OnEnable()
         {
-            base.Awake();
+            base.OnEnable();
             DontDestroyOnLoad(gameObject);
         }
     }
