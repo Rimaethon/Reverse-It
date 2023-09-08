@@ -25,9 +25,9 @@ namespace Rimaethon.Scripts.Player
         #endregion 
     
 
-        protected override void OnEnable()
+        protected override void Awake()
         {
-            base.OnEnable();
+            base.Awake();
             _playerInputs = new PlayerInputs();
             _playerInputs.Enable();
 

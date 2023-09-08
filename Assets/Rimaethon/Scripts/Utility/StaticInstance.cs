@@ -6,9 +6,34 @@ namespace Rimaethon.Scripts.Utility
  
     public abstract class StaticInstance<T> : MonoBehaviour where T : MonoBehaviour
     {
-        public static T Instance { get; protected set; }
+        private static T _instance;
+        public static T Instance
+        {
+            get
+            {
+                if (_instance != null) return _instance;
+                _instance =FindObjectOfType<T>();
+                if (_instance == null)
+                {
+                    Debug.LogError($"Instance of type {typeof(T)} could not be found.");
+                }
+                return _instance;
+            }
+            protected set => _instance = value;
+        }
 
-        protected virtual void OnEnable()
+        protected virtual void Awake()
+        {
+            InitializeInstance();
+        }
+
+        protected virtual void OnApplicationQuit()
+        {
+            _instance = null;
+            Destroy(gameObject);
+        }
+
+        private void InitializeInstance()
         {
             if (this is T instance)
             {
@@ -21,19 +46,13 @@ namespace Rimaethon.Scripts.Utility
                 throw new InvalidOperationException($"Instance of type {typeof(T)} could not be created.");
             }
         }
-
-        protected virtual void OnApplicationQuit()
-        {
-            Instance = null;
-            Destroy(gameObject);
-        }
     }
 
   public abstract class Singleton<T> : StaticInstance<T> where T : MonoBehaviour
   {
-      protected override void OnEnable()
+      protected override void Awake()
       {
-          base.OnEnable();
+          base.Awake();
           if (this is T instance)
           {
               if (Instance != null && Instance != this)
@@ -56,9 +75,9 @@ namespace Rimaethon.Scripts.Utility
 
     public abstract class PersistentSingleton<T> : Singleton<T> where T : MonoBehaviour
     {
-        protected override void OnEnable()
+        protected override void Awake()
         {
-            base.OnEnable();
+            base.Awake();
             DontDestroyOnLoad(gameObject);
         }
     }

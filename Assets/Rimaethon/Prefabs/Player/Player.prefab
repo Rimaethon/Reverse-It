@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1958634890406964374}
   - component: {fileID: 7277063603477099535}
   m_Layer: 8
-  m_Name: Feet (1)
+  m_Name: Feet
   m_TagString: Feet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457856444660511649}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.39, y: -2.141, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77,83 +77,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.40154132, y: 0.14852178}
   m_EdgeRadius: 0
---- !u!1 &1054501810021414589
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3862743382258933711}
-  - component: {fileID: 7676652672810271196}
-  m_Layer: 8
-  m_Name: WallSlide (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3862743382258933711
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054501810021414589}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.39, y: -2.141, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8128307141711142839}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &7676652672810271196
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054501810021414589}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: e2b5e817e9d06ab4395941436c080e37, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.175}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.65, y: 0.3}
-  m_EdgeRadius: 0
 --- !u!1 &6713675913868465027
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +89,7 @@ GameObject:
   - component: {fileID: 2161942694579191525}
   - component: {fileID: 4269886878723619208}
   m_Layer: 12
-  m_Name: GroundCheck (1)
+  m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,7 +103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6713675913868465027}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.39, y: -2.141, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -246,9 +169,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundLayers:
     serializedVersion: 2
-    m_Bits: 1
-  groundCheckCollider: {fileID: 2161942694579191525}
+    m_Bits: 8
   landingEffect: {fileID: 8657513430090007711, guid: cea91aea514527f4d815f677cb2dc813, type: 3}
+  groundRayLength: 0.7
 --- !u!1 &8128307141711142832
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +204,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3862743382258933711}
   - {fileID: 1958634890406964374}
   - {fileID: 8128307142859021830}
   - {fileID: 4709836864273349316}
@@ -365,12 +287,14 @@ MonoBehaviour:
   groundCheck: {fileID: 4269886878723619208}
   spriteRenderer: {fileID: 8128307142859021831}
   playerBaseHealth: {fileID: 0}
+  groundCheckInterval: 0.1
   movementSpeed: 4
-  jumpPower: 10
+  jumpPower: 25
   allowedJumps: 1
   jumpDuration: 0.1
   jumpEffect: {fileID: 0}
-  passThroughLayers: []
+  passThroughLayers:
+  - Default
   state: 0
 --- !u!114 &8168880931077865838
 MonoBehaviour:
