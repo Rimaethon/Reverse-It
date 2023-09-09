@@ -4,7 +4,6 @@ using System.Linq;
 using Rimaethon.Scripts.Core.Enums;
 using Rimaethon.Scripts.Utility;
 using UnityEngine;
-using AYellowpaper.SerializedCollections;
 
 namespace Rimaethon.Scripts.Managers
 {
