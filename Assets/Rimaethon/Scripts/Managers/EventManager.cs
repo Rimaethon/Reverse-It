@@ -9,13 +9,14 @@ namespace Rimaethon.Scripts.Managers
 {
     public class EventManager : Singleton<EventManager>
     {
-        #region Fields
+        #region Fields And Properties
 
-        readonly Dictionary<GameEvents, List<Delegate>> _eventHandlers = new Dictionary<GameEvents, List<Delegate>>();
-
+        private readonly Dictionary<GameEvents, List<Delegate>> _eventHandlers = new Dictionary<GameEvents, List<Delegate>>();
+        
         #endregion
 
    
+     
         #region Event Handlers
 
         public void AddHandler(GameEvents gameEvent, Action handler)
@@ -42,6 +43,7 @@ namespace Rimaethon.Scripts.Managers
 
         public void RemoveHandler(GameEvents gameEvent, Action handler)
         {
+            
             if (_eventHandlers.TryGetValue(gameEvent, out var handlers))
             {
                 handlers.Remove(handler);
@@ -57,6 +59,7 @@ namespace Rimaethon.Scripts.Managers
 
         public void RemoveHandler<T>(GameEvents gameEvent, Action<T> handler)
         {
+      
             if (_eventHandlers.TryGetValue(gameEvent, out var handlers))
             {
                 handlers.Remove(handler);
