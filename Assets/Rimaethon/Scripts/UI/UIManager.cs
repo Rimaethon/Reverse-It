@@ -26,7 +26,7 @@ namespace Rimaethon.Scripts.UI
         
         private void Awake()
         {
-    //EventManager.Instance.AddHandler(GameEvents.OnTogglePause, TogglePause);
+            EventManager.Instance.AddHandler(GameEvents.OnTogglePause, TogglePause);
         }
         
         private void Start()
