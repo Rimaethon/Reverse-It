@@ -24,15 +24,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "MousePosition",
-                    "type": "Value",
-                    "id": "880fda34-c1f0-4182-9208-7d4aa11b12bb",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "a619ef57-9707-4c7d-9baa-3305d3e5a21a",
@@ -42,9 +33,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Gravity",
+                    "name": "Gravity Change",
                     "type": "Button",
                     "id": "a6032692-d1d0-42f0-8587-f8b1268cb5c9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Screenshot",
+                    "type": "Button",
+                    "id": "af088310-9156-4e5c-8bed-94699f4fe8e5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -52,17 +52,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "41e96f7b-0159-4e2e-8390-1a10b6111f73",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "WASD",
                     "id": "f7de09d7-6e0e-4241-aa89-ff4ad9697197",
@@ -73,28 +62,6 @@
                     "action": "Movement",
                     "isComposite": true,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "8e93ec93-a180-49e2-9468-171fb0fe0c61",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "5811246b-9138-429e-b68d-6b99b9cdd815",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 },
                 {
                     "name": "left",
@@ -120,45 +87,12 @@
                 },
                 {
                     "name": "",
-                    "id": "75d4f648-27fd-4f84-986b-db1f8fd99e7d",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c49f8018-ca78-4454-804f-9482de8ca8a8",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fdfddbd7-08d8-45d9-a17d-6406f3585a04",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MousePosition",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "57277a6f-f5ea-402d-bf1d-5afd00d49767",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -176,11 +110,22 @@
                 {
                     "name": "",
                     "id": "f3821bb9-0052-4f45-81fa-079b822bad6b",
-                    "path": "<Mouse>/press",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Gravity",
+                    "action": "Gravity Change",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d129f520-ca6b-4805-a8c8-b098d08b3335",
+                    "path": "<Keyboard>/f5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Screenshot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
