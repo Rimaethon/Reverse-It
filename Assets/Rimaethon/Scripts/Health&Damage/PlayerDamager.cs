@@ -31,14 +31,13 @@ namespace Rimaethon.Scripts.Health_Damage
             RaycastHit hit;
             if (Physics.Raycast(rayStart, rayDirection, out hit, rayLength))
             {
-                // Check if the ray hit an object with the "Enemy" tag
                 if (hit.collider.CompareTag("Enemy"))
                 {
-                    return true; // The ray hit an enemy from above
+                    return true; 
                 }
             }
 
-            return false; // No hit from above
+            return false;
         }
         
     }
