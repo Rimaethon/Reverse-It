@@ -83,7 +83,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -289,10 +289,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Score_Collectable_Idle4: -953365265809376140
-      Score_Collectable_Idle3: -3731226829080348964
       Score_Collectable_Idle1: 7954556612373881922
       Score_Collectable_Idle2: -2848249159903744698
+      Score_Collectable_Idle3: -3731226829080348964
+      Score_Collectable_Idle4: -953365265809376140
       Score_Collectable_Idle5: 2198794343142446588
       Score_Collectable_Idle6: -4967890818724032237
   spritePackingTag: 

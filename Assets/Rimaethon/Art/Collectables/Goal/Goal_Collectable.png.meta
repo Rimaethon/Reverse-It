@@ -191,7 +191,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -776,29 +776,29 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Goal_Collectable_Idle1: -4167498055051540981
-      Goal_Collectable_Idle8: 3711747227781956745
-      Goal_Collectable_Idle19: 7215035215821067170
-      Goal_Collectable_Idle22: 6054403989061878054
-      Goal_Collectable_Idle15: 1348887951499459771
-      Goal_Collectable_Idle13: -2100319173982108409
-      Goal_Collectable_Idle6: -7948494741799446233
-      Goal_Collectable_Idle9: 9193094224456557233
-      Goal_Collectable_Idle11: 8448183969563286994
-      Goal_Collectable_Idle20: 8174389907741383166
-      Goal_Collectable_Idle14: -6739684619513346114
-      Goal_Collectable_Idle18: -1895978337828644659
-      Goal_Collectable_Idle5: 8166906633453735405
-      Goal_Collectable_Idle23: 7836785249233109891
-      Goal_Collectable_Idle7: -6035817408137204907
-      Goal_Collectable_Idle4: -5006301883195359429
-      Goal_Collectable_Idle2: -5369025016848718575
-      Goal_Collectable_Idle16: -2614749509153943273
-      Goal_Collectable_Idle12: -7954472645095900593
-      Goal_Collectable_Idle21: 5163576873621862554
-      Goal_Collectable_Idle24: 8520516572677621823
       Goal_Collectable_Idle10: -7076817524063999606
-      Goal_Collectable_Idle3: 6818377159288290041
+      Goal_Collectable_Idle11: 8448183969563286994
+      Goal_Collectable_Idle12: -7954472645095900593
+      Goal_Collectable_Idle13: -2100319173982108409
+      Goal_Collectable_Idle14: -6739684619513346114
+      Goal_Collectable_Idle15: 1348887951499459771
+      Goal_Collectable_Idle16: -2614749509153943273
       Goal_Collectable_Idle17: -6937814713066827166
+      Goal_Collectable_Idle18: -1895978337828644659
+      Goal_Collectable_Idle19: 7215035215821067170
+      Goal_Collectable_Idle2: -5369025016848718575
+      Goal_Collectable_Idle20: 8174389907741383166
+      Goal_Collectable_Idle21: 5163576873621862554
+      Goal_Collectable_Idle22: 6054403989061878054
+      Goal_Collectable_Idle23: 7836785249233109891
+      Goal_Collectable_Idle24: 8520516572677621823
+      Goal_Collectable_Idle3: 6818377159288290041
+      Goal_Collectable_Idle4: -5006301883195359429
+      Goal_Collectable_Idle5: 8166906633453735405
+      Goal_Collectable_Idle6: -7948494741799446233
+      Goal_Collectable_Idle7: -6035817408137204907
+      Goal_Collectable_Idle8: 3711747227781956745
+      Goal_Collectable_Idle9: 9193094224456557233
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
