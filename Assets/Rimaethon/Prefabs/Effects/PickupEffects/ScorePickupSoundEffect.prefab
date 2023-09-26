@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9121507372709277514}
   - component: {fileID: 9121507372709277515}
   m_Layer: 0
-  m_Name: ScorePickupEffect
+  m_Name: ScorePickupSoundEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 57.998413, y: -2.257303, z: -23.656643}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -41,7 +42,7 @@ AudioSource:
   m_GameObject: {fileID: 9121507372709277508}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -9116394610004886310, guid: 1fe292ef728a3d640b1811d82f80b5f1, type: 2}
   m_audioClip: {fileID: 8300000, guid: e9ebfef6c443be241a6ac149fb2a8983, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -140,5 +141,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58ca2f55b8d54e44921b14b727bf610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 5
+  lifetime: 1
   destroyChildrenOnDeath: 1
