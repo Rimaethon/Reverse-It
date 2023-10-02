@@ -4,6 +4,5 @@ namespace Rimaethon.Scripts.Core.Enums
     {
         Right,
         Left,
-        None
     }
 }

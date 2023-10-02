@@ -2,10 +2,9 @@
 {
     public enum PlayerStates
     {
-        Idle,
-        Walk,
-        Jump,
-        Fall,
-        Dead
+        Grounded,
+        Running,
+        Jumping,
+        GravityChange
     }
 }
