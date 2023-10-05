@@ -113,7 +113,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 26
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -448,17 +448,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DoorGreen_Opening9: -7290516825167579443
       DoorGreen_Closed: 3571918853351263293
-      DoorGreen_Opening1: -832383510125105132
       DoorGreen_Open: 4699588588015478061
-      DoorGreen_Opening4: 2845263381547599043
+      DoorGreen_Opening1: -832383510125105132
       DoorGreen_Opening2: -855702016387389643
+      DoorGreen_Opening3: 1739499829473523276
+      DoorGreen_Opening4: 2845263381547599043
       DoorGreen_Opening5: -6463511583828423796
       DoorGreen_Opening6: 945555842380578398
       DoorGreen_Opening7: 8457555336572682754
       DoorGreen_Opening8: 5231771890490107394
-      DoorGreen_Opening3: 1739499829473523276
+      DoorGreen_Opening9: -7290516825167579443
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
