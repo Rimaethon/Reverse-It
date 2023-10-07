@@ -1,5 +1,4 @@
 using Rimaethon.Scripts.Core.Enums;
-using Rimaethon.Scripts.Core.Interfaces;
 using UnityEngine;
 
 namespace Rimaethon.Scripts.Enemy
@@ -13,9 +12,9 @@ namespace Rimaethon.Scripts.Enemy
             switch (WalkDirection)
             {
                 case WalkDirections.Left:
-                    return Vector3.left * (moveSpeed * Time.deltaTime);
+                    return Vector3.left * (moveSpeed * Time.fixedDeltaTime);
                 case WalkDirections.Right:
-                    return Vector3.right * (moveSpeed * Time.deltaTime);
+                    return Vector3.right * (moveSpeed * Time.fixedDeltaTime);
                 default:
                     return Vector3.zero;
             }
