@@ -1,10 +1,7 @@
 ﻿using Rimaethon.Player;
-using Rimaethon.Player.Player_States;
-using Rimaethon.Runtime.Player;
 using Rimaethon.Scripts.Core.Enums;
 using Rimaethon.Scripts.Managers;
 using Rimaethon.Scripts.Player.Player_States;
-using Rimaethon.Scripts.Player.PlayerState;
 using UnityEngine;
 
 namespace Rimaethon.Scripts.Player
@@ -12,7 +9,6 @@ namespace Rimaethon.Scripts.Player
     public class PlayerStateManager
     {
         private readonly Animator _animator;
-
         private readonly float _gravityChangeCooldown = 1f;
         private readonly PlayerController _playerController;
         private readonly Rigidbody2D _rb;
@@ -38,9 +34,7 @@ namespace Rimaethon.Scripts.Player
 
             InitializeStates();
         }
-
         public float DamageContactNormal { get; private set; }
-
         public IPlayerState GroundedState { get; private set; }
         public IPlayerState AirborneState { get; private set; }
         public IPlayerState JumpingState { get; private set; }
@@ -49,7 +43,7 @@ namespace Rimaethon.Scripts.Player
 
         private void InitializeStates()
         {
-         
+            GroundedState = new PlayerGroundedState(_playerController, _animator, this);
 
             EventManager.Instance.AddHandler(GameEvents.OnPlayerGravityChange, CanChangeGravity);
             EventManager.Instance.AddHandler<float>(GameEvents.OnPlayerDamaged, PlayerDamaged);
@@ -58,13 +52,11 @@ namespace Rimaethon.Scripts.Player
 
             ChangeState(GroundedState);
         }
-
         private void PlayerRespawned()
         {
             if (_playerController.isPlayerGravitated) ChangeState(GravityChangeState);
             ChangeState(GroundedState);
         }
-
         private void PlayerDead()
         {
             _playerController.isPlayerDead = true;
