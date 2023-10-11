@@ -11,7 +11,6 @@ namespace Rimaethon.Runtime.Enemy
         }
         public void PlayAnimation()
         {
-            
         }
 
         public void StopAnimation()
