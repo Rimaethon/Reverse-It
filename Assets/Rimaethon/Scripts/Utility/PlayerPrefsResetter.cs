@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Rimaethon.Runtime.Managers;
+using UnityEngine;
 
 namespace Rimaethon.Scripts.Utility
 {
@@ -6,7 +7,7 @@ namespace Rimaethon.Scripts.Utility
     {
         public void ResetGamePlayerPrefs()
         {
-            GameManager.ResetGamePlayerPrefs();
+            GameManager.Instance.ResetPlayerPrefs();
         }
     }
 }
