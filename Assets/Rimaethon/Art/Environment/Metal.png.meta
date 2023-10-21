@@ -895,38 +895,38 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DarkMetal_Center_Left: 1533032381965511437
-      Metal_Column_Center: -8961950925676901529
-      Metal_Row_Left: 4390418108133961450
-      Metal_Row_Center: -5979677299219791526
-      Metal_Single: 5673141639267775971
-      DarkMetal_Column_Top: 4280140775337727081
-      DarkMetal_Row_Right: 8336394408375787007
-      Metal_Center_Right: -4660086729066665798
-      Metal_Top_Right: -4291250929300952025
-      Metal_Top_Left: -8638448890813730969
-      Metal_Row_Right: 6962031434913937272
-      DarkMetal_Bottom_Left: -7637165044954881804
-      DarkMetal_Top_Right: 9051345908527930705
-      DarkMetal_Top_Center: 7075844648559293400
-      Metal_Bottom_Right: -6609230443217566254
-      DarkMetal_Row_Left: -4986189832431879090
-      Metal_Bottom_Center: -2037017275707848092
-      DarkMetal_Bottom_Right: -352228370359270939
-      DarkMetal_Top_Left: 6508816939499611902
-      Metal_Center_Left: 7686280345405294104
-      Metal_Center: 1396373533295336388
-      DarkMetal_Column_Bottom: 6341922446725816878
-      Metal_Column_Top: 919693202005755323
-      Metal_Top_Center: 2295852015588209501
-      DarkMetal_Single: -7971299764418391309
-      DarkMetal_Center: 858581352650525874
-      DarkMetal_Row_Center: -9071672131066053803
-      Metal_Column_Bottom: -3367057741777355009
       DarkMetal_Bottom_Center: -1706539880538938679
+      DarkMetal_Bottom_Left: -7637165044954881804
+      DarkMetal_Bottom_Right: -352228370359270939
+      DarkMetal_Center: 858581352650525874
+      DarkMetal_Center_Left: 1533032381965511437
       DarkMetal_Center_Right: 1982096469999804075
-      Metal_Bottom_Left: -76456095654998164
+      DarkMetal_Column_Bottom: 6341922446725816878
       DarkMetal_Column_Center: -4009991031583649951
+      DarkMetal_Column_Top: 4280140775337727081
+      DarkMetal_Row_Center: -9071672131066053803
+      DarkMetal_Row_Left: -4986189832431879090
+      DarkMetal_Row_Right: 8336394408375787007
+      DarkMetal_Single: -7971299764418391309
+      DarkMetal_Top_Center: 7075844648559293400
+      DarkMetal_Top_Left: 6508816939499611902
+      DarkMetal_Top_Right: 9051345908527930705
+      Metal_Bottom_Center: -2037017275707848092
+      Metal_Bottom_Left: -76456095654998164
+      Metal_Bottom_Right: -6609230443217566254
+      Metal_Center: 1396373533295336388
+      Metal_Center_Left: 7686280345405294104
+      Metal_Center_Right: -4660086729066665798
+      Metal_Column_Bottom: -3367057741777355009
+      Metal_Column_Center: -8961950925676901529
+      Metal_Column_Top: 919693202005755323
+      Metal_Row_Center: -5979677299219791526
+      Metal_Row_Left: 4390418108133961450
+      Metal_Row_Right: 6962031434913937272
+      Metal_Single: 5673141639267775971
+      Metal_Top_Center: 2295852015588209501
+      Metal_Top_Left: -8638448890813730969
+      Metal_Top_Right: -4291250929300952025
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
