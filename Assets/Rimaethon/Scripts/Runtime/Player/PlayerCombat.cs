@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Rimaethon.Runtime.Player
 {
-    public class PlayerCombat : CharacterCombat
+    public class PlayerCombat : CharacterCombat,IHealAble
     {
         private void Start()
         {
@@ -53,6 +53,14 @@ namespace Rimaethon.Runtime.Player
         protected override void HandleDamage(float contactNormal)
         {
             EventManager.Instance.Broadcast(GameEvents.OnPlayerDamaged, contactNormal);
+            EventManager.Instance.Broadcast(GameEvents.OnHealthChange, Health);
+        }
+
+        public void ReceiveHealing(IGiveHeal healingSource)
+        {
+            if (Health >= characterConfigSo.maxHealth) return;
+
+            Health += healingSource.HealAmount;
             EventManager.Instance.Broadcast(GameEvents.OnHealthChange, Health);
         }
     }
