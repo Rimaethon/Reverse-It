@@ -26,6 +26,8 @@ namespace Rimaethon.Scripts.Core.Enums
         OnPlayerDirectionChange,
         OnPlayerInSight,
         OnPlayerMelted,
-        OnRedGemCollected
+        OnRedGemCollected,
+        OnPlayerGravityChanged,
+        OnCameraOffset
     }
 }
