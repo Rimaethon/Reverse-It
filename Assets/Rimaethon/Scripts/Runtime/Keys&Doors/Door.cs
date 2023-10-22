@@ -23,7 +23,7 @@ namespace Rimaethon.Runtime.Keys_Doors
 
         private void OnDisable()
         {
-            KeyRing.ClearKeyRing();
+            PlayerKeyHolder.ClearKeyRing();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -41,7 +41,7 @@ namespace Rimaethon.Runtime.Keys_Doors
 
         private bool CheckPlayerHasKey()
         {
-            return KeyRing.HasKey(doorID);
+            return PlayerKeyHolder.HasKey(doorID);
         }
 
 
