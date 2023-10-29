@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: d76dfffef78946d479b0769d8ae9f161
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - settings: {fileID: 11400000, guid: 855e585d4c9b8b74ea8c7060cf5b836b, type: 2}
+  - behaviourTreeXml: {fileID: 9197481963319205126, guid: ab3d651f8d9746b4ea75ea9a632d40ea, type: 3}
+  - nodeXml: {fileID: 9197481963319205126, guid: ccd48234be2f6644f93742f2faf68de5, type: 3}
+  - behaviourTreeStyle: {fileID: 7433441132597879392, guid: bfc8abb701c92fb4da25a31b7cd17fc9, type: 3}
+  - scriptTemplateActionNode: {fileID: 4900000, guid: 39908033e6333954ab068f9cd4335cab, type: 3}
+  - scriptTemplateCompositeNode: {fileID: 4900000, guid: 50af0744759a6f148891a0302871668f, type: 3}
+  - scriptTemplateDecoratorNode: {fileID: 4900000, guid: 68ec90eda70221843b347ce647ce661a, type: 3}
+  - tree: {fileID: 11400000, guid: d386306d9d85a694eb8a72c60f4e26fb, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
