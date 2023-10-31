@@ -101,7 +101,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -559,24 +559,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Basic_Enemy_Death8: -52327109241533230
       Basic_Enemy_Death1: -4141582632560809331
-      Basic_Enemy_Idle3: 7883370146420248474
-      Basic_Enemy_Death5: -6409783134607674146
       Basic_Enemy_Death10: 2335966180192973469
-      Basic_Enemy_Idle4: 4059332406880413813
-      Basic_Enemy_Walking3: 5694677194566451432
-      Basic_Enemy_Death4: 4333309899838358233
-      Basic_Enemy_Death9: -1281260885108881769
-      Basic_Enemy_Death3: -1796774249197346456
-      Basic_Enemy_Death6: -7557556963719700867
-      Basic_Enemy_Idle2: 5932228199130019927
-      Basic_Enemy_Idle1: 7692226621546264347
-      Basic_Enemy_Walking2: -4692664624527854193
-      Basic_Enemy_Walking4: 7178270487504492391
       Basic_Enemy_Death2: -7557602873965094879
-      Basic_Enemy_Walking1: 2800894396032241102
+      Basic_Enemy_Death3: -1796774249197346456
+      Basic_Enemy_Death4: 4333309899838358233
+      Basic_Enemy_Death5: -6409783134607674146
+      Basic_Enemy_Death6: -7557556963719700867
       Basic_Enemy_Death7: 4811137493180947653
+      Basic_Enemy_Death8: -52327109241533230
+      Basic_Enemy_Death9: -1281260885108881769
+      Basic_Enemy_Idle1: 7692226621546264347
+      Basic_Enemy_Idle2: 5932228199130019927
+      Basic_Enemy_Idle3: 7883370146420248474
+      Basic_Enemy_Idle4: 4059332406880413813
+      Basic_Enemy_Walking1: 2800894396032241102
+      Basic_Enemy_Walking2: -4692664624527854193
+      Basic_Enemy_Walking3: 5694677194566451432
+      Basic_Enemy_Walking4: 7178270487504492391
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
