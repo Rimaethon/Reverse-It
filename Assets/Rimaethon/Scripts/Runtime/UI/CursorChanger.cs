@@ -19,11 +19,11 @@ namespace Rimaethon.Scripts.UI
 
             var hotSpot = new Vector2();
             if (newCursorSprite == null) return;
-           
-                hotSpot.x = newCursorSprite.width / 2;
-                hotSpot.y = newCursorSprite.height / 2;
 
-                Cursor.SetCursor(newCursorSprite, hotSpot, CursorMode.Auto);
+            hotSpot.x = newCursorSprite.width / 2;
+            hotSpot.y = newCursorSprite.height / 2;
+
+            Cursor.SetCursor(newCursorSprite, hotSpot, CursorMode.Auto);
         }
     }
 }

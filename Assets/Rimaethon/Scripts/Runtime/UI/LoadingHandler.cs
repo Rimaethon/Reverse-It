@@ -1,3 +1,4 @@
+
 using System.Collections;
 using Rimaethon.Scripts.Core.Enums;
 using Rimaethon.Scripts.Managers;
@@ -54,12 +55,14 @@ namespace Rimaethon.Runtime.UI
             if (_isScreenMoving) return;
             _isScreenShouldContinue = true;
             _isRespawnScreen = true;
+            StartCoroutine(MoveLoadingScreen(new Vector2(TargetPivotX, TargetPivotY), ScreenMoveDuration));
         }
 
         private IEnumerator LoadScene(int sceneIndex)
         {
             _isScreenShouldContinue = false;
             _isRespawnScreen = false;
+            StartCoroutine(MoveLoadingScreen(new Vector2(TargetPivotX, TargetPivotY), ScreenMoveDuration));
             loadingIcon.SetActive(true);
             _sceneUnload = SceneManager.LoadSceneAsync(sceneIndex);
             _sceneUnload.allowSceneActivation = false;
@@ -76,6 +79,38 @@ namespace Rimaethon.Runtime.UI
             _sceneUnload.allowSceneActivation = true;
         }
 
-       
+        private IEnumerator MoveLoadingScreen(Vector2 targetPivot, float duration)
+        {
+            _loadingScreenCanvas.enabled = true;
+            _isScreenMoving = true;
+            var startPivot = loadingScreenImage.rectTransform.pivot;
+            var halfWayPivot = (targetPivot + startPivot) / 2;
+            var elapsedTime = 0f;
+
+            while (elapsedTime < duration)
+            {
+                elapsedTime += Time.unscaledDeltaTime;
+                var t = Mathf.Clamp01(elapsedTime / duration);
+                loadingScreenImage.rectTransform.pivot = Vector2.Lerp(startPivot, halfWayPivot, t);
+                yield return null;
+            }
+
+            if (_isRespawnScreen) EventManager.Instance.Broadcast(GameEvents.OnPlayerRespawned);
+
+            while (!_isScreenShouldContinue) yield return null;
+
+            elapsedTime = 0f;
+            while (elapsedTime < duration)  
+            {
+                elapsedTime += Time.unscaledDeltaTime;
+                var t = Mathf.Clamp01(elapsedTime / duration);
+                loadingScreenImage.rectTransform.pivot = Vector2.Lerp(halfWayPivot, targetPivot, t);
+                yield return null;
+            }
+
+            _loadingScreenCanvas.enabled = false;
+            _isScreenMoving = false;
+            loadingScreenImage.rectTransform.pivot = startPivot;
+        }
     }
 }
