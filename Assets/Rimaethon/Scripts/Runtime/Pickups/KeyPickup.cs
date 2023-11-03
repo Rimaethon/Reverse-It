@@ -11,7 +11,7 @@ namespace Rimaethon.Runtime.Pickups
         protected override void DoOnPickup(Collider2D collision)
         {
             base.DoOnPickup(collision);
-            KeyRing.AddKey(keyID);
+            PlayerKeyHolder.AddKey(keyID);
         }
     }
 }

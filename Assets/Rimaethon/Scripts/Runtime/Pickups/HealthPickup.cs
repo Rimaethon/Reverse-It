@@ -19,8 +19,8 @@ namespace Rimaethon.Scripts.Pickups
         {
             collision.gameObject.TryGetComponent(out IHealAble health);
             if (health == null) return;
-
             GiveHeal(health);
+            Destroy(gameObject);
         }
     }
 }
