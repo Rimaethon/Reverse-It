@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Feet
+  - Ground
+  - Walls
+  - EnemyHead
+  - EnemyBody
+  - CameraPoint
   layers:
   - Default
   - TransparentFX
@@ -13,14 +17,14 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Walls
+  - Enemy
+  - Enemy Head
+  - Enemy Ground
+  - Player Feet
+  - Platform
+  - CameraLerpPoint
+  - Door
   - 
   - 
   - 
