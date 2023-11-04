@@ -1,0 +1,190 @@
+<mxfile host="Electron" modified="2023-10-18T08:07:30.273Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" version="22.0.2" etag="4M3ZWkeGpzqr2p8XYQGg" type="device">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="3000" dy="2018" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-0" target="4Kfcdlw7AA9TpvzCUdru-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-0" value="Player is doing nothing" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="320" y="10" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-1" target="4Kfcdlw7AA9TpvzCUdru-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-1" value="Idle Animation Starts Working" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="320" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-4" target="4Kfcdlw7AA9TpvzCUdru-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-4" value="Player Gives An Input" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="300" y="240" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-6" target="4Kfcdlw7AA9TpvzCUdru-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-6" target="4Kfcdlw7AA9TpvzCUdru-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-6" target="4Kfcdlw7AA9TpvzCUdru-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-6" value="Input Manager Gets The Input and Sends Events or Input itself" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="320" y="350" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-8" target="4Kfcdlw7AA9TpvzCUdru-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-8" value="Player gets velocity on that direction&lt;br&gt;&lt;br&gt;Running Animation Starts&lt;br&gt;&lt;br&gt;Player sprite flips on X axis according to movement directionn" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-304" y="568" width="209" height="196" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-81" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-10" target="4Kfcdlw7AA9TpvzCUdru-79">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-10" value="If its Horizontal Movement" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-82" y="315" width="130" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-44" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-17" target="4Kfcdlw7AA9TpvzCUdru-43">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-67" value="TRUE" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="4Kfcdlw7AA9TpvzCUdru-44">
+          <mxGeometry x="0.0639" y="1" relative="1" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-17" value="If its jump input" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="837" y="315" width="140" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-47" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-20" target="4Kfcdlw7AA9TpvzCUdru-46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-20" value="Player rigidbody gets upwards force&lt;br&gt;Jumping animation starts" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="849" y="749" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-22" target="4Kfcdlw7AA9TpvzCUdru-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-22" target="4Kfcdlw7AA9TpvzCUdru-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-22" target="4Kfcdlw7AA9TpvzCUdru-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-22" value="If its gravity Input" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="335" y="480" width="90" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-57" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-24" target="4Kfcdlw7AA9TpvzCUdru-56">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-24" value="Player rigidbody gravity reverses" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="320" y="655" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-27" value="Player colliders y offset gets multiplied with -1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="527" y="730" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-32" value="Player sprite flips on Y axis" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="91" y="730" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-38" target="4Kfcdlw7AA9TpvzCUdru-58">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-64" value="TRUE" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="4Kfcdlw7AA9TpvzCUdru-61">
+          <mxGeometry x="-0.2909" y="-5" relative="1" as="geometry">
+            <mxPoint y="-5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-38" value="If player starts to&lt;br&gt;&amp;nbsp;fall after movement" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-267" y="881" width="135" height="137" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-43" target="4Kfcdlw7AA9TpvzCUdru-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-63" value="TRUE" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="4Kfcdlw7AA9TpvzCUdru-45">
+          <mxGeometry x="-0.1892" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-43">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1148" y="52" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-87" value="FALSE" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="4Kfcdlw7AA9TpvzCUdru-86">
+          <mxGeometry x="0.192" y="-1" relative="1" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-43" value="Check if player is grounded" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="837" y="525" width="140" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-46" target="4Kfcdlw7AA9TpvzCUdru-58">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-46" value="Player Starts Falling&lt;br&gt;And jump animation finishes" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="849" y="919.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-59" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-56" target="4Kfcdlw7AA9TpvzCUdru-58">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-56" value="Player starts falling to ceiling" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="320" y="775" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-70" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-58" target="4Kfcdlw7AA9TpvzCUdru-69">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-58" value="Other animations stops and Fall animation starts" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="300" y="884" width="160" height="131" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-68" value="&lt;font style=&quot;font-size: 22px;&quot;&gt;&lt;br&gt;&lt;br&gt;This situation is only for one input cycle and player can always give another input in the middle of the process????&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="174" y="-251" width="392" height="231" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-69" target="4Kfcdlw7AA9TpvzCUdru-73">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-69" value="If player is grounded" style="rhombus;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="305.25" y="1102" width="149.5" height="111" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" target="4Kfcdlw7AA9TpvzCUdru-0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="760" y="53" as="targetPoint" />
+            <mxPoint x="392" y="1344" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="1343" y="1345" />
+              <mxPoint x="1343" y="50" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-73" value="Fall Animation Stops" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="320" y="1323" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-79" target="4Kfcdlw7AA9TpvzCUdru-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-83" value="TRUE" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="4Kfcdlw7AA9TpvzCUdru-82">
+          <mxGeometry x="-0.233" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="4Kfcdlw7AA9TpvzCUdru-79" target="4Kfcdlw7AA9TpvzCUdru-0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-395" y="-1" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-532" y="445" />
+              <mxPoint x="-532" y="50" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-85" value="FALSE" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="4Kfcdlw7AA9TpvzCUdru-84">
+          <mxGeometry x="0.2015" y="-5" relative="1" as="geometry">
+            <mxPoint x="2" y="-5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4Kfcdlw7AA9TpvzCUdru-79" value="While input is being given" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-259.5" y="415" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
