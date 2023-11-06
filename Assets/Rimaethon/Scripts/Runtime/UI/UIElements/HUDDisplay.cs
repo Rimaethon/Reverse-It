@@ -61,8 +61,6 @@ namespace Rimaethon.Runtime.UI.UIElements
                 time += Time.deltaTime * lerpSpeed;
             }
         }
-
-      
         private void UpdateGemDisplay(int gemAmount)
         {
             redGemCountText.text = $"X {gemAmount}";
