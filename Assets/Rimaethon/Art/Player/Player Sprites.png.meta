@@ -110,7 +110,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 22
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -631,27 +631,27 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Run_8: 3357448380023916636
-      Run_6: 5508196535711307930
+      Death_1: 5060024736668181865
+      Death_2: 9106238837012370682
+      Death_3: -8476884403730504572
+      Death_4: 8994934039534786276
+      Death_5: -3039491128782020425
+      Idle_1: -2934537193391203678
+      Idle_2: 5561252313898378945
+      Idle_3: 3141024620073831917
       Idle_4: 3906316530790733968
       Jump_1: -5699663333660052217
       Jump_2: -6584139222929798610
-      Run_2: -7128764408626469
       Jump_3: 1021080061586988771
-      Death_1: 5060024736668181865
-      Idle_1: -2934537193391203678
-      Death_5: -3039491128782020425
-      Idle_3: 3141024620073831917
-      Death_4: 8994934039534786276
-      Run_1: 9110367939881713649
       Jump_4: -5776412127581538708
-      Death_2: 9106238837012370682
+      Run_1: 9110367939881713649
+      Run_2: -7128764408626469
       Run_3: -4759420395379981652
-      Run_7: 9170956866853391762
-      Idle_2: 5561252313898378945
       Run_4: 7718539342369969909
       Run_5: -757246277001053172
-      Death_3: -8476884403730504572
+      Run_6: 5508196535711307930
+      Run_7: 9170956866853391762
+      Run_8: 3357448380023916636
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
