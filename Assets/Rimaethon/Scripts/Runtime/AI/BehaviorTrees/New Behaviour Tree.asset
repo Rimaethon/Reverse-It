@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd83696fa83ef5040a9d58b8a1711405, type: 3}
+  m_Name: New Behaviour Tree
+  m_EditorClassIdentifier: 
+  rootNode:
+    rid: 1220195234133311491
+  nodes:
+  - rid: 1220195234133311491
+  - rid: 1220195234133311500
+  - rid: 1220195712652541965
+  - rid: 1220195712652541966
+  - rid: 1220195712652541967
+  - rid: 1220195712652541968
+  treeState: 0
+  blackboard:
+    isCollidedWithWall: 0
+    isGrounded: 0
+    moveSpeed: 0
+    timer: 0
+    isPlayerAlive: 1
+    isPlayerInSight: 0
+  viewPosition: {x: 582, y: 353.33334, z: 0}
+  viewScale: {x: 0.49717674, y: 0.49717674, z: 1}
+  references:
+    version: 2
+    RefIds:
+    - rid: 1220195234133311491
+      type: {class: RootNode, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: c6ac84b7-5856-4dc7-80fb-894e3fae99ea
+        position: {x: 15, y: -600}
+        blackboard:
+          isCollidedWithWall: 0
+          isGrounded: 0
+          moveSpeed: 0
+          timer: 0
+          isPlayerAlive: 0
+          isPlayerInSight: 0
+        logging: {fileID: 0}
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 1220195712652541966
+    - rid: 1220195234133311500
+      type: {class: ChasePlayer, ns: Rimaethon.Scripts.AI.Runtime.Actions, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 4d99c35bec4535c48a20d58f41fb7e01
+        position: {x: -270, y: 45}
+        blackboard:
+          isCollidedWithWall: 0
+          isGrounded: 0
+          moveSpeed: 0
+          timer: 0
+          isPlayerAlive: 0
+          isPlayerInSight: 0
+        logging: {fileID: 0}
+        description: 
+        drawGizmos: 0
+    - rid: 1220195712652541965
+      type: {class: CheckPlayerAlive, ns: Rimaethon.Runtime.AI.Actions, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: 20907968e21b527458295b57d0811887
+        position: {x: -45, y: -300}
+        blackboard:
+          isCollidedWithWall: 0
+          isGrounded: 0
+          moveSpeed: 0
+          timer: 0
+          isPlayerAlive: 0
+          isPlayerInSight: 0
+        logging: {fileID: 0}
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 1220195712652541967
+    - rid: 1220195712652541966
+      type: {class: Repeat, ns: TheKiwiCoder, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: ddfca6342895ac848a85025946539ed3
+        position: {x: -15, y: -450}
+        blackboard:
+          isCollidedWithWall: 0
+          isGrounded: 0
+          moveSpeed: 0
+          timer: 0
+          isPlayerAlive: 0
+          isPlayerInSight: 0
+        logging: {fileID: 0}
+        description: 
+        drawGizmos: 0
+        child:
+          rid: 1220195712652541965
+        restartOnSuccess: 1
+        restartOnFailure: 1
+        maxRepeats: 0
+    - rid: 1220195712652541967
+      type: {class: IsPlayerInRange, ns: Rimaethon.Runtime.AI.Actions, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: abab6b539323c314d990dc7ecd7211a3
+        position: {x: -105, y: -150}
+        blackboard:
+          isCollidedWithWall: 0
+          isGrounded: 0
+          moveSpeed: 0
+          timer: 0
+          isPlayerAlive: 0
+          isPlayerInSight: 0
+        logging: {fileID: 0}
+        description: 
+        drawGizmos: 0
+        children:
+        - rid: 1220195234133311500
+        - rid: 1220195712652541968
+    - rid: 1220195712652541968
+      type: {class: CheckCollisions, ns: Rimaethon.AI, asm: Assembly-CSharp}
+      data:
+        state: 0
+        started: 0
+        guid: d97446ea8595f8d42a907ff2b745367d
+        position: {x: 30, y: 30}
+        blackboard:
+          isCollidedWithWall: 0
+          isGrounded: 0
+          moveSpeed: 0
+          timer: 0
+          isPlayerAlive: 0
+          isPlayerInSight: 0
+        logging: {fileID: 0}
+        description: 
+        drawGizmos: 0
