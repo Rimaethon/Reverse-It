@@ -29,8 +29,8 @@ MonoBehaviour:
     timer: 0
     isPlayerAlive: 1
     isPlayerInSight: 0
-  viewPosition: {x: 582, y: 353.33334, z: 0}
-  viewScale: {x: 0.49717674, y: 0.49717674, z: 1}
+  viewPosition: {x: 166, y: 485.33334, z: 0}
+  viewScale: {x: 1, y: 1, z: 1}
   references:
     version: 2
     RefIds:
