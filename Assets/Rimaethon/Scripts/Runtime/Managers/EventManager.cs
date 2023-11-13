@@ -11,7 +11,7 @@ namespace Rimaethon.Scripts.Managers
     {
         #region Fields And Properties
         private readonly Dictionary<GameEvents, List<Delegate>> _eventHandlers = new();
-        [SerializeField] private bool showEventNames; 
+        [SerializeField] private bool showEventNames;
         #endregion
 
 
@@ -32,7 +32,7 @@ namespace Rimaethon.Scripts.Managers
                     string className = type.Name;
                     eventNames.Add(className+ "." + value.Method.Name);
                 }
-               
+
             }
 
         }
@@ -114,8 +114,6 @@ namespace Rimaethon.Scripts.Managers
                 foreach (var handler in eventHandler)
                 {
                     handler.DynamicInvoke(args);
-                    Debug.Log(
-                        $"Broadcasted event {gameEvents} with arguments {string.Join(", ", args.Select(arg => arg.ToString()))} to handler {handler.Method.Name}");
                 }
         }
 
