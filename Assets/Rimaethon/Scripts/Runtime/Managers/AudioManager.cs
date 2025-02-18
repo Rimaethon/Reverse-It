@@ -11,12 +11,10 @@ namespace Rimaethon.Scripts.Managers
         [SerializeField] private AudioSource sfxSource;
         private int _currentMusicIndex;
         private int _currentSFXIndex;
-
-
         private AudioClip[] _musicClips;
         private AudioClip[] _sfxClips;
-        private bool musicOn;
-        private bool sfxOn;
+        private bool musicOn=true;
+        private bool sfxOn=true;
 
         protected override void Awake()
         {
@@ -25,14 +23,9 @@ namespace Rimaethon.Scripts.Managers
             _sfxClips = audioLibrary.SFXClips;
         }
 
-        private void Start()
-        {
-            PlayMusic(MusicClips.MenuMusic);
-        }
-
         public void PlayMusic(MusicClips clipEnum)
         {
-            if (musicOn) return;
+            if (!musicOn) return;
             if (musicSource.isPlaying) musicSource.Stop();
             _currentMusicIndex = (int)clipEnum;
             musicSource.clip = _musicClips[_currentMusicIndex];
@@ -41,7 +34,7 @@ namespace Rimaethon.Scripts.Managers
 
         public void PlaySFX(SFXClips clipEnum)
         {
-            if (sfxOn) return;
+            if (!sfxOn) return;
             _currentSFXIndex = (int)clipEnum;
             sfxSource.PlayOneShot(_sfxClips[_currentSFXIndex]);
         }

@@ -2,6 +2,7 @@ using Rimaethon.Runtime.Core;
 using Rimaethon.Scripts.Core.Interfaces;
 using Rimaethon.Scripts.Player;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Rimaethon.Runtime.Enemy
 {
@@ -28,7 +29,6 @@ namespace Rimaethon.Runtime.Enemy
                     damageable.TakeDamage(DamageAmount, ContactNormal);
                 }
         }
-
 
         protected override void HandleDeath()
         {

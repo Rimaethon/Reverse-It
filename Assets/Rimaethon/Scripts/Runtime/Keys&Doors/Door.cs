@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Rimaethon.Scripts.Managers;
+using UnityEngine;
 
 namespace Rimaethon.Runtime.Keys_Doors
 {
@@ -33,9 +34,14 @@ namespace Rimaethon.Runtime.Keys_Doors
 
         private void AttemptToOpen()
         {
-            if (!CheckPlayerHasKey() || _isOpen) return;
+            if (!CheckPlayerHasKey())
+            {
+                AudioManager.Instance.PlaySFX(SFXClips.LockedDoor);
+                return;
+            }
+            if (_isOpen) return;
             Open();
-            //AudioManager.Instance.PlaySFX(3);
+            AudioManager.Instance.PlaySFX(SFXClips.DoorOpenClose);
         }
 
 

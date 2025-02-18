@@ -39,6 +39,22 @@ namespace Rimaethon.Scripts.Player
             InitializeStates();
         }
 
+        public void OnPlayerDisabled()
+        {
+            GroundedState = null;
+            AirborneState = null;
+            JumpingState = null;
+            RunningState = null;
+            GravityChangeState = null;
+            _currentState = null;
+            _damagedState = null;
+            _deadState = null;
+            if(EventManager.Instance == null) return;
+            EventManager.Instance.RemoveHandler(GameEvents.OnPlayerGravityChange, CanChangeGravity);
+            EventManager.Instance.RemoveHandler<float>(GameEvents.OnPlayerDamaged, PlayerDamaged);
+            EventManager.Instance.RemoveHandler(GameEvents.OnPlayerDead, PlayerDead);
+            EventManager.Instance.RemoveHandler(GameEvents.OnPlayerRespawned, PlayerRespawned);
+        }
         public float DamageContactNormal { get; private set; }
 
         public IPlayerState GroundedState { get; private set; }
@@ -97,6 +113,7 @@ namespace Rimaethon.Scripts.Player
 
         private void PlayerDamaged(float contactNormal)
         {
+            AudioManager.Instance.PlaySFX(SFXClips.PlayerHurt);
             _playerController.isPlayerDamaged = true;
             DamageContactNormal = contactNormal;
             ChangeState(_damagedState);
@@ -111,4 +128,3 @@ namespace Rimaethon.Scripts.Player
         }
     }
 }
-

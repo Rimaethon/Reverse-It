@@ -9,6 +9,7 @@ namespace Rimaethon.Scripts.AI.Runtime.Actions
     {
         protected override void OnStart()
         {
+
         }
 
         protected override void OnStop()
@@ -41,12 +42,18 @@ namespace Rimaethon.Scripts.AI.Runtime.Actions
                 case > 1f:
                     blackboard.moveSpeed = 3;
                     context.Rigidbody2D.velocity = new Vector2(blackboard.moveSpeed, context.Rigidbody2D.velocity.y);
+                    context.Animator.SetTrigger("isWalking");
+                    context.SpriteRenderer.flipX = context.Rigidbody2D.gravityScale>0;
+                    context.SpriteRenderer.flipX = true;
                     return State.Running;
                 case < -1f:
                     blackboard.moveSpeed = -3;
                     context.Rigidbody2D.velocity = new Vector2(blackboard.moveSpeed, context.Rigidbody2D.velocity.y);
+                    context.Animator.SetTrigger("isWalking");
+                    context.SpriteRenderer.flipX = context.Rigidbody2D.gravityScale<0;
                     return State.Running;
                 default:
+                    context.Animator.SetTrigger("isIdle");
                     return State.Failure;
             }
         }

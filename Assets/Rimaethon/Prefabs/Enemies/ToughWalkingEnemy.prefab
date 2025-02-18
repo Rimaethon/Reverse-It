@@ -279,7 +279,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02996704, y: 0.22773391}
+  m_Offset: {x: 0.028125972, y: 0.22773391}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -290,7 +290,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6377607, y: 0.64272773}
+  m_Size: {x: 0.63407856, y: 0.64272773}
   m_EdgeRadius: 0
 --- !u!1 &2229303990487649827
 GameObject:
@@ -337,8 +337,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.004815383, y: -0.005818398}
-  m_Size: {x: 1.4, y: 0.6353852}
+  m_Offset: {x: -0.004815425, y: -0.2058042}
+  m_Size: {x: 1.4000003, y: 1.0353647}
   m_Direction: 1
 --- !u!1 &5476560097223225666
 GameObject:
@@ -350,7 +350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9198809099266542106}
   - component: {fileID: 2815719767627222068}
-  - component: {fileID: 7062975439792080381}
+  - component: {fileID: 630524685}
   m_Layer: 10
   m_Name: GroundCheckRight
   m_TagString: Untagged
@@ -399,7 +399,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.03, y: 0.01}
   m_EdgeRadius: 0
---- !u!114 &7062975439792080381
+--- !u!114 &630524685
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -421,7 +421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6498272042444196730}
   - component: {fileID: 1343679326160716715}
-  - component: {fileID: 4514611653099931250}
+  - component: {fileID: 317060912}
   m_Layer: 10
   m_Name: GroundCheckLeft
   m_TagString: Untagged
@@ -437,7 +437,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5553813330030894161}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.751, y: -1.121, z: 0}
+  m_LocalPosition: {x: 0.151, y: -1.121, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -470,7 +470,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.03, y: 0.01}
   m_EdgeRadius: 0
---- !u!114 &4514611653099931250
+--- !u!114 &317060912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

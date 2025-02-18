@@ -9,6 +9,7 @@ namespace Rimaethon.Runtime.UI
         private void Start()
         {
             EventManager.Instance.Broadcast(GameEvents.OnGameStart);
+            AudioManager.Instance.PlayMusic(MusicClips.InGameMusic1);
         }
     }
 }

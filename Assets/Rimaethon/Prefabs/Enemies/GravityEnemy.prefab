@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -8329743731282777394}
   - component: {fileID: 749962964}
   - component: {fileID: 749962965}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: GravityEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1668180095173353846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.75, y: -0.5, z: 0}
-  m_LocalScale: {x: 1.15, y: 1.15, z: 1.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8837352247771249016}
@@ -55,7 +55,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 2
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: -10
   m_Material: {fileID: 6200000, guid: e2b5e817e9d06ab4395941436c080e37, type: 2}
   m_Interpolate: 1
@@ -149,11 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   behaviourTree: {fileID: 11400000, guid: d386306d9d85a694eb8a72c60f4e26fb, type: 2}
   validate: 1
-  blackboardOverrides: []
   logging: {fileID: 0}
-  references:
-    version: 2
-    RefIds: []
 --- !u!114 &749962965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +174,7 @@ GameObject:
   - component: {fileID: 1668180095416603671}
   - component: {fileID: 1668180095416603664}
   - component: {fileID: 6384312493977545285}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +220,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5433207, y: 0.03}
+  m_Size: {x: 1.6, y: 0.03}
   m_EdgeRadius: 0
 --- !u!114 &6384312493977545285
 MonoBehaviour:
@@ -283,7 +279,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00022093952, y: 0.21401191}
+  m_Offset: {x: -0.02650781, y: 0.3095991}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -294,7 +290,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5773847, y: 0.27498007}
+  m_Size: {x: 0.6299584, y: 0.46615458}
   m_EdgeRadius: 0
 --- !u!1 &2229303990487649827
 GameObject:
@@ -341,8 +337,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01801626, y: -0.005818397}
-  m_Size: {x: 1.2486893, y: 0.6353849}
+  m_Offset: {x: -0.018016234, y: -0.20714049}
+  m_Size: {x: 1.2486894, y: 1.0380362}
   m_Direction: 1
 --- !u!1 &5476560097223225666
 GameObject:
@@ -354,8 +350,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9198809099266542106}
   - component: {fileID: 2815719767627222068}
-  - component: {fileID: 7062975439792080381}
-  m_Layer: 3
+  - component: {fileID: 1296808974}
+  m_Layer: 8
   m_Name: GroundCheckRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +366,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5476560097223225666}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.55, y: -0.637, z: 0}
+  m_LocalPosition: {x: 0.699, y: -1.132, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -403,7 +399,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.07169008, y: 0.09527774}
   m_EdgeRadius: 0
---- !u!114 &7062975439792080381
+--- !u!114 &1296808974
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -425,8 +421,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6498272042444196730}
   - component: {fileID: 1343679326160716715}
-  - component: {fileID: 4514611653099931250}
-  m_Layer: 3
+  - component: {fileID: 1423877908}
+  m_Layer: 8
   m_Name: GroundCheckLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +437,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5553813330030894161}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.55, y: -0.637, z: 0}
+  m_LocalPosition: {x: 0.305, y: -1.105, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -474,7 +470,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.08341646, y: 0.10309525}
   m_EdgeRadius: 0
---- !u!114 &4514611653099931250
+--- !u!114 &1423877908
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

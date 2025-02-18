@@ -28,7 +28,7 @@ public class CameraOffsetController : MonoBehaviour
     }
     private void ChangeYOffsetBasedOnGravity(bool isPlayerGravitated)
     {
-        _cameraTransposer.m_TrackedObjectOffset.y = isPlayerGravitated ? -2 : 2;
+        _cameraTransposer.m_TrackedObjectOffset.y = -2f;
     }
     private void ChangeOffsetBasedOnPlayerDirection(bool isPlayerFacingRight)
     {

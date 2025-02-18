@@ -20,7 +20,7 @@ namespace Rimaethon.Player
         [SerializeField] private GroundCheck groundCheck;
         [SerializeField] private Logging logging;
         [SerializeField] private LayerMask groundLayer;
-        
+
         private Animator _animator;
         private Vector2 _jumpDirectıon;
         private Vector2 _movement;
@@ -34,6 +34,7 @@ namespace Rimaethon.Player
 
         private void Awake()
         {
+            DontDestroyOnLoad(gameObject);
             //logging.sender = this;
             _rb = GetComponent<Rigidbody2D>();
             _transform = GetComponent<Transform>();
@@ -41,8 +42,22 @@ namespace Rimaethon.Player
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _stateManager = new PlayerStateManager(this, _animator, _spriteRenderer, _rb, _transform);
         }
+        private void OnEnable()
+        {
+            EventManager.Instance.AddHandler(GameEvents.OnPlayerJump, JumpPlayer);
+            EventManager.Instance.AddHandler<float>(GameEvents.OnPlayerMovement, GetPlayerMovementDirection);
+            EventManager.Instance.AddHandler(GameEvents.OnPlayerMelted, () => isPlayerMelted = !isPlayerMelted);
+        }
 
-
+        private void OnDisable()
+        {
+            _stateManager.OnPlayerDisabled();
+            _stateManager = null;
+            if (EventManager.Instance == null) return;
+            EventManager.Instance.RemoveHandler(GameEvents.OnPlayerMelted, () => isPlayerMelted = !isPlayerMelted);
+            EventManager.Instance.RemoveHandler(GameEvents.OnPlayerJump, JumpPlayer);
+            EventManager.Instance.RemoveHandler<float>(GameEvents.OnPlayerMovement, GetPlayerMovementDirection);
+        }
         private void Update()
         {
             _stateManager.UpdateCurrentState();
@@ -54,20 +69,7 @@ namespace Rimaethon.Player
             CheckSpriteDirection();
         }
 
-        private void OnEnable()
-        {
-            EventManager.Instance.AddHandler(GameEvents.OnPlayerJump, JumpPlayer);
-            EventManager.Instance.AddHandler<float>(GameEvents.OnPlayerMovement, GetPlayerMovementDirection);
-            EventManager.Instance.AddHandler(GameEvents.OnPlayerMelted, () => isPlayerMelted = !isPlayerMelted);
-        }
 
-        private void OnDisable()
-        {
-            if (EventManager.Instance == null) return;
-
-            EventManager.Instance.RemoveHandler(GameEvents.OnPlayerJump, JumpPlayer);
-            EventManager.Instance.RemoveHandler<float>(GameEvents.OnPlayerMovement, GetPlayerMovementDirection);
-        }
 
         private void MovePlayerHorizontally()
         {
@@ -106,6 +108,7 @@ namespace Rimaethon.Player
         private void JumpPlayer()
         {
             if (!IsPlayerGrounded() || isPlayerJumping || isPlayerDamaged) return;
+            AudioManager.Instance.PlaySFX(SFXClips.PlayerJump);
             _jumpDirectıon.y = isPlayerGravitated ? -0.9f : 1;
             _rb.velocity = new Vector2(_rb.velocity.x, 0);
             _rb.AddForce(JumpForce * _jumpDirectıon, ForceMode2D.Impulse);

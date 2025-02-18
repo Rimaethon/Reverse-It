@@ -1,4 +1,5 @@
 ﻿using Rimaethon.Player;
+using Rimaethon.Scripts.Managers;
 using Rimaethon.Scripts.Player;
 using UnityEngine;
 
@@ -41,7 +42,10 @@ namespace Rimaethon.Runtime.Player
         public void CheckSwitchState()
         {
             if (_playerController.IsPlayerGrounded())
+            {
+                AudioManager.Instance.PlaySFX(SFXClips.PlayerLanding);
                 _playerStateManager.ChangeState(_playerStateManager.GroundedState);
+            }
         }
 
         private void ClampPlayerFallingVelocity()
