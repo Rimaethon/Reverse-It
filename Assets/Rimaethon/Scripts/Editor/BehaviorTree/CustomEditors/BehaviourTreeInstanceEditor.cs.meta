@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Rimaethon/Scripts/Editor/BehaviorTree/CustomEditors/BehaviourTreeInstanceEditor.cs.meta
 guid: 2900d9ef9a7008a48b1f934fe17885f2
+========
+guid: c6f9b2c424a896a45a08f36b545be9ef
+>>>>>>>> Stashed changes:Assets/Rimaethon/Scripts/Editor/BehaviorTree/Scripts/BehaviourTreeProjectSettings.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

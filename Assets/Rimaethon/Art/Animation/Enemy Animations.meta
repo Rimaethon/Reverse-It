@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Rimaethon/Art/Animation/Enemy Animations.meta
 guid: dcc7f53080d5cda40801ad0f46ec7718
+========
+guid: d622bac516da9c045815cf7316c9fbda
+>>>>>>>> Stashed changes:Assets/Rimaethon/Art/Animation/Environment Animations/Asteroid Animation.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

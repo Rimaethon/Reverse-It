@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Rimaethon/Scripts/Editor/BehaviorTree/Scripts/BehaviourTreeView.cs.meta
 guid: 8a21531b522485244ac3d5b48b449532
+========
+guid: 382ba113265cd4c4ca6cc7d21da87364
+>>>>>>>> Stashed changes:Assets/Rimaethon/Scripts/Editor/BehaviorTree/Scripts/CreateNodeWindow.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

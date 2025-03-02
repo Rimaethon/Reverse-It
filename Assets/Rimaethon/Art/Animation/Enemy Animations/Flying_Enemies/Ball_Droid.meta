@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Rimaethon/Art/Animation/Enemy Animations/Flying_Enemies/Ball_Droid.meta
 guid: a4073b086019933468b0b1a51a47c7ed
+========
+guid: fc0c8067ecac9ba45952f4c215a49671
+>>>>>>>> Stashed changes:Assets/Rimaethon/Scripts/Editor.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

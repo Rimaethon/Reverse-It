@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Rimaethon/Scripts/Editor/BehaviorTree/ScriptTemplates/DecoratorNodeTempalte.txt.meta
 guid: 68ec90eda70221843b347ce647ce661a
+========
+guid: ce3ce86483b235f42b8216993d472d59
+>>>>>>>> Stashed changes:Assets/Rimaethon/Art/Kenney/Spritesheet/blueSheet.xml.meta
 TextScriptImporter:
   externalObjects: {}
   userData: 

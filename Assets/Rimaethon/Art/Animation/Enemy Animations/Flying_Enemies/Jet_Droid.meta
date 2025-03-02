@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Rimaethon/Art/Animation/Enemy Animations/Flying_Enemies/Jet_Droid.meta
 guid: f1f046e252104634aa746d06dc680898
+========
+guid: 8a53630a61e695944bd08045419a6285
+>>>>>>>> Stashed changes:Assets/Rimaethon/Art/Animation/Environment Animations/Door Animations/DoorNoKeyCard.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Rimaethon/Plugins/Kenney/Spritesheet/blueSheet.xml.meta
 guid: ce3ce86483b235f42b8216993d472d59
+========
+guid: 50af0744759a6f148891a0302871668f
+>>>>>>>> Stashed changes:Assets/Rimaethon/Scripts/Editor/BehaviorTree/ScriptTemplates/CompositeNodeTemplate.txt.meta
 TextScriptImporter:
   externalObjects: {}
   userData: 

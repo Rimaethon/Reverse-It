@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Rimaethon/Scripts/Editor/BehaviorTree/ScriptTemplates/CompositeNodeTemplate.txt.meta
 guid: 50af0744759a6f148891a0302871668f
+========
+guid: 39908033e6333954ab068f9cd4335cab
+>>>>>>>> Stashed changes:Assets/Rimaethon/Scripts/Editor/BehaviorTree/ScriptTemplates/ActionNodeTemplate.txt.meta
 TextScriptImporter:
   externalObjects: {}
   userData: 

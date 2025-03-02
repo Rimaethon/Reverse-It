@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Rimaethon/Art/Animation/Enemy Animations/Flying_Enemies.meta
 guid: 0a8f695c652155f45b23a7aebcd1c474
+========
+guid: 48c8dd150a68eec4d8fbc777abc7e627
+>>>>>>>> Stashed changes:Assets/Rimaethon/Art/Animation/Environment Animations/Checkpoint Animations.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
