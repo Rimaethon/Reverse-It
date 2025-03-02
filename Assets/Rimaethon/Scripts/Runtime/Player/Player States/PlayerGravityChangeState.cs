@@ -47,7 +47,7 @@ namespace Rimaethon.Runtime.Player
 
         private void ReversePlayerGravity()
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, 0);
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0);
             _rb.gravityScale = -_rb.gravityScale;
         }
 

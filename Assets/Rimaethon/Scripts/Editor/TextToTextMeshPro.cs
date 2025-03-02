@@ -29,26 +29,37 @@ public class TextToTextMeshPro : Editor
             "Yes", "No");
 
         foreach (var gameObject in Selection.gameObjects)
+        {
             if (recursive)
             {
-                var childs = gameObject.GetComponentsInChildren<Transform>(applyOnDisabled);
-                foreach (var ch in childs)
+                Transform[] childs = gameObject.GetComponentsInChildren<Transform>(applyOnDisabled);
+                foreach (Transform ch in childs)
+                {
                     ConvertTextToTextMeshPro(ch.gameObject);
+                }
             }
             else
             {
                 ConvertTextToTextMeshPro(gameObject);
             }
+        }
     }
 
     private static void ConvertTextToTextMeshPro(GameObject target)
     {
         if (removeEffectComponents)
         {
-            var sha = target.GetComponents<Shadow>();
-            foreach (var cmp in sha) Undo.DestroyObjectImmediate(cmp);
-            var outl = target.GetComponents<Outline>();
-            foreach (var cmp in outl) Undo.DestroyObjectImmediate(cmp);
+            Shadow[] sha = target.GetComponents<Shadow>();
+            foreach (var cmp in sha)
+            {
+                Undo.DestroyObjectImmediate(cmp);
+            }
+
+            Outline[] outl = target.GetComponents<Outline>();
+            foreach (Outline cmp in outl)
+            {
+                Undo.DestroyObjectImmediate(cmp);
+            }
         }
 
         var uiText = target.GetComponent<Text>();
@@ -70,7 +81,7 @@ public class TextToTextMeshPro : Editor
         tmp.richText = settings.EnableRichText;
         tmp.enableAutoSizing = settings.EnableAutoSizing;
         tmp.alignment = settings.TextAlignmentOptions;
-        tmp.enableWordWrapping = settings.WrappingEnabled;
+        tmp.textWrappingMode = TextWrappingModes.Normal;
         tmp.overflowMode = settings.TextOverflowModes;
         tmp.text = settings.Text;
         tmp.color = settings.Color;

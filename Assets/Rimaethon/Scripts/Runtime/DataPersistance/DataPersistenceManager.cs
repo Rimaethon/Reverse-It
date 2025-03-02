@@ -35,11 +35,10 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
     {
         base.Awake();
 
-        if (disableDataPersistence) Debug.LogWarning("Data Persistence is currently disabled!");
+        if (disableDataPersistence)
+            Debug.LogWarning("Data Persistence is currently disabled!");
 
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
-        Debug.Log("Data Path: " + Application.persistentDataPath);
-
         InitializeSelectedProfileId();
     }
 
@@ -59,31 +58,25 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
         base.OnApplicationQuit();
     }
 
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
-
-        // start up the auto saving coroutine
-        if (autoSaveCoroutine != null) StopCoroutine(autoSaveCoroutine);
+        if (autoSaveCoroutine != null)
+            StopCoroutine(autoSaveCoroutine);
         autoSaveCoroutine = StartCoroutine(AutoSave());
     }
 
     public void ChangeSelectedProfileId(string newProfileId)
     {
-        // update the profile to use for saving and loading
         selectedProfileId = newProfileId;
-        // load the game, which will use that profile, updating the game data accordingly
         LoadGame();
     }
 
     public void DeleteProfileData(string profileId)
     {
-        // delete the data for this profile id
         dataHandler.Delete(profileId);
-        // initialize the selected profile id
         InitializeSelectedProfileId();
-        // reload the game so that our data matches the newly selected profile id
         LoadGame();
     }
 
@@ -93,40 +86,36 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
         if (overrideSelectedProfileId)
         {
             selectedProfileId = testSelectedProfileId;
-            Debug.LogWarning("Overrode selected profile id with test id: " + testSelectedProfileId);
         }
     }
 
     public void NewGame()
     {
-        Debug.Log("Starting a new game.");
         gameData = new GameSettingsData();
     }
 
     public void LoadGame()
     {
-        // return right away if data persistence is disabled
-        if (disableDataPersistence) return;
+        if (disableDataPersistence)
+            return;
 
-        // load any saved data from a file using the data handler
         gameData = dataHandler.Load(selectedProfileId);
 
-        // start a new game if the data is null and we're configured to initialize data for debugging purposes
         if (gameData == null && initializeDataIfNull)
         {
-            Debug.Log("No data was found. Initializing new data for debugging purposes.");
             NewGame();
         }
 
-        // if no data can be loaded, don't continue
         if (gameData == null)
         {
-            Debug.Log("No data was found. A New Game needs to be started before data can be loaded.");
             return;
         }
 
         // push the loaded data to all other scripts that need it
-        foreach (var dataPersistenceObj in dataPersistenceObjects) dataPersistenceObj.LoadData(gameData);
+        foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
+        {
+            dataPersistenceObj.LoadData(gameData);
+        }
     }
 
     public void SaveGame()
@@ -153,8 +142,7 @@ public class DataPersistenceManager : PersistentSingleton<DataPersistenceManager
 
     private List<IDataPersistence> FindAllDataPersistenceObjects()
     {
-        // FindObjectsofType takes in an optional boolean to include inactive gameobjects
-        var dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>(true)
+        IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None)
             .OfType<IDataPersistence>();
 
         return new List<IDataPersistence>(dataPersistenceObjects);

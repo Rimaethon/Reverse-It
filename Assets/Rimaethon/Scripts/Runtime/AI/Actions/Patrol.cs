@@ -10,7 +10,7 @@ namespace Rimaethon.Runtime.AI.Actions
         protected override void OnStart()
         {
             blackboard.moveSpeed = 3;
-            context.Rigidbody2D.velocity = new Vector2(blackboard.moveSpeed, 0);
+            context.Rigidbody2D.linearVelocity = new Vector2(blackboard.moveSpeed, 0);
         }
 
         protected override void OnStop()

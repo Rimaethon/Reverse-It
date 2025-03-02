@@ -76,8 +76,8 @@ namespace Rimaethon.Player
             if (isPlayerDamaged) return;
 
             _movement.x = _movementDirection * walkSpeed;
-            _movement.y = _rb.velocity.y;
-            _rb.velocity = _movement;
+            _movement.y = _rb.linearVelocity.y;
+            _rb.linearVelocity = _movement;
         }
 
         private void GetPlayerMovementDirection(float direction)
@@ -110,7 +110,7 @@ namespace Rimaethon.Player
             if (!IsPlayerGrounded() || isPlayerJumping || isPlayerDamaged) return;
             AudioManager.Instance.PlaySFX(SFXClips.PlayerJump);
             _jumpDirectıon.y = isPlayerGravitated ? -0.9f : 1;
-            _rb.velocity = new Vector2(_rb.velocity.x, 0);
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, 0);
             _rb.AddForce(JumpForce * _jumpDirectıon, ForceMode2D.Impulse);
             isPlayerJumping = true;
             EventManager.Instance.Broadcast(GameEvents.OnPlayerInSight);
@@ -134,7 +134,7 @@ namespace Rimaethon.Player
 
         private bool IsPlayerRelativeVelocityDownward()
         {
-            return Math.Abs(_rb.velocity.y) > 1f && Mathf.Sign(_rb.velocity.y) != Mathf.Sign(_rb.gravityScale);
+            return Math.Abs(_rb.linearVelocity.y) > 1f && Mathf.Sign(_rb.linearVelocity.y) != Mathf.Sign(_rb.gravityScale);
         }
 
         private bool IsPlayerOnAir()

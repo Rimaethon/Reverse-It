@@ -14,7 +14,6 @@ namespace Rimaethon.Scripts.Managers
         [SerializeField] private bool showEventNames;
         #endregion
 
-
         #region Unity Methods
 
         [SerializeField] private List<string> eventNames = new();
@@ -32,15 +31,12 @@ namespace Rimaethon.Scripts.Managers
                     string className = type.Name;
                     eventNames.Add(className+ "." + value.Method.Name);
                 }
-
             }
-
         }
 
         protected override void OnApplicationQuit()
         {
             _eventHandlers.Clear();
-            Debug.LogWarning("Event Manager is cleared");
             base.OnApplicationQuit();
         }
 
@@ -53,15 +49,12 @@ namespace Rimaethon.Scripts.Managers
             if (!_eventHandlers.ContainsKey(gameEvent)) _eventHandlers[gameEvent] = new List<Delegate>();
 
             _eventHandlers[gameEvent].Add(handler);
-            Debug.Log($"Added handler {handler.Method.Name} for game event {gameEvent}");
         }
 
         public void AddHandler<T>(GameEvents gameEvent, Action<T> handler)
         {
             if (!_eventHandlers.ContainsKey(gameEvent)) _eventHandlers[gameEvent] = new List<Delegate>();
-
             _eventHandlers[gameEvent].Add(handler);
-            Debug.Log($"Added handler {handler.Method.Name} for game event {gameEvent}");
         }
 
         public void RemoveHandler(GameEvents gameEvent, Action handler)
@@ -69,12 +62,10 @@ namespace Rimaethon.Scripts.Managers
             if (_eventHandlers.TryGetValue(gameEvent, out var handlers))
             {
                 handlers.Remove(handler);
-                Debug.Log($"Removed handler {handler.Method.Name} for game event {gameEvent}");
 
                 if (handlers.Count == 0)
                 {
                     _eventHandlers.Remove(gameEvent);
-                    Debug.Log($"No more handlers for game event {gameEvent}");
                 }
             }
         }
@@ -84,12 +75,10 @@ namespace Rimaethon.Scripts.Managers
             if (_eventHandlers.TryGetValue(gameEvent, out var handlers))
             {
                 handlers.Remove(handler);
-                Debug.Log($"Removed handler {handler.Method.Name} for game event {gameEvent}");
 
                 if (handlers.Count == 0)
                 {
                     _eventHandlers.Remove(gameEvent);
-                    Debug.Log($"No more handlers for game event {gameEvent}");
                 }
             }
         }

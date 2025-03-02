@@ -17,12 +17,11 @@ namespace Rimaethon.Scripts.Utility
             {
                 if (_instance != null) return _instance;
 
-                _instance = FindObjectOfType<T>();
+                _instance = FindFirstObjectByType<T>();
 
 
                 if (_instance == null && !IsApplicationQuitting)
                     Debug.LogError($"Instance of type {typeof(T)} could not be found.");
-                Debug.Log($"Instance of type {typeof(T)} found.");
 
                 return _instance;
             }

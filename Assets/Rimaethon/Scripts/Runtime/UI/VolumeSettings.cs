@@ -45,8 +45,6 @@ namespace Rimaethon.Runtime.UI
         public void LoadData(GameSettingsData data)
         {
             masterVolumeSlider.value = data.MasterVolume;
-            Debug.Log($"Master Volume: {data.MasterVolume}");
-            Debug.Log(masterVolumeSlider.value);
             musicVolumeSlider.value = data.MusicVolume;
             sfxVolumeSlider.value = data.SFXVolume;
             LoadVolumes();
@@ -88,6 +86,6 @@ namespace Rimaethon.Runtime.UI
             SetMusicVolume(musicVolumeSlider.value);
             SetSfxVolume(sfxVolumeSlider.value);
         }
-        
+
     }
 }

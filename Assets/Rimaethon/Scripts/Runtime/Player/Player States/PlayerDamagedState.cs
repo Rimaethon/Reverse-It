@@ -34,7 +34,7 @@ namespace Rimaethon.Player.Player_States
             CalculateOppositeDirections();
             BendPlayerOnZAxis();
             DetermineBumpForce();
-            _rb.velocity = Vector2.zero;
+            _rb.linearVelocity = Vector2.zero;
             BumpPlayer();
         }
 
@@ -45,7 +45,7 @@ namespace Rimaethon.Player.Player_States
 
         public void ExitState()
         {
-            _rb.velocity = Vector2.zero;
+            _rb.linearVelocity = Vector2.zero;
             _transform.rotation = Quaternion.Euler(_previousRotation);
             _playerController.isPlayerDamaged = false;
             _animator.SetBool(AnimationParameters.IsDamaged, false);

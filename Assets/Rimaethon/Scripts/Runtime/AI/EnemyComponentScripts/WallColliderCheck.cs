@@ -15,7 +15,7 @@ namespace Rimaethon.Scripts.Enemy
         private void OnTriggerEnter2D(Collider2D other)
         {
             IsCollidedWithWall = true;
-            rb.velocity *= -1f;
+            rb.linearVelocity *= -1f;
         }
 
         private void OnTriggerExit2D(Collider2D other)

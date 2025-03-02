@@ -50,8 +50,8 @@ namespace Rimaethon.Runtime.Player
 
         private void ClampPlayerFallingVelocity()
         {
-            var clampedYVelocity = Mathf.Clamp(_rb.velocity.y, -MaxFallingSpeed, MaxFallingSpeed);
-            _rb.velocity = new Vector2(_rb.velocity.x, clampedYVelocity);
+            var clampedYVelocity = Mathf.Clamp(_rb.linearVelocity.y, -MaxFallingSpeed, MaxFallingSpeed);
+            _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, clampedYVelocity);
         }
     }
 }

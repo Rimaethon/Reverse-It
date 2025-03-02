@@ -16,7 +16,7 @@ namespace Rimaethon.Runtime.AI.EnemyComponentScripts
         protected override void OnTriggerExit2D(Collider2D other)
         {
             base.OnTriggerExit2D(other);
-            _rb.velocity *= -1f;
+            _rb.linearVelocity *= -1f;
         }
     }
 }
